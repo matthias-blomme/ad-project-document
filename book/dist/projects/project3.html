@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Frontend Framework - Software Engineering Project - Course Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../project-doc-custom.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../announcements.html">Announcements</a></li><li class="chapter-item expanded affix "><a href="../revisions.html">Revisions</a></li><li class="chapter-item expanded affix "><li class="part-title">Project info</li><li class="chapter-item expanded "><a href="../project_info/introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../project_info/overview/overview.html"><strong aria-hidden="true">2.</strong> Overview</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project_info/overview/teams_and_projects.html"><strong aria-hidden="true">2.1.</strong> Project selection and teams</a></li><li class="chapter-item "><a href="../project_info/overview/planning.html"><strong aria-hidden="true">2.2.</strong> Planning</a></li><li class="chapter-item "><a href="../project_info/overview/coaching.html"><strong aria-hidden="true">2.3.</strong> Coaching</a></li><li class="chapter-item "><a href="../project_info/overview/grading.html"><strong aria-hidden="true">2.4.</strong> Grading</a></li><li class="chapter-item "><a href="../project_info/overview/house_rules.html"><strong aria-hidden="true">2.5.</strong> House rules</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Projects</li><li class="chapter-item expanded "><a href="../projects/projects.html"><strong aria-hidden="true">3.</strong> Projects</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../projects/project1.html"><strong aria-hidden="true">3.1.</strong> ORM Library</a></li><li class="chapter-item "><a href="../projects/project2.html"><strong aria-hidden="true">3.2.</strong> CQRS Synchronization</a></li><li class="chapter-item expanded "><a href="../projects/project3.html" class="active"><strong aria-hidden="true">3.3.</strong> Frontend Framework</a></li><li class="chapter-item "><a href="../projects/project4.html"><strong aria-hidden="true">3.4.</strong> Pacman and Search Algorithms</a></li><li class="chapter-item "><a href="../projects/project5.html"><strong aria-hidden="true">3.5.</strong> AI-driven Terminalinterface</a></li></ol></li><li class="chapter-item expanded "><a href="../appendices/q_and_a.html"><strong aria-hidden="true">4.</strong> Q&A</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Software Engineering Project - Course Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="project-design-and-build-a-lightweight-frontend-framework-reactvue-inspired"><a class="header" href="#project-design-and-build-a-lightweight-frontend-framework-reactvue-inspired">Project: Design and Build a Lightweight Frontend Framework (React/Vue-Inspired)</a></h1>
+<h2 id="project-description"><a class="header" href="#project-description">Project Description</a></h2>
+<p>In this project, your team will design and implement a <strong>minimal but usable frontend framework</strong> inspired by modern libraries such as <strong>React, Vue, Preact, Solid, or Svelte</strong>.</p>
+<p>The goal is not to recreate these frameworks in full, but to <strong>understand and implement their core ideas</strong>:</p>
+<ul>
+<li>rendering strategy (virtual DOM diffing or fine-grained reactivity/signals)</li>
+<li>a simple <strong>component model</strong></li>
+<li>basic <strong>state management</strong></li>
+</ul>
+<p>You will choose the architecture (runtime vs compile-time), API style (JSX, template, or hyperscript), and packaging strategy. Along the way, you’ll compare alternatives, run experiments, and justify your design choices.</p>
+<p>This project emphasizes both <strong>technical depth</strong> (frontend architecture, rendering strategies, developer experience) and <strong>professional practices</strong> (teamwork, research, documentation, and iterative delivery).</p>
+<hr />
+<h2 id="goal"><a class="header" href="#goal">Goal</a></h2>
+<p>Deliver a <strong>small, coherent framework</strong> and a <strong>demo application</strong> that show you understand:</p>
+<ul>
+<li><strong>Component-based rendering</strong></li>
+<li><strong>State updates and re-rendering</strong></li>
+<li><strong>Performance trade-offs</strong></li>
+<li><strong>Developer-friendly APIs</strong></li>
+</ul>
+<p>Your framework should be accompanied by tests, examples, and clear documentation.</p>
+<hr />
+<h2 id="context"><a class="header" href="#context">Context</a></h2>
+<p>Popular frameworks like React and Vue hide a lot of complexity. By building your own simplified version, you will gain a deeper understanding of:</p>
+<ul>
+<li>how rendering works</li>
+<li>how state changes update the UI</li>
+<li>how components are structured and re-used</li>
+<li>what trade-offs exist between <strong>simplicity, performance, and developer experience</strong></li>
+</ul>
+<p>This knowledge will make you a stronger frontend engineer and help you evaluate or adopt frameworks more critically in the future.</p>
+<hr />
+<h2 id="desired-outcome"><a class="header" href="#desired-outcome">Desired Outcome</a></h2>
+<p>A working <strong>frontend framework prototype</strong> and a <strong>demo app</strong> that:</p>
+<ul>
+<li>Renders components declaratively and updates the DOM efficiently when state changes.</li>
+<li>Supports <strong>state, props, and events</strong>, with examples of conditional rendering and list rendering.</li>
+<li>Provides a <strong>mount API</strong> (e.g., <code>render(App, mountNode)</code>).</li>
+<li>Runs locally with a one-command setup (<code>npm run dev</code> or similar).</li>
+<li>Is open-sourced on GitHub, documented, and covered by basic tests.</li>
+</ul>
+<hr />
+<h2 id="functional-requirements"><a class="header" href="#functional-requirements">Functional Requirements</a></h2>
+<h3 id="must-haves"><a class="header" href="#must-haves">Must-Haves</a></h3>
+<ul>
+<li>
+<p><strong>Rendering strategy</strong> – choose one:</p>
+<ul>
+<li>Virtual DOM diffing + patching, or</li>
+<li>Fine-grained reactivity/signals (no full VDOM).</li>
+</ul>
+</li>
+<li>
+<p><strong>Component model</strong>:</p>
+<ul>
+<li>Components accept props and can hold internal state.</li>
+<li>Components re-render when state updates.</li>
+<li>Support for event handling.</li>
+</ul>
+</li>
+<li>
+<p><strong>Core features</strong>:</p>
+<ul>
+<li>Conditional rendering.</li>
+<li>List rendering.</li>
+<li>Simple mount API (<code>render(App, mountNode)</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Demo app</strong> showing off the features.</p>
+</li>
+<li>
+<p>Document your chosen design and justify trade-offs.</p>
+</li>
+</ul>
+<p><strong>Examples (adapt to your API):</strong></p>
+<pre><code class="language-ts">const Counter = () =&gt; {
+  const [count, setCount] = useState(0);
+  return h('button', { onClick: () =&gt; setCount(count() + 1) }, `Count: ${count()}`);
+};
+render(Counter, document.getElementById('app')!);
+</code></pre>
+<p>or</p>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;button @click="increment"&gt;
+    Count: {{ count }}
+  &lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Counter',
+  data() {
+    return { count: 0 };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<h3 id="could-haves-optional-stretch-goals"><a class="header" href="#could-haves-optional-stretch-goals">Could-Haves (Optional, Stretch Goals)</a></h3>
+<ul>
+<li>JSX or a tiny template parser.</li>
+<li>Hooks/effects (<code>useEffect</code>, <code>useMemo</code>).</li>
+<li>Lifecycle hooks (<code>onMount</code>, <code>onUnmount</code>).</li>
+<li>Context API or signals.</li>
+<li>A simple router.</li>
+<li>Keyed list diffing optimizations.</li>
+<li>Dev tooling (debug logs, render timings).</li>
+<li>Compile-time transforms (like a tiny compiler).</li>
+<li>SSR/hydration experiment.</li>
+<li>A custom renderer (e.g., render to <code>&lt;canvas&gt;</code> instead of the DOM).</li>
+</ul>
+<hr />
+<h2 id="non-functional-requirements"><a class="header" href="#non-functional-requirements">Non-Functional Requirements</a></h2>
+<ul>
+<li>
+<p><strong>TypeScript or Javascript</strong>: strict mode</p>
+</li>
+<li>
+<p><strong>Tests</strong>: unit + integration, ≥ 70% coverage on core modules.</p>
+</li>
+<li>
+<p><strong>Modularity</strong>: separate core, renderer, and optional JSX/parser.</p>
+</li>
+<li>
+<p><strong>Performance</strong>: basic benchmarks (initial render vs update re-render).</p>
+</li>
+<li>
+<p><strong>Build/Distribution</strong>: ESM build; optionally publish as npm/JSR package.</p>
+</li>
+<li>
+<p><strong>Documentation</strong>:</p>
+<ul>
+<li>README with Quick Start, Usage, and Troubleshooting.</li>
+<li>Examples showcasing common use cases.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="research--decision-making"><a class="header" href="#research--decision-making">Research &amp; Decision Making</a></h2>
+<p>You are expected to:</p>
+<ul>
+<li>Compare <strong>virtual DOM vs signals/reactivity</strong> and justify your choice.</li>
+<li>Investigate <strong>diffing strategies and schedulers</strong>.</li>
+<li>Explore different API designs (JSX vs template vs hyperscript).</li>
+<li>Run small <strong>benchmarks and experiments</strong> to support your choices.</li>
+<li>Look at existing frameworks (React, Vue, Solid, Svelte) for inspiration.</li>
+</ul>
+<hr />
+<h2 id="project-requirements"><a class="header" href="#project-requirements">Project Requirements</a></h2>
+<ul>
+<li>
+<p><strong>Team size</strong>: 3 students.</p>
+</li>
+<li>
+<p><strong>Workflow</strong>: Agile/Scrum/Kanban with code reviews.</p>
+</li>
+<li>
+<p><strong>Repository</strong>: Public GitHub repo with issues/boards.</p>
+</li>
+<li>
+<p><strong>Setup</strong>: One-command run (<code>npm run dev</code> or <code>make up</code>).</p>
+</li>
+<li>
+<p><strong>Environment</strong>: <code>.env.example</code> if configuration is needed.</p>
+</li>
+<li>
+<p><strong>CI/CD</strong>: Lint, test, and build on pull requests.</p>
+</li>
+<li>
+<p><strong>Deliverables</strong>:</p>
+<ul>
+<li>Framework code + documentation.</li>
+<li>Example/demo app.</li>
+<li>Research report</li>
+<li>Final presentation and reflection.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria"><a class="header" href="#assessment-criteria">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong> – how well you investigated and justified your choices.</li>
+<li><strong>Functional Working</strong> – does the framework render and update correctly?</li>
+<li><strong>Technical Quality</strong> – clean code, modularity, test coverage, performance.</li>
+<li><strong>Documentation</strong> – clear README, API docs, and examples.</li>
+<li><strong>Teamwork &amp; Process</strong> – iterative development, collaboration, Git workflow.</li>
+<li><strong>Presentation &amp; Reflection</strong> – ability to explain and defend your framework design.</li>
+</ol>
+<hr />
+<h2 id="definition-of-done"><a class="header" href="#definition-of-done">Definition of Done</a></h2>
+<p>The project is complete when:</p>
+<ul>
+<li>Research and comparative analysis are documented.</li>
+<li>A minimal but working framework is implemented.</li>
+<li>Must-have features (components, state, rendering, events, conditional + list rendering) are working.</li>
+<li>A demo app showcases the framework.</li>
+<li>Tests pass with reasonable coverage.</li>
+<li>Documentation (README, ADRs, examples) is complete.</li>
+<li>The framework can run locally with a single command.</li>
+<li>Final presentation and reflection delivered.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../projects/project2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../projects/project4.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../projects/project2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../projects/project4.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../project-doc-custom.js"></script>
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

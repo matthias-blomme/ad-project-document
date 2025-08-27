@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pacman and Search Algorithms - Software Engineering Project - Course Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../project-doc-custom.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../announcements.html">Announcements</a></li><li class="chapter-item expanded affix "><a href="../revisions.html">Revisions</a></li><li class="chapter-item expanded affix "><li class="part-title">Project info</li><li class="chapter-item expanded "><a href="../project_info/introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../project_info/overview/overview.html"><strong aria-hidden="true">2.</strong> Overview</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project_info/overview/teams_and_projects.html"><strong aria-hidden="true">2.1.</strong> Project selection and teams</a></li><li class="chapter-item "><a href="../project_info/overview/planning.html"><strong aria-hidden="true">2.2.</strong> Planning</a></li><li class="chapter-item "><a href="../project_info/overview/coaching.html"><strong aria-hidden="true">2.3.</strong> Coaching</a></li><li class="chapter-item "><a href="../project_info/overview/grading.html"><strong aria-hidden="true">2.4.</strong> Grading</a></li><li class="chapter-item "><a href="../project_info/overview/house_rules.html"><strong aria-hidden="true">2.5.</strong> House rules</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Projects</li><li class="chapter-item expanded "><a href="../projects/projects.html"><strong aria-hidden="true">3.</strong> Projects</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../projects/project1.html"><strong aria-hidden="true">3.1.</strong> ORM Library</a></li><li class="chapter-item "><a href="../projects/project2.html"><strong aria-hidden="true">3.2.</strong> CQRS Synchronization</a></li><li class="chapter-item "><a href="../projects/project3.html"><strong aria-hidden="true">3.3.</strong> Frontend Framework</a></li><li class="chapter-item expanded "><a href="../projects/project4.html" class="active"><strong aria-hidden="true">3.4.</strong> Pacman and Search Algorithms</a></li><li class="chapter-item "><a href="../projects/project5.html"><strong aria-hidden="true">3.5.</strong> AI-driven Terminalinterface</a></li></ol></li><li class="chapter-item expanded "><a href="../appendices/q_and_a.html"><strong aria-hidden="true">4.</strong> Q&A</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Software Engineering Project - Course Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="project-pacman-and-ai-search-algorithms-toolkit--maze-demo"><a class="header" href="#project-pacman-and-ai-search-algorithms-toolkit--maze-demo">Project: Pacman and AI Search Algorithms (Toolkit + Maze Demo)</a></h1>
+<h2 id="project-description"><a class="header" href="#project-description">Project Description</a></h2>
+<p>Build a small, well-structured <strong>AI Search Toolkit</strong> that implements and compares classic <strong>search algorithms</strong>. You will create a reusable library of search algorithms and a demo environment (<strong>maze</strong> and <strong>Pacman-style</strong> scenario) to test and visualize them. Focus on <strong>correctness</strong>, <strong>clarity</strong>, and <strong>evidence-based comparison</strong>.</p>
+<p>Based on materials from <strong>CS50’s AI course</strong>, analyze different search techniques and implement them in your <strong>chosen programming language</strong> (within the course’s allowed runtimes). Reference: https://www.youtube.com/watch?v=WbzNRTTrX0g</p>
+<p>You choose the <strong>programming language</strong> and <strong>architecture</strong>, then justify your choices with <strong>research</strong> and small <strong>experiments</strong>. Keep the project easy to run, <strong>well tested</strong>, and <strong>documented</strong> so others can understand and reuse your work.</p>
+<p>Note: For inspiration on <strong>agent abstractions</strong> and <strong>code structure</strong>, you can study the <strong>AIMA Java</strong> codebase:</p>
+<ul>
+<li>https://github.com/aimacode/aima-java/tree/AIMA3e/aima-core/src/main/java/aima/core<br />
+This is the Java implementation of algorithms from Russell and Norvig’s “<strong>Artificial Intelligence: A Modern Approach (3rd Edition)</strong>”.</li>
+</ul>
+<hr />
+<h2 id="goal"><a class="header" href="#goal">Goal</a></h2>
+<p>Deliver a <strong>toolkit</strong> and <strong>demo</strong> that let you:</p>
+<ul>
+<li>Implement and run several <strong>search algorithms</strong> on the same <strong>problem model</strong>.</li>
+<li>Compare their behavior and performance with clear <strong>metrics</strong>.</li>
+<li>Explain <strong>trade-offs</strong> (completeness, optimality, time/space complexity) in practical terms.</li>
+</ul>
+<hr />
+<h2 id="context"><a class="header" href="#context">Context</a></h2>
+<p>Search algorithms are core to AI (<strong>pathfinding</strong>, <strong>puzzle solving</strong>, <strong>game AI</strong>). Implementing them yourself gives deep understanding of how they work and when to use which. The <strong>maze/Pacman</strong> demo makes results tangible and fun to evaluate.</p>
+<hr />
+<h2 id="desired-outcome"><a class="header" href="#desired-outcome">Desired Outcome</a></h2>
+<p>A working <strong>toolkit</strong> and <strong>demo</strong> that:</p>
+<ul>
+<li>Runs multiple algorithms on the same problems (<strong>maze/grid</strong> and a simple <strong>Pacman-like</strong> level).</li>
+<li>Produces comparable outputs (<strong>path found</strong>, <strong>nodes expanded</strong>, <strong>cost</strong>, <strong>time</strong>).</li>
+<li>Is easy to run locally in <strong>one command</strong> and is <strong>documented</strong> so others can use it.</li>
+</ul>
+<hr />
+<h2 id="functional-requirements"><a class="header" href="#functional-requirements">Functional Requirements</a></h2>
+<h3 id="must-haves"><a class="header" href="#must-haves">Must-Haves</a></h3>
+<ul>
+<li>Implement at least 4 algorithms:
+<ul>
+<li><strong>Depth-First Search (DFS)</strong></li>
+<li><strong>Breadth-First Search (BFS)</strong></li>
+<li><strong>Greedy Best-First Search</strong></li>
+<li><strong>A</strong>* Search (with a <strong>heuristic</strong> you explain)</li>
+</ul>
+</li>
+<li><strong>Common problem model</strong>:
+<ul>
+<li>Same <strong>state representation</strong> and <strong>interface</strong> for all algorithms (e.g., grid/maze with walls, start, goal).</li>
+</ul>
+</li>
+<li><strong>Reproducible outputs</strong>:
+<ul>
+<li>For a given seed/input, runs produce the same <strong>path</strong> and <strong>metrics</strong>.</li>
+</ul>
+</li>
+<li><strong>Demo application</strong>:
+<ul>
+<li><strong>CLI</strong> or simple <strong>UI</strong> to select algorithm, load a map, run, and show the result (<strong>path + stats</strong>).</li>
+</ul>
+</li>
+<li><strong>Metrics per run</strong>:
+<ul>
+<li><strong>Nodes expanded</strong>, <strong>path length/cost</strong>, <strong>runtime</strong> (and optionally <strong>memory</strong>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="could-haves-optional"><a class="header" href="#could-haves-optional">Could-Haves (Optional)</a></h3>
+<ul>
+<li><strong>Additional algorithms</strong>: Iterative Deepening, <strong>Dijkstra</strong>, <strong>Bidirectional Search</strong>, <strong>Minimax/Alpha-Beta</strong> (for adversarial play).</li>
+<li><strong>Visualizer</strong>:
+<ul>
+<li>Animate <strong>exploration order</strong>, <strong>frontier</strong>, and <strong>final path</strong>.</li>
+</ul>
+</li>
+<li><strong>Heuristic experiments</strong>:
+<ul>
+<li>Plug-in heuristics (<strong>Manhattan</strong>, <strong>Euclidean</strong>); compare their effects.</li>
+</ul>
+</li>
+<li><strong>Benchmark tool</strong>:
+<ul>
+<li>Run many maps and output a <strong>comparison table/plot</strong>.</li>
+</ul>
+</li>
+<li><strong>Pacman behaviors</strong>:
+<ul>
+<li><strong>Ghost logic</strong> or <strong>collectibles</strong> to make scenarios richer.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="non-functional-requirements"><a class="header" href="#non-functional-requirements">Non-Functional Requirements</a></h2>
+<ul>
+<li><strong>Testability</strong>:
+<ul>
+<li><strong>≥ 80% coverage</strong> on core search logic; <strong>deterministic tests</strong>.</li>
+</ul>
+</li>
+<li><strong>Modularity</strong>:
+<ul>
+<li>Separate <strong>problem model</strong>, <strong>algorithms</strong>, and <strong>demo UI/CLI</strong>.</li>
+</ul>
+</li>
+<li><strong>Observability</strong>:
+<ul>
+<li>Clear <strong>logs</strong> for steps/visited nodes (toggleable).</li>
+</ul>
+</li>
+<li><strong>Reproducibility</strong>:
+<ul>
+<li><strong>One-command</strong> setup/run on a clean machine.</li>
+</ul>
+</li>
+<li><strong>Documentation</strong>:
+<ul>
+<li><strong>README</strong> with <strong>Quick Start</strong>, <strong>Usage</strong>, <strong>Configuration</strong>, <strong>Troubleshooting</strong>.</li>
+<li>Short explanation of each <strong>algorithm</strong> and <strong>heuristic</strong> used.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="research--decision-making"><a class="header" href="#research--decision-making">Research &amp; Decision Making</a></h2>
+<p>You are expected to:</p>
+<ul>
+<li><strong>Compare algorithms</strong> conceptually:
+<ul>
+<li><strong>Completeness</strong>, <strong>optimality</strong>, <strong>time/space complexity</strong>; when to use which.</li>
+</ul>
+</li>
+<li><strong>Evaluate heuristics</strong>:
+<ul>
+<li>Why a heuristic is <strong>admissible/consistent</strong>; impact on <strong>A</strong>* and <strong>Greedy</strong>.</li>
+</ul>
+</li>
+<li><strong>Run small experiments</strong>:
+<ul>
+<li>Measure <strong>nodes expanded</strong>, <strong>runtime</strong>, and <strong>path quality</strong> on a few maps.</li>
+</ul>
+</li>
+<li><strong>Record major choices</strong>:
+<ul>
+<li><strong>Problem model</strong>, <strong>data structures</strong>, <strong>heuristics</strong>, <strong>visualization</strong> approach.</li>
+<li>Keep brief <strong>ADRs (Architecture Decision Records)</strong> for key decisions.</li>
+</ul>
+</li>
+<li><strong>Read the AIMA chapters on Agents and on Search</strong>, and consider how <strong>agent-based abstractions</strong> (<strong>environment</strong>, <strong>agent</strong>, <strong>percepts</strong>, <strong>actions</strong>) can inform your design. The relevant chapters are available via the provided resources; purchasing the book is not required.</li>
+</ul>
+<hr />
+<h2 id="project-requirements"><a class="header" href="#project-requirements">Project Requirements</a></h2>
+<ul>
+<li><strong>Team size</strong>:
+<ul>
+<li><strong>3 students</strong>.</li>
+</ul>
+</li>
+<li><strong>Language/runtime</strong>:
+<ul>
+<li>Everything except Java, reason demo code is in Java</li>
+</ul>
+</li>
+<li><strong>Repository (public GitHub)</strong>:
+<ul>
+<li>Commit regularly; use <strong>issues/board</strong>; <strong>PR reviews</strong>.</li>
+<li><strong>One-command run</strong> (e.g., <code>npm run dev</code> / <code>deno task start</code> / <code>make run</code>).</li>
+<li>Provide <strong><code>.env.example</code></strong> if configuration is needed; <strong>no secrets</strong> in repo.</li>
+</ul>
+</li>
+<li><strong>CI/CD</strong>:
+<ul>
+<li><strong>Lint</strong>, <strong>test</strong>, and <strong>build</strong> on pull requests; <strong>main stays green</strong>.</li>
+</ul>
+</li>
+<li><strong>Deliverables</strong>:
+<ul>
+<li><strong>Source code</strong> + <strong>documentation</strong> on GitHub.</li>
+<li><strong>Demo application</strong> (CLI or UI).</li>
+<li><strong>Research notes</strong> and <strong>ADRs</strong>.</li>
+<li><strong>Final presentation</strong> and <strong>reflection</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria"><a class="header" href="#assessment-criteria">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong>:
+<ul>
+<li>Quality of comparisons, heuristic rationale, and evidence from experiments.</li>
+</ul>
+</li>
+<li><strong>Functional Working</strong>:
+<ul>
+<li>Algorithms run correctly on shared problems; demo is usable.</li>
+</ul>
+</li>
+<li><strong>Technical Quality</strong>:
+<ul>
+<li>Code structure, tests, clarity, and performance basics.</li>
+</ul>
+</li>
+<li><strong>Documentation</strong>:
+<ul>
+<li>Clear README, examples, and explanation of results.</li>
+</ul>
+</li>
+<li><strong>Teamwork &amp; Process</strong>:
+<ul>
+<li>Iterative development, Git workflow, reviews.</li>
+</ul>
+</li>
+<li><strong>Presentation &amp; Reflection</strong>:
+<ul>
+<li>Ability to explain and defend choices; lessons learned.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="definition-of-done"><a class="header" href="#definition-of-done">Definition of Done</a></h2>
+<p>The project is complete when:</p>
+<ul>
+<li><strong>Research completed and documented</strong>:
+<ul>
+<li><strong>Algorithm comparisons</strong> and <strong>heuristic rationale</strong> written up.</li>
+<li><strong>Experiments/benchmarks</strong> (<strong>nodes expanded</strong>, <strong>runtime</strong>, <strong>path cost</strong>) included.</li>
+<li><strong>ADRs</strong> for key decisions present and linked.</li>
+</ul>
+</li>
+<li><strong>Functionality</strong>:
+<ul>
+<li>At least <strong>DFS</strong>, <strong>BFS</strong>, <strong>Greedy</strong>, and <strong>A</strong>* implemented against a <strong>common interface</strong>.</li>
+<li><strong>Demo</strong> runs on a <strong>maze</strong> and a small <strong>Pacman-style</strong> map, showing <strong>path</strong> and <strong>metrics</strong>.</li>
+</ul>
+</li>
+<li><strong>Quality</strong>:
+<ul>
+<li>Tests pass (<strong>≥ 80% coverage</strong> on core logic) in <strong>CI</strong>.</li>
+<li>Code is <strong>modular</strong> and <strong>readable</strong>; <strong>logs/metrics</strong> available.</li>
+</ul>
+</li>
+<li><strong>Delivery</strong>:
+<ul>
+<li><strong>Public GitHub repository</strong> with complete <strong>README</strong> and <strong>one-command run</strong>.</li>
+<li><strong>Final presentation</strong> and</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../projects/project3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../projects/project5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../projects/project3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../projects/project5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../project-doc-custom.js"></script>
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+[book]
+authors = ["M. Blomme", "D. Casier"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Software Engineering Project - Course Guide"
+
+[preprocessor.mermaid]
+command = "./book/plugins/mdbook-mermaid"
+
+[output.html]
+additional-css = ["project-doc-custom.css"]
+additional-js = ["project-doc-custom.js", "mermaid.min.js", "mermaid-init.js"]
+
+[output.html.fold]
+enable = true
+level = 1

@@ -1,0 +1,1733 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Software Engineering Project - Course Guide</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="project-doc-custom.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="announcements.html">Announcements</a></li><li class="chapter-item expanded affix "><a href="revisions.html">Revisions</a></li><li class="chapter-item expanded affix "><li class="part-title">Project info</li><li class="chapter-item expanded "><a href="project_info/introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="project_info/overview/overview.html"><strong aria-hidden="true">2.</strong> Overview</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="project_info/overview/teams_and_projects.html"><strong aria-hidden="true">2.1.</strong> Project selection and teams</a></li><li class="chapter-item "><a href="project_info/overview/planning.html"><strong aria-hidden="true">2.2.</strong> Planning</a></li><li class="chapter-item "><a href="project_info/overview/coaching.html"><strong aria-hidden="true">2.3.</strong> Coaching</a></li><li class="chapter-item "><a href="project_info/overview/grading.html"><strong aria-hidden="true">2.4.</strong> Grading</a></li><li class="chapter-item "><a href="project_info/overview/house_rules.html"><strong aria-hidden="true">2.5.</strong> House rules</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Projects</li><li class="chapter-item expanded "><a href="projects/projects.html"><strong aria-hidden="true">3.</strong> Projects</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="projects/project1.html"><strong aria-hidden="true">3.1.</strong> ORM Library</a></li><li class="chapter-item "><a href="projects/project2.html"><strong aria-hidden="true">3.2.</strong> CQRS Synchronization</a></li><li class="chapter-item "><a href="projects/project3.html"><strong aria-hidden="true">3.3.</strong> Frontend Framework</a></li><li class="chapter-item "><a href="projects/project4.html"><strong aria-hidden="true">3.4.</strong> Pacman and Search Algorithms</a></li><li class="chapter-item "><a href="projects/project5.html"><strong aria-hidden="true">3.5.</strong> AI-driven Terminalinterface</a></li></ol></li><li class="chapter-item expanded "><a href="appendices/q_and_a.html"><strong aria-hidden="true">4.</strong> Q&A</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Software Engineering Project - Course Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="announcements"><a class="header" href="#announcements">Announcements</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="revisions"><a class="header" href="#revisions">Revisions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>The <strong>Software Engineering Project (SE Project)</strong> is the capstone of semester 5. After completing the module exams, you and your teammates will work intensively on a real-world software project, applying your accumulated knowledge to a larger, more complex challenge.</p>
+<p>Over several weeks, you will research, design, and deliver professional-quality software while gaining experience with unfamiliar technologies, methods, and workflows.</p>
+<p>In parallel, your <strong>Bachelor’s thesis (BAP)</strong> develops as a structured account of your work. It documents the reasoning behind your choices, the evidence that supports them, and the lessons learned throughout the process.</p>
+<p>The SE Project and the BAP are therefore tightly connected: your project provides the practice and the technical skills, while your thesis captures and defends your approach.</p>
+<p>The SE Project bridges the gap between classroom assignments and professional practice, preparing you to work—and contribute—as a software engineer.</p>
+<hr />
+<h2 id="on-this-page"><a class="header" href="#on-this-page">On this page</a></h2>
+<ul>
+<li><a href="project_info/introduction.html#learning-outcomes">Learning outcomes</a></li>
+<li><a href="project_info/introduction.html#expectations">Expectations</a></li>
+<li><a href="project_info/introduction.html#how-the-course-runs-at-a-glance">How the course runs (at a glance)</a></li>
+<li><a href="project_info/introduction.html#timeline-snapshot-s5">Timeline snapshot (S5)</a></li>
+<li><a href="project_info/introduction.html#coaching-model">Coaching model</a></li>
+<li><a href="project_info/introduction.html#deliverables-and-milestones">Deliverables and milestones</a></li>
+<li><a href="project_info/introduction.html#assessment">Assessment</a></li>
+<li><a href="project_info/introduction.html#team-formation-and-project-selection">Team formation and project selection</a></li>
+<li><a href="project_info/introduction.html#start-exploring-projects">Start exploring projects</a></li>
+<li><a href="project_info/introduction.html#final-note">Final note</a></li>
+</ul>
+<hr />
+<h2 id="learning-outcomes"><a class="header" href="#learning-outcomes">Learning outcomes</a></h2>
+<p>By the end of this course, you will be able to:</p>
+<ul>
+<li>Apply existing knowledge to <strong>new and unfamiliar problems</strong>.</li>
+<li><strong>Investigate and evaluate</strong> technologies, and translate research into well-founded decisions.</li>
+<li><strong>Deliver professional-quality software</strong>: tested, documented, and maintainable.</li>
+<li><strong>Work effectively</strong> in a small team using professional workflows (e.g., GitHub, CI/CD, issue tracking).</li>
+<li><strong>Communicate results clearly</strong> through code, documentation, presentations, and your thesis.</li>
+<li>Reflect on your own engineering practice and <strong>argue for your decisions with evidence</strong>.</li>
+</ul>
+<hr />
+<h2 id="expectations"><a class="header" href="#expectations">Expectations</a></h2>
+<p>The SE Project requires the same mindset as a professional software development team:</p>
+<ul>
+<li><strong>Workload</strong>: expect a <strong>full-time commitment</strong> during project weeks, balancing coding, research, documentation, and collaboration.</li>
+<li><strong>Autonomy</strong>: teams are <strong>responsible for their own planning, problem solving, and progress</strong>. Coaches <strong>support and advise</strong>, but do not take over daily steering.</li>
+<li><strong>Professional quality</strong>: deliverables should meet standards of <strong>reliability, reproducibility, and clarity</strong>.</li>
+</ul>
+<p>See details: <a href="project_info/../project_info/overview/house_rules.html">House Rules</a></p>
+<hr />
+<h2 id="how-the-course-runs-at-a-glance"><a class="header" href="#how-the-course-runs-at-a-glance">How the course runs (at a glance)</a></h2>
+<ul>
+<li><strong>Teams of 3</strong> choose from a <strong>catalog of lecturer-proposed topics</strong> and submit 5 preferences; duplicates across teams are allowed.</li>
+<li><strong>Week 1</strong> focuses on <strong>research before implementation</strong> begins.</li>
+<li>The <strong>BAP runs alongside</strong> the project; <strong>key milestones are aligned</strong>.</li>
+<li><strong>Coaching</strong> is provided weekly (technical) and at a steady cadence (project coaching: weekly first two weeks, then bi-weekly).</li>
+<li>The course concludes with an <strong>oral exam</strong> and <strong>BAP evaluation</strong>.</li>
+</ul>
+<p>See details: <a href="project_info/../project_info/overview/planning.html#coaching">Planning</a> and <a href="project_info/../project_info/overview/teams_and_projects.html">Project selection and teams</a>.</p>
+<hr />
+<h2 id="timeline-snapshot-s5"><a class="header" href="#timeline-snapshot-s5">Timeline snapshot (S5)</a></h2>
+<ul>
+<li><strong>15/09–25/10</strong>: Regular classes (modules)</li>
+<li><strong>27/10–01/11</strong>: Autumn break</li>
+<li><strong>03/11–08/11</strong>: Class/buffer week</li>
+<li><strong>10/11–22/11</strong>: Module exam period</li>
+<li><strong>24/11–20/12</strong>: <strong>SE Project + BAP (project weeks)</strong></li>
+<li><strong>22/12–03/01</strong>: Winter/work break</li>
+<li><strong>05/01–17/01</strong>: <strong>SE Project + BAP (continue)</strong></li>
+<li><strong>19/01–24/01</strong>: <strong>Project oral exams + BAP evaluation</strong></li>
+</ul>
+<p>See details: <a href="project_info/../project_info/overview/planning.html#semester-timeline-s5">Planning</a></p>
+<hr />
+<h2 id="coaching-model"><a class="header" href="#coaching-model">Coaching model</a></h2>
+<h3 id="project-coaching"><a class="header" href="#project-coaching">Project coaching:</a></h3>
+<p>progress and approach. <strong>Weekly</strong> during the first two weeks, then <strong>bi-weekly</strong>. Scheduled early in the week.</p>
+<h3 id="technical-coaching"><a class="header" href="#technical-coaching">Technical coaching:</a></h3>
+<p><strong>one half-day per week</strong>, on demand via a <strong>booking system</strong>.</p>
+<p>More in: <a href="project_info/../project_info/overview/coaching.html">Coaching</a>.</p>
+<hr />
+<h2 id="deliverables-and-milestones"><a class="header" href="#deliverables-and-milestones">Deliverables and milestones</a></h2>
+<p>See details: <a href="project_info/../project_info/overview/planning.html#key-milestones-and-deadlines">Planning</a></p>
+<hr />
+<h2 id="assessment"><a class="header" href="#assessment">Assessment</a></h2>
+<ul>
+<li><strong>Group score</strong>: delivery quality, teamwork, and peer evaluation.</li>
+<li><strong>Individual score</strong>: oral technical defense during the exam window.</li>
+</ul>
+<p>Rubric and weights: <a href="project_info/../project_info/overview/grading.html">Grading</a>.</p>
+<hr />
+<h2 id="team-formation-and-project-selection"><a class="header" href="#team-formation-and-project-selection">Team formation and project selection</a></h2>
+<ul>
+<li><strong>Teams consist of 3 students</strong>.</li>
+<li>Submit <strong>5 project preferences</strong> via the provided form; allocations are confirmed by coach.</li>
+</ul>
+<p>Guidelines: <a href="project_info/../project_info/overview/teams_and_projects.html">Project selection and teams</a>.</p>
+<hr />
+<h2 id="start-exploring-projects"><a class="header" href="#start-exploring-projects">Start exploring projects</a></h2>
+<p>Browse the catalog: <a href="project_info/../projects/projects.html">Projects</a>.</p>
+<hr />
+<h2 id="final-note"><a class="header" href="#final-note">Final note</a></h2>
+<p>The SE Project is more than a course: it is your first step into <strong>professional software engineering</strong> practice.</p>
+<p>By the end, you will have produced not only software and a thesis, but also a portfolio example that demonstrates your ability to learn fast, collaborate effectively, and defend your decisions—skills that will serve you well in your career as a software engineer.</p>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
+<p>Below you’ll find the contents of this section. These links point to other pages in the same folder.</p>
+<div class="table-wrapper"><table><thead><tr><th>Page</th><th>What’s inside</th></tr></thead><tbody>
+<tr><td><a href="project_info/overview/./teams_and_projects.html">Project selection and teams</a></td><td>Team of 3, five ranked project preferences with motivation, allocation rules, and where to submit forms.</td></tr>
+<tr><td><a href="project_info/overview/./planning.html">Planning</a></td><td>Semester timeline, pre‑project actions, milestones, breaks/exams, and coaching cadence.</td></tr>
+<tr><td><a href="project_info/overview/./coaching.html">Coaching</a></td><td>Coaches and roles, contact policy, project vs technical coaching, and availability.</td></tr>
+<tr><td><a href="project_info/overview/./grading.html">Grading</a></td><td>Assessment model, group vs individual components, rubric highlights, and exam overview.</td></tr>
+<tr><td><a href="project_info/overview/./house_rules.html">House rules</a></td><td>On‑campus expectations, attendance, communication, repo/workflow hygiene, and conduct.</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="project-selection-and-teams"><a class="header" href="#project-selection-and-teams">Project selection and teams</a></h1>
+<p>This page explains how to choose a project, how teams are formed, and what is expected once allocations are made.</p>
+<hr />
+<h2 id="on-this-page-1"><a class="header" href="#on-this-page-1">On this page</a></h2>
+<ul>
+<li><a href="project_info/overview/teams_and_projects.html#key-information">Key information</a></li>
+<li><a href="project_info/overview/teams_and_projects.html#how-project-selection-works">How project selection works</a></li>
+<li><a href="project_info/overview/teams_and_projects.html#submit-your-team-and-choices">Submit your team and choices</a></li>
+</ul>
+<hr />
+<h2 id="key-information"><a class="header" href="#key-information">Key information</a></h2>
+<ul>
+<li><strong>Form a team of 3</strong> (choose a clear team name).</li>
+<li><strong>Pick 5 project preferences</strong> from the catalog (duplicates across teams are allowed).</li>
+<li><strong>Submit preferences with a short motivation</strong> via the selection form (<strong>deadline: 24 Oct, 23:59</strong>).</li>
+<li><strong>Allocations announced 27 Oct</strong> on <a href="project_info/overview/../../announcements.html">Announcements</a>.</li>
+<li>⚠️ <strong>No reallocation after publication — choose wisely.</strong></li>
+</ul>
+<p>See also: <a href="project_info/overview/./project_planning.html">Planning</a>, <a href="project_info/overview/./coaching.html">Coaching</a>, <a href="project_info/overview/./deliverables.html">Deliverables &amp; deadlines</a>, and the project catalog: <a href="project_info/overview/../../projects/projects.html">Projects</a>.</p>
+<hr />
+<h2 id="how-project-selection-works"><a class="header" href="#how-project-selection-works">How project selection works</a></h2>
+<p><strong>Step 1 – Form a team</strong></p>
+<ul>
+<li>Teams consist of <strong>3 students</strong>; exceptions only with explicit coach approval.</li>
+<li>Teams are <strong>self-formed</strong>; coach will only assign students who cannot find a team (notify coach before the submission deadline).</li>
+<li>Choose a <strong>team name</strong> and use it consistently in all communication.</li>
+<li>Aim for complementary skills and interests.</li>
+</ul>
+<p><strong>Step 2 – Explore the catalog</strong></p>
+<ul>
+<li>Read the <strong>short description and learning outcomes</strong> for each project.</li>
+<li>Discuss with your team which topics fit your <strong>interests</strong> and the <strong>skills you want to grow</strong>.</li>
+</ul>
+<p><strong>Step 3 – Submit your preferences</strong></p>
+<ul>
+<li>
+<p>One submission per team.</p>
+</li>
+<li>
+<p>Provide:</p>
+<ul>
+<li><strong>Team name + members</strong> (full name + student email)</li>
+<li>Your <strong>top 5 ranked project choices</strong> (1 = highest priority)</li>
+<li>A <strong>short motivation</strong> (2–4 sentences or bullet points) for each choice: what you want to learn and why this project fits your goals</li>
+</ul>
+</li>
+<li>
+<p>Use the forms at the bottom of this page: <a href="project_info/overview/teams_and_projects.html#team-form-coming-soon">Team submission form</a> and <a href="project_info/overview/teams_and_projects.html#project-form-coming-soon">Project preferences form</a>.</p>
+</li>
+</ul>
+<p><strong>Step 4 – Allocation</strong></p>
+<ul>
+<li>Coach assigns projects based on: team preferences, balance across topics, motivation, and capacity.</li>
+<li><strong>Duplicates are possible</strong>: more than one team may work on the same project.</li>
+<li>If multiple teams want the same project, ties are resolved fairly.</li>
+</ul>
+<p><strong>Step 5 – Confirmation</strong></p>
+<ul>
+<li>Allocations are published on <strong>27 Oct</strong> on <a href="project_info/overview/../../announcements.html">Announcements</a>.</li>
+<li>⚠️ <strong>Allocations are final — no changes after publication.</strong></li>
+</ul>
+<hr />
+<h2 id="submit-your-team-and-choices"><a class="header" href="#submit-your-team-and-choices">Submit your team and choices</a></h2>
+<ul>
+<li>
+<p><strong>Team submission</strong>: <a href="project_info/overview/teams_and_projects.html#team-form-coming-soon">Team submission form — coming soon</a>
+Prepare the following before the form opens:</p>
+<ul>
+<li><strong>Team name</strong> (use consistently in all communication)</li>
+<li><strong>3 members</strong>: full name + student email</li>
+</ul>
+</li>
+<li>
+<p><strong>Project preferences</strong>: <a href="project_info/overview/teams_and_projects.html#project-form-coming-soon">Project preferences form — coming soon</a>
+Prepare the following:</p>
+<ul>
+<li>
+<p>Your <strong>team name</strong> (exactly as submitted above)</p>
+</li>
+<li>
+<p>Your <strong>top 5 project choices</strong> (ranked)</p>
+</li>
+<li>
+<p>A <strong>short motivation</strong> (2–4 sentences or bullet points) for each choice:</p>
+<ul>
+<li>What your team wants to learn</li>
+<li>Why the topic fits your goals</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>⚠️ <strong>Reminder: No reallocation after publication — choose carefully.</strong></p>
+<p>Note: Links will also appear on <a href="project_info/overview/../../announcements.html">Announcements</a> when the forms go live.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="planning"><a class="header" href="#planning">Planning</a></h1>
+<p>This page outlines the semester timeline, project weeks, milestones, and coaching cadence.</p>
+<hr />
+<h2 id="on-this-page-2"><a class="header" href="#on-this-page-2">On this page</a></h2>
+<ul>
+<li><a href="project_info/overview/planning.html#semester-timeline-s5">Semester timeline (S5)</a></li>
+<li><a href="project_info/overview/planning.html#key-milestones-and-deadlines">Key milestones and deadlines</a></li>
+<li><a href="project_info/overview/planning.html#week-by-week-schedule">Week‑by‑week schedule</a>
+<ul>
+<li><a href="project_info/overview/planning.html#focus">Focus</a></li>
+<li><a href="project_info/overview/planning.html#coaching">Coaching</a>
+<ul>
+<li><a href="project_info/overview/planning.html#project-coaching">Project coaching</a></li>
+<li><a href="project_info/overview/planning.html#technical-coaching">Technical coaching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="semester-timeline-s5"><a class="header" href="#semester-timeline-s5">Semester timeline (S5)</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Dates</th><th>Period</th><th>Description</th></tr></thead><tbody>
+<tr><td>15/09–25/10</td><td>Classes (modules)</td><td>Regular classes</td></tr>
+<tr><td>27/10–01/11</td><td>Autumn break</td><td>No classes</td></tr>
+<tr><td>03/11–08/11</td><td>Class/buffer week</td><td>Buffer / extra classes</td></tr>
+<tr><td>10/11–22/11</td><td>Module exam period</td><td>Module exams</td></tr>
+<tr><td>24/11–20/12</td><td>SE Project + BAP (part 1)</td><td>Project weeks</td></tr>
+<tr><td>22/12–03/01</td><td>Winter/work break</td><td>No on‑campus activities</td></tr>
+<tr><td>05/01–17/01</td><td>SE Project + BAP (part 2)</td><td>Project weeks</td></tr>
+<tr><td>19/01–24/01</td><td>Exam window</td><td>Project oral exams + BAP evaluation</td></tr>
+</tbody></table>
+</div>
+<p>Notes</p>
+<ul>
+<li>BAP input sessions may occur during class weeks and/or project weeks.</li>
+<li>Working on campus: 24/11–17/01 (rooms announced at kick‑off).</li>
+</ul>
+<h2 id="key-milestones-and-deadlines"><a class="header" href="#key-milestones-and-deadlines">Key milestones and deadlines</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Date/Range</th><th>Milestone</th><th>Details</th><th>Links</th></tr></thead><tbody>
+<tr><td>Week of 15/09</td><td>Course introduction</td><td>SE Project and BAP overview. Project catalog is presented; forms will open soon.</td><td><a href="project_info/overview/../../projects/projects.html">Projects</a> · <a href="project_info/overview/./teams_and_projects.html">Team &amp; topic selection</a></td></tr>
+<tr><td>15/09–24/10</td><td>Form teams (3 students)</td><td>Self‑select teams and choose a team name. If you cannot form a team, contact coach before the deadline.</td><td><a href="project_info/overview/./teams_and_projects.html">Team &amp; topic selection</a></td></tr>
+<tr><td>By 24/10, 23:59</td><td>Submit forms</td><td>One submission per team: team info + top 5 ranked project choices with short motivation.</td><td><a href="project_info/overview/./teams_and_projects.html#team-form-coming-soon">Team form</a> · <a href="project_info/overview/./teams_and_projects.html#project-form-coming-soon">Project preferences form</a></td></tr>
+<tr><td>25/10–27/10</td><td>Allocation processing</td><td>Coach assigns projects based on preferences, balance, and capacity; duplicates possible.</td><td>—</td></tr>
+<tr><td>27/10</td><td>Allocations published</td><td>Official mapping of teams to projects. No reallocation after publication—choose wisely.</td><td><a href="project_info/overview/../../announcements.html">Announcements</a></td></tr>
+<tr><td>24/11</td><td>Kick‑off</td><td>Recap + start project</td><td>—</td></tr>
+<tr><td>Week of 08/12</td><td>Interim presentations</td><td>BAP/thesis‑style try‑out presentation (non‑technical).</td><td>—</td></tr>
+<tr><td>05/01</td><td>Wrap‑up briefing</td><td>Exam instructions</td><td>—</td></tr>
+<tr><td>11/01 23:59</td><td>BAP submission</td><td>Final BAP report deadline</td><td>—</td></tr>
+<tr><td>19/01–24/01</td><td>Oral exams</td><td>Project defense + BAP evaluation</td><td>—</td></tr>
+</tbody></table>
+</div>
+<p>See also: <a href="project_info/overview/./deliverables.html">Deliverables &amp; deadlines</a>, <a href="project_info/overview/./coaching.html">Coaching</a>, <a href="project_info/overview/./verloop.html">Weekly schedule &amp; campus operations</a>.</p>
+<h2 id="weekbyweek-schedule"><a class="header" href="#weekbyweek-schedule">Week‑by‑week schedule</a></h2>
+<h3 id="focus"><a class="header" href="#focus">Focus</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Week</th><th>Dates</th><th>Focus</th><th>Key outcomes</th></tr></thead><tbody>
+<tr><td>1</td><td>24/11–29/11</td><td>Discovery &amp; planning</td><td>Shared problem understanding, clear scope and assumptions, initial technical choices recorded, repository and ways‑of‑working set.</td></tr>
+<tr><td>2</td><td>01/12–06/12</td><td>MVP foundations</td><td>Walking skeleton in place, basic tests and CI running, initial user/developer docs outlined.</td></tr>
+<tr><td>3</td><td>08/12–13/12</td><td>Interim presentation &amp; iteration</td><td>Non‑technical BAP/thesis‑style presentation delivered; continue building, address feedback, improve quality and documentation.</td></tr>
+<tr><td>4</td><td>15/12–20/12</td><td>Feature growth &amp; hardening</td><td>Functionality expanded, stability improved, documentation kept current, risks captured and plan for the break defined.</td></tr>
+<tr><td>—</td><td>22/12–28/12</td><td>Independent work period (part 1)</td><td>Remote progress only; no on‑campus activities and no coaching during this period.</td></tr>
+<tr><td>—</td><td>29/12–03/01</td><td>Independent work period (part 2)</td><td>Remote progress only; no on‑campus activities and no coaching during this period.</td></tr>
+<tr><td>5</td><td>05/01–10/01</td><td>Finalization sprint</td><td>Main scope complete, acceptance criteria validated, documentation finalized, release candidate prepared.</td></tr>
+<tr><td>6</td><td>12/01–17/01</td><td>Stabilization &amp; exam prep</td><td>Polishing and critical fixes; demo and oral defense rehearsed; thesis deliverables already submitted.</td></tr>
+<tr><td>Exam</td><td>19/01–24/01</td><td>Project and BAP evaluation</td><td>Group oral technical defense and thesis (BAP) evaluation.</td></tr>
+</tbody></table>
+</div>
+<p>Cross‑references: <a href="project_info/overview/./teams_and_projects.html">Project selection and teams</a>, <a href="project_info/overview/../../projects/projects.html">Projects catalog</a></p>
+<h3 id="coaching"><a class="header" href="#coaching">Coaching</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Week</th><th>Dates</th><th>On‑campus</th><th>Coaching</th></tr></thead><tbody>
+<tr><td>1</td><td>24/11–29/11</td><td>Yes</td><td>Project coaching ; Technical coaching</td></tr>
+<tr><td>2</td><td>01/12–06/12</td><td>Yes</td><td>Project coaching ; Technical coaching</td></tr>
+<tr><td>3</td><td>08/12–13/12</td><td>Yes</td><td>No project coaching (bi‑weekly cadence); Technical coaching</td></tr>
+<tr><td>4</td><td>15/12–20/12</td><td>Yes</td><td>Project coaching ; Technical coaching</td></tr>
+<tr><td>—</td><td>22/12–28/12</td><td>No</td><td>None</td></tr>
+<tr><td>—</td><td>29/12–03/01</td><td>No</td><td>None</td></tr>
+<tr><td>5</td><td>05/01–10/01</td><td>Yes</td><td>Project coaching ; Technical coaching</td></tr>
+<tr><td>6</td><td>12/01–17/01</td><td>Yes</td><td>No project coaching (bi‑weekly cadence); Technical coaching</td></tr>
+<tr><td>Exam</td><td>19/01–24/01</td><td>Yes</td><td>—</td></tr>
+</tbody></table>
+</div>
+<h3 id="project-coaching-1"><a class="header" href="#project-coaching-1">Project coaching</a></h3>
+<h3 id="technical-coaching-1"><a class="header" href="#technical-coaching-1">Technical coaching</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="coaching-1"><a class="header" href="#coaching-1">Coaching</a></h1>
+<p>Please read this page before contacting any coach. Always come prepared: agenda, questions, and artifacts ready.</p>
+<h2 id="on-this-page-3"><a class="header" href="#on-this-page-3">On this page</a></h2>
+<ul>
+<li><a href="project_info/overview/coaching.html#coaches-and-roles">Coaches and roles</a></li>
+<li><a href="project_info/overview/coaching.html#contact-policy-and-availability">Contact policy and availability</a></li>
+<li><a href="project_info/overview/coaching.html#before-contacting-a-coach-quick-checklist">Before contacting a coach (quick checklist)</a></li>
+<li><a href="project_info/overview/coaching.html#coaching-cadence">Coaching cadence</a>
+<ul>
+<li><a href="project_info/overview/coaching.html#project-coaching">Project coaching</a></li>
+<li><a href="project_info/overview/coaching.html#technical-coaching">Technical coaching</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="coaches-and-roles"><a class="header" href="#coaches-and-roles">Coaches and roles</a></h2>
+<ul>
+<li><strong>Dimitri Casier</strong> — organiser and project coach (<a href="mailto:dimitri.casier@howest.be">email</a>)</li>
+<li><strong>Coach 1</strong> — project coach</li>
+<li><strong>Coach 2</strong> — project coach</li>
+<li><strong>Coach 3</strong> — project coach</li>
+<li><strong>Coach 4</strong> — project coach</li>
+<li><strong>Coach 5</strong> — project coach</li>
+</ul>
+<hr />
+<h2 id="contact-policy-and-availability"><a class="header" href="#contact-policy-and-availability">Contact policy and availability</a></h2>
+<ul>
+<li>
+<p><strong>Dimitri Casier</strong></p>
+<ul>
+<li>First contact for team dynamics, conflicts, workload concerns, and unresolved project questions.</li>
+<li>Use scheduled coaching sessions first; if still blocked, contact via email or Teams.</li>
+</ul>
+</li>
+<li>
+<p><strong>Other coaches</strong></p>
+<ul>
+<li>Provide on‑demand, supportive technical advice during defined coaching moments only.</li>
+<li>Book via the tool or use published slots on the <a href="project_info/overview/../../announcements.html">Announcements</a> page.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="before-contacting-a-coach-quick-checklist"><a class="header" href="#before-contacting-a-coach-quick-checklist">Before contacting a coach (quick checklist)</a></h2>
+<ol>
+<li>Read this page and the course docs (Planning, Teams &amp; Projects, House Rules, Grading).</li>
+<li>Read your project description/spec.</li>
+<li>Use the scheduled coaching moments first (project and technical).</li>
+<li>If still blocked, contact Dimitri Casier. For group‑working issues, contact only Dimitri Casier.</li>
+</ol>
+<hr />
+<h2 id="coaching-cadence"><a class="header" href="#coaching-cadence">Coaching cadence</a></h2>
+<p>See dates and the week‑by‑week schedule in <a href="project_info/overview/./planning.html">Planning</a>.</p>
+<h3 id="project-coaching-2"><a class="header" href="#project-coaching-2">Project coaching</a></h3>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Details</th></tr></thead><tbody>
+<tr><td>Frequency</td><td>Weekly for the first two weeks, then bi‑weekly; scheduled early in the week.</td></tr>
+<tr><td>Purpose</td><td>Progress review, scope and planning alignment, risk management, team process.</td></tr>
+<tr><td>Who attends</td><td>The full team.</td></tr>
+<tr><td>Format</td><td>20min</td></tr>
+<tr><td>Prepare</td><td>Short agenda in a repo issue, current status, brief demo of latest work, top blockers, goals for next sprint.</td></tr>
+<tr><td>Outcomes</td><td>Agreed decisions, updated plan/issues, assigned action items recorded in the repo.</td></tr>
+</tbody></table>
+</div>
+<h3 id="technical-coaching-2"><a class="header" href="#technical-coaching-2">Technical coaching</a></h3>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Details</th></tr></thead><tbody>
+<tr><td>Frequency</td><td>One half‑day per week; book a slot via the tool (link on the <a href="project_info/overview/../../announcements.html">Announcements</a> page).</td></tr>
+<tr><td>Purpose</td><td>Deep technical unblocking and design guidance.</td></tr>
+<tr><td>Who attends</td><td>Relevant team members (include the person closest to the problem).</td></tr>
+<tr><td>Prepare</td><td>Minimal reproducible example, logs/traces, constraints, alternatives already considered, specific questions.</td></tr>
+<tr><td>Outcomes</td><td>Recommended options with trade‑offs, concrete next steps, references/examples where useful.</td></tr>
+<tr><td>Etiquette</td><td>Targeted questions only; not a replacement for self‑study or routine code review.</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="grading"><a class="header" href="#grading">Grading</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="house-rules"><a class="header" href="#house-rules">House rules</a></h1>
+<h2 id="house-rules-planningrelated"><a class="header" href="#house-rules-planningrelated">House rules (planning‑related)</a></h2>
+<ul>
+<li>Full‑time commitment during project weeks; attend coaching prepared.</li>
+<li>Keep main releasable; protect with PR reviews and CI.</li>
+<li>Communicate blockers early via issues; align team availability each week.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="projects"><a class="header" href="#projects">Projects</a></h1>
+<h1 id="projects-catalog"><a class="header" href="#projects-catalog">Projects catalog</a></h1>
+<p>This page explains what a project is in this course, how each brief is structured, what research is expected, and lists the available topics.</p>
+<hr />
+<h2 id="on-this-page-4"><a class="header" href="#on-this-page-4">On this page</a></h2>
+<ul>
+<li><a href="projects/projects.html#what-is-a-project">What is a project?</a></li>
+<li><a href="projects/projects.html#structure-of-each-project-brief">Structure of each project brief</a></li>
+<li><a href="projects/projects.html#research-expectations">Research expectations</a></li>
+<li><a href="projects/projects.html#how-to-use-this-catalog">How to use this catalog</a></li>
+<li><a href="projects/projects.html#available-projects">Available projects</a></li>
+</ul>
+<hr />
+<h2 id="what-is-a-project"><a class="header" href="#what-is-a-project">What is a project?</a></h2>
+<p>A lecturer‑proposed, real‑world topic executed by a team of three. You will investigate unfamiliar technologies, make and defend engineering decisions, and deliver a working, documented, and tested solution. Your Bachelor’s thesis (BAP) runs in parallel to capture rationale, evidence, and reflection.</p>
+<p>See also: <a href="projects/../project_info/overview/teams_and_projects.html">Project selection and teams</a>, <a href="projects/../project_info/overview/planning.html">Planning</a>, <a href="projects/../project_info/overview/coaching.html">Coaching</a>.</p>
+<h3 id="code-availability-and-usability-requirements"><a class="header" href="#code-availability-and-usability-requirements">Code availability and usability requirements</a></h3>
+<ul>
+<li>Host all project code in a public GitHub repository owned by your team.</li>
+<li>Deliver a ready‑to‑use artifact (app, library, CLI, or framework).</li>
+<li>Make installation and deployment a breeze:
+<ul>
+<li>One‑command setup (e.g., <code>make up</code>, <code>docker compose up</code>, or a single install script).</li>
+<li>Libraries: publish install instructions via the package manager (e.g., npm/JSR) and include runnable examples.</li>
+<li>Provide <code>env.example</code> and sensible default configs.</li>
+</ul>
+</li>
+<li>Document clearly:
+<ul>
+<li>README with Quick start, Features, Usage, Configuration, and Troubleshooting.</li>
+<li>Installation/deployment guide (local and, if relevant, containerized/cloud).</li>
+<li>Architecture overview and contribution/development notes.</li>
+</ul>
+</li>
+<li>Use GitHub as your workflow hub:
+<ul>
+<li>Commit and push regularly (daily during project weeks).</li>
+<li>Develop on feature branches;</li>
+<li>Keep main protected and green (CI on push/PR).</li>
+<li>Track work with Issues and a project board; link PRs to issues.</li>
+</ul>
+</li>
+</ul>
+<p>These requirements apply to all topics in this catalog.</p>
+<h3 id="documentation-cheatsheet"><a class="header" href="#documentation-cheatsheet">Documentation Cheatsheet</a></h3>
+<h4 id="minimum-files"><a class="header" href="#minimum-files">Minimum files</a></h4>
+<ul>
+<li><code>README.md</code> — Quick start, usage, config, tests, architecture link</li>
+<li><code>LICENSE</code> — MIT or Apache-2.0</li>
+<li><code>.env.example</code> — sample environment variables</li>
+<li><code>CHANGELOG.md</code> — notable changes</li>
+<li><code>.github/workflows/ci.yml</code> — CI on push/PR</li>
+<li><code>src/</code>, <code>tests/</code> — code and tests</li>
+</ul>
+<h4 id="pull-request-checklist"><a class="header" href="#pull-request-checklist">Pull Request checklist@</a></h4>
+<ul>
+<li><input disabled="" type="checkbox"/>
+One-command run works on a clean machine</li>
+<li><input disabled="" type="checkbox"/>
+README updated (Quick start, Usage, Config, Tests)</li>
+<li><input disabled="" type="checkbox"/>
+CI green (lint/test/build)</li>
+<li><input disabled="" type="checkbox"/>
+<code>.env.example</code> present, no secrets in repo</li>
+<li><input disabled="" type="checkbox"/>
+<code>CHANGELOG.md</code> updated</li>
+</ul>
+<h4 id="readme-sections-order"><a class="header" href="#readme-sections-order">README sections (order)</a></h4>
+<ol>
+<li>Quick start (3 steps, copy-paste commands)</li>
+<li>Features (3–6 bullets)</li>
+<li>Usage (examples or CLI/API calls)</li>
+<li>Configuration (<code>.env</code> keys explained)</li>
+<li>Tests (<code>npm test</code> / <code>deno test</code> / <code>go test</code>)</li>
+<li>Troubleshooting (2–4 common issues)</li>
+</ol>
+<h4 id="ci-essentials"><a class="header" href="#ci-essentials">CI essentials</a></h4>
+<ul>
+<li>Trigger on push + PR</li>
+<li>Steps: checkout → setup runtime → install → lint → test → build</li>
+<li>Keep lint/build optional via <code>--if-present</code></li>
+</ul>
+<hr />
+<h2 id="structure-of-each-project-brief"><a class="header" href="#structure-of-each-project-brief">Structure of each project brief</a></h2>
+<p>Each project page follows a consistent structure so you can compare topics easily:</p>
+<ul>
+<li>Title</li>
+<li>Project description
+<ul>
+<li>Goal</li>
+<li>Context</li>
+<li>Desired outcome
+<ul>
+<li>Functional requirements</li>
+<li>Non‑functional requirements</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Project requirements</li>
+<li>Useful information</li>
+</ul>
+<p>This mirrors the course template and the expectations used for grading and deliverables.</p>
+<h2 id="research-guideline-for-all-projects"><a class="header" href="#research-guideline-for-all-projects">Research guideline (for all projects)</a></h2>
+<p>Use this step-by-step guideline during your discovery phase. It is based on the selected steps (research question, core concepts, comparison, technology choices, publication/OSS, vision/philosophy, alternatives).</p>
+<hr />
+<h3 id="1-research-question-or-objective"><a class="header" href="#1-research-question-or-objective">1) Research question or objective</a></h3>
+<p>Define the central question and what success looks like.</p>
+<ul>
+<li>What problem are you solving and for whom?</li>
+<li>Success criteria: measurable outcomes (e.g., latency &lt; Xs, DX goals, feature scope).</li>
+<li>Scope: in/out; assumptions and constraints.</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>1–2 sentence research question.</li>
+<li>Success criteria and initial scope (bullets).</li>
+</ul>
+<hr />
+<h3 id="2-core-concepts-to-master"><a class="header" href="#2-core-concepts-to-master">2) Core concepts to master</a></h3>
+<p>List and explain the foundational ideas for your topic.</p>
+<ul>
+<li>Examples: CQRS; Event Sourcing vs direct updates; Eventual vs Strong consistency; Polyglot persistence; ORM patterns; agent workflows; rendering/reactivity.</li>
+<li>Add short definitions and links to 1–2 authoritative sources per concept.</li>
+<li>Optional: tiny spikes/prototypes to verify understanding.</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Concept notes (bullets + sources).</li>
+<li>Optional spike results (code snippets/screens).</li>
+</ul>
+<hr />
+<h3 id="3-comparative-analysis-existing-solutions"><a class="header" href="#3-comparative-analysis-existing-solutions">3) Comparative analysis (existing solutions)</a></h3>
+<p>Survey  relevant libraries, frameworks, or architectures.</p>
+<ul>
+<li>Compare on: flexibility, performance, extensibility, reliability, community, docs, licensing.</li>
+<li>Capture trade‑offs and “lessons learned” that shape your design.</li>
+<li>Include minimal experiments if feasible (benchmarks, API ergonomics trials).</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Comparison table + short summary (what you’ll adopt/avoid).</li>
+<li>Links to references and any micro-benchmarks.</li>
+</ul>
+<hr />
+<h3 id="4-technology-platforms--frameworks"><a class="header" href="#4-technology-platforms--frameworks">4) Technology platforms &amp; frameworks</a></h3>
+<p>Propose candidate stacks and justify the final choice.</p>
+<ul>
+<li>Candidates across: storage (NoSQL/RDBMS), messaging/event brokers, language/runtime, UI/CLI.</li>
+<li>Criteria: fit for purpose, complexity, team skills, ecosystem maturity, constraints (licensing, platform limits).</li>
+<li>Validate with small PoCs (e.g., connectivity, schema evolution, throughput).</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Evaluation matrix  for the chosen stack.</li>
+<li>PoC notes (scripts, compose file, or minimal code).</li>
+</ul>
+<hr />
+<h3 id="5-publication--open-source-strategy"><a class="header" href="#5-publication--open-source-strategy">5) Publication &amp; open-source strategy</a></h3>
+<p>Plan how you will publish, version, and support your work.</p>
+<ul>
+<li>Public GitHub repository, license (MIT/Apache‑2.0), issue templates.</li>
+<li>CI/CD: build, lint, test on PR; main stays green; tagged releases; CHANGELOG.</li>
+<li>Distribution: npm/JSR for libraries, container images or scripts for apps/CLIs.</li>
+<li>Documentation standard: README (Quick start, Usage, Config, Troubleshooting)</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Repo scaffold (LICENSE, README, CI workflow, .env.example).</li>
+<li>Release/publishing checklist (how to cut a release).</li>
+</ul>
+<hr />
+<h3 id="6-vision-and-design-philosophy"><a class="header" href="#6-vision-and-design-philosophy">6) Vision and design philosophy</a></h3>
+<p>Clarify the intent, principles, and non‑goals.</p>
+<ul>
+<li>Problems solved and unique value; target users and usage scenarios.</li>
+<li>Guiding principles (simplicity, extensibility, determinism, operability, DX).</li>
+<li>Non‑functional priorities (reliability, performance, maintainability).</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Vision note (1 page max) with principles and non‑goals.</li>
+<li>High‑level architecture sketch (components and flows).</li>
+</ul>
+<hr />
+<h3 id="7-alternatives-considered"><a class="header" href="#7-alternatives-considered">7) Alternatives considered</a></h3>
+<p>Record key decisions and rejected options.</p>
+<ul>
+<li>For each major decision: context, options, criteria, decision, consequences, evidence.</li>
+<li>link to experiments and comparisons.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="project-design-and-build-a-typescript-orm-library-denojsr-with-multi-database-support"><a class="header" href="#project-design-and-build-a-typescript-orm-library-denojsr-with-multi-database-support">Project: Design and Build a TypeScript ORM Library (Deno/JSR) with Multi-Database Support</a></h1>
+<h2 id="project-description"><a class="header" href="#project-description">Project Description</a></h2>
+<p>In this project, you will work as a team to design and implement an <strong>Object-Relational Mapping (ORM) library</strong> in <strong>TypeScript</strong>, optimized for the <strong>Deno runtime</strong> and published via <strong>JSR</strong>. The ORM should abstract common database operations across multiple relational databases and offer developers a <strong>clean, safe, and extensible API</strong>. Optionally, it may be extended to support NoSQL datastores or Node.js compatibility.</p>
+<p>This project emphasizes both <strong>technical depth</strong> (patterns, architecture, performance, security) and <strong>professional practices</strong> (teamwork, iterative workflow, documentation, and open-source release).</p>
+<hr />
+<h2 id="goal"><a class="header" href="#goal">Goal</a></h2>
+<p>Deliver a <strong>robust, modular, and reusable ORM library</strong> that enables developers to quickly and safely integrate databases into their applications. The focus should be on:</p>
+<ul>
+<li><strong>Ease of use</strong> (approachable interface, quick setup)</li>
+<li><strong>Reliability</strong> (well-tested, secure)</li>
+<li><strong>Extensibility</strong> (easy to add new drivers, features)</li>
+<li><strong>Maintainability</strong> (clean architecture, strong documentation)</li>
+</ul>
+<hr />
+<h2 id="context"><a class="header" href="#context">Context</a></h2>
+<p>The rise of <strong>modern JavaScript runtimes</strong> like Deno, combined with the diversity of available databases, has created demand for <strong>lightweight, platform-agnostic ORMs</strong>. Many existing solutions target Node.js or a single database. This project explores a <strong>Deno-first, standards-based ORM</strong> that can evolve to support multiple backends and potentially interoperate with Node.js.</p>
+<hr />
+<h2 id="desired-outcome"><a class="header" href="#desired-outcome">Desired Outcome</a></h2>
+<p>A <strong>stable and well-documented ORM library</strong> that:</p>
+<ul>
+<li>Works out-of-the-box (one-command setup)</li>
+<li>Supports typical <strong>CRUD operations</strong>, <strong>relations</strong>, <strong>transactions</strong>, and <strong>migrations</strong></li>
+<li>Provides a <strong>query builder DSL</strong> with method chaining</li>
+<li>Is <strong>published on JSR</strong> and open-sourced on GitHub</li>
+<li>Includes <strong>tests, runnable examples, CI/CD pipeline, and architecture documentation</strong></li>
+</ul>
+<p>Example DSL (you will define the exact API):</p>
+<pre><code class="language-ts">const users = await orm.query('User')
+  .where('age', '&gt;', 18)
+  .orderBy('createdAt', 'desc')
+  .limit(10)
+  .execute();
+</code></pre>
+<hr />
+<h2 id="functional-requirements"><a class="header" href="#functional-requirements">Functional Requirements</a></h2>
+<h3 id="must-haves"><a class="header" href="#must-haves">Must-Haves</a></h3>
+<ul>
+<li>
+<p>Implemented in <strong>TypeScript</strong>, compatible with <strong>Deno</strong>, and publishable via <strong>JSR</strong></p>
+</li>
+<li>
+<p>Support at least <strong>3 relational databases</strong> (e.g., PostgreSQL, MySQL/MariaDB, SQLite) through adapters/drivers</p>
+</li>
+<li>
+<p>Provide:</p>
+<ul>
+<li>CRUD operations</li>
+<li>Relations (1-N, N-N, etc.)</li>
+<li>Transactions and schema migrations</li>
+<li>Query builder DSL with chaining</li>
+</ul>
+</li>
+<li>
+<p>Local dev setup with <strong>Docker Compose</strong> for databases</p>
+</li>
+</ul>
+<h3 id="could-haves"><a class="header" href="#could-haves">Could-Haves</a></h3>
+<ul>
+<li>Support for at least one <strong>NoSQL database</strong> via the same adapter interface</li>
+<li><strong>CLI tool</strong> for schema/migration management</li>
+<li><strong>Node.js/NPM compatibility layer</strong></li>
+<li>Plug-in system for custom drivers or behaviors</li>
+<li>Optimizations: eager vs lazy loading, batching, connection pooling</li>
+</ul>
+<hr />
+<h2 id="non-functional-requirements"><a class="header" href="#non-functional-requirements">Non-Functional Requirements</a></h2>
+<ul>
+<li>
+<p><strong>Testability</strong>: high coverage on core modules (unit + integration)</p>
+</li>
+<li>
+<p><strong>Modularity</strong>: clear separation of core, adapters, and drivers (Ports &amp; Adapters recommended)</p>
+</li>
+<li>
+<p><strong>Security</strong>: parameterized queries, safe credential handling, protection against SQL injection, mass assignment, etc.</p>
+</li>
+<li>
+<p><strong>Performance</strong>: basic benchmarks (CRUD throughput, relation fetches)</p>
+</li>
+<li>
+<p><strong>Documentation</strong>:</p>
+<ul>
+<li>README (Quick start, Features, Troubleshooting)</li>
+<li>API docs (TSDoc/Typedoc)</li>
+<li>Architecture notes and decision records</li>
+<li>Example projects</li>
+</ul>
+</li>
+<li>
+<p><strong>Release &amp; OSS</strong>: GitHub repo, MIT/Apache-2.0 license, CI/CD with lint/test/build, changelog, SemVer, tagged releases</p>
+</li>
+</ul>
+<hr />
+<h2 id="research--decision-making"><a class="header" href="#research--decision-making">Research &amp; Decision Making</a></h2>
+<p>You are expected to:</p>
+<ul>
+<li>Compare ORM patterns (Active Record vs Data Mapper, etc.)</li>
+<li>Explore migration strategies and query APIs</li>
+<li>Benchmark adapter performance</li>
+<li>Record major choices as <strong>Architecture Decision Records (ADRs)</strong></li>
+<li>Study existing ORMs for inspiration (API ergonomics, migrations, driver design)</li>
+</ul>
+<hr />
+<h2 id="project-requirements"><a class="header" href="#project-requirements">Project Requirements</a></h2>
+<ul>
+<li>
+<p><strong>Team size</strong>: 3 students</p>
+</li>
+<li>
+<p><strong>Workflow</strong>: Agile/Scrum/Kanban (iterative with code reviews)</p>
+</li>
+<li>
+<p><strong>Repository</strong>:  GitHub repo with issues/boards</p>
+</li>
+<li>
+<p><strong>Setup</strong>: One-command startup (e.g., <code>deno task dev</code> or <code>docker compose up</code>)</p>
+</li>
+<li>
+<p><strong>Environment</strong>: <code>.env.example</code> with defaults (no secrets in repo)</p>
+</li>
+<li>
+<p><strong>CI/CD</strong>: Linting, testing, building on push</p>
+</li>
+<li>
+<p><strong>Deliverables</strong>:</p>
+<ul>
+<li>Source code + documentation in GitHub</li>
+<li>Example apps and runnable demos</li>
+<li>Research report &amp; ADRs</li>
+<li>Final presentation and reflection</li>
+</ul>
+</li>
+<li>
+<p><strong>Research:</strong></p>
+<ul>
+<li>Follow the Research guideline (research question, core concepts, comparative analysis, technology evaluation).</li>
+<li>Run small experiments/benchmarks where relevant and cite evidence.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria"><a class="header" href="#assessment-criteria">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong> – quality of investigation and justification of choices</li>
+<li><strong>Functional Working</strong> – completeness, stability, usability</li>
+<li><strong>Technical Quality</strong> – architecture, testability, performance, security</li>
+<li><strong>Documentation</strong> – clarity, completeness, accessibility</li>
+<li><strong>Teamwork &amp; Process</strong> – iteration, collaboration, use of tools</li>
+<li><strong>Presentation &amp; Reflection</strong> – ability to explain and defend your solution</li>
+</ol>
+<hr />
+<h2 id="definition-of-done"><a class="header" href="#definition-of-done">Definition of Done</a></h2>
+<p>The project is <em>done</em> when:</p>
+<ul>
+<li>Research completed and documented:
+<ul>
+<li>Research question, core concepts, and comparative analysis are written up</li>
+<li>Experiments/benchmarks included where relevant</li>
+</ul>
+</li>
+<li>The ORM meets all must-have requirements</li>
+<li>At least 3 RDBMS adapters are working</li>
+<li>All tests pass in CI/CD with high coverage</li>
+<li>Documentation is complete</li>
+<li>The library is published via JSR and open-sourced</li>
+<li>At least one example project demonstrates usage</li>
+<li>Team delivers final presentation and reflection</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="project-build-a-cqrs-synchronization-between-mongodb-write-and-mysql-read"><a class="header" href="#project-build-a-cqrs-synchronization-between-mongodb-write-and-mysql-read">Project: Build a CQRS Synchronization between MongoDB (Write) and MySQL (Read)</a></h1>
+<h2 id="project-description-1"><a class="header" href="#project-description-1">Project Description</a></h2>
+<p>In this project, your team will design and build a system that keeps two different databases in sync:</p>
+<ul>
+<li><strong>MongoDB</strong> – the <strong>write database</strong> (for storing incoming data).</li>
+<li><strong>MySQL</strong> – the <strong>read database</strong> (for fast queries, reporting, or analytics).</li>
+</ul>
+<p>You will use the <strong>CQRS (Command Query Responsibility Segregation) pattern</strong> to separate writes (commands to MongoDB) from reads (queries on MySQL).</p>
+<p>The main challenge: when data changes in MongoDB, those changes must quickly and reliably appear in MySQL.
+There are <strong>multiple ways</strong> to achieve this (see below), but in practice many systems use an <strong>event broker</strong> (e.g., RabbitMQ, Kafka, or NATS). For this project, you are free to <strong>choose your approach</strong>, but <strong>using a broker is recommended</strong> as it reflects industry best practice.</p>
+<hr />
+<h2 id="goal-1"><a class="header" href="#goal-1">Goal</a></h2>
+<p>Deliver a <strong>working synchronization system</strong> that:</p>
+<ul>
+<li>Detects changes in MongoDB.</li>
+<li>Propagates these changes to MySQL using your chosen method (direct projector, change streams, outbox, or broker).</li>
+<li>Keeps MySQL in sync in <strong>near real-time</strong> with minimal latency.</li>
+<li>Includes a <strong>demo application</strong> with a <strong>domain and entities (DDD-inspired)</strong>, so the CQRS pattern is demonstrated with realistic business logic.</li>
+<li>Is easy to run locally (one-command startup with Docker).</li>
+<li>Comes with <strong>clear documentation and examples</strong> so others can use it.</li>
+</ul>
+<hr />
+<h2 id="context-1"><a class="header" href="#context-1">Context</a></h2>
+<p>In real-world systems, developers often separate:</p>
+<ul>
+<li><strong>Write models</strong> – optimized for saving domain data (e.g., MongoDB with aggregates/entities).</li>
+<li><strong>Read models</strong> – optimized for querying and reporting (e.g., MySQL projections).</li>
+</ul>
+<p>This project gives you hands-on experience with <strong>data synchronization, event-driven systems, CQRS, and domain-driven design (DDD)</strong>.</p>
+<p>You can implement synchronization in several ways:</p>
+<ol>
+<li><strong>Direct projector</strong></li>
+<li><strong>MongoDB Change Streams</strong></li>
+<li><strong>Transactional Outbox</strong></li>
+<li><strong>Event Broker (recommended)</strong></li>
+</ol>
+<hr />
+<h2 id="desired-outcome-1"><a class="header" href="#desired-outcome-1">Desired Outcome</a></h2>
+<p>A system that:</p>
+<ul>
+<li>Keeps <strong>MySQL in sync</strong> with MongoDB writes.</li>
+<li>Uses a <strong>domain model with entities and aggregates</strong> to make the CQRS pattern concrete.</li>
+<li>Handles <strong>restarts and recoveries</strong> without losing data.</li>
+<li>Runs locally with a single command (<code>docker compose up</code>).</li>
+<li>Includes a <strong>demo app</strong> that shows synchronization in action (with realistic domain entities).</li>
+<li>Is <strong>well documented, tested, and open-sourced</strong> on GitHub.</li>
+</ul>
+<hr />
+<h2 id="functional-requirements-1"><a class="header" href="#functional-requirements-1">Functional Requirements</a></h2>
+<h3 id="must-haves-1"><a class="header" href="#must-haves-1">Must-Haves</a></h3>
+<ul>
+<li>Implement a <strong>domain model with entities</strong> (DDD-inspired) for the write side.</li>
+<li>Detect changes in MongoDB.</li>
+<li>Update MySQL projections using one of the chosen approaches.</li>
+<li>Guarantee idempotent updates (no duplicates).</li>
+<li>Provide recovery/replay so the system can catch up after restarts.</li>
+<li>Deliver a demo app that shows synchronization flow.</li>
+<li>Supply a Docker Compose setup (MongoDB, MySQL, and optional broker).</li>
+<li>Document your setup, design choices, and usage.</li>
+</ul>
+<h3 id="could-haves-1"><a class="header" href="#could-haves-1">Could haves</a></h3>
+<ul>
+<li>Add monitoring (metrics/logs, dashboard, or CLI).</li>
+<li>Handle schema changes over time (e.g., adding/renaming fields).</li>
+<li>Retry logic and dead-letter queue for failed events.</li>
+<li><strong>Introduce Event Sourcing</strong>: store domain events as the source of truth and rebuild projections from the event log.</li>
+<li>Blue/green rebuild of the read database without downtime.</li>
+</ul>
+<hr />
+<h2 id="non-functional-requirements-1"><a class="header" href="#non-functional-requirements-1">Non-Functional Requirements</a></h2>
+<ul>
+<li><strong>Reliability</strong>: no data loss on restart; consistent updates.</li>
+<li><strong>Performance</strong>: synchronization within a few seconds.</li>
+<li><strong>Testability</strong>: ≥ 80% test coverage.</li>
+<li><strong>Observability</strong>: logs and metrics that show system state.</li>
+<li><strong>Reproducibility</strong>: one-command setup (Docker Compose).</li>
+<li><strong>Documentation</strong>: README and demo examples.</li>
+</ul>
+<hr />
+<h2 id="research--decision-making-1"><a class="header" href="#research--decision-making-1">Research &amp; Decision Making</a></h2>
+<p>You must research and justify your design decisions, including:</p>
+<ul>
+<li>Which synchronization approach you chose (direct, change streams, outbox, or broker).</li>
+<li>Why you did (or didn’t) use a broker.</li>
+<li>How you guarantee ordering, idempotency, and recovery.</li>
+<li>How you designed your <strong>domain model (entities/aggregates)</strong>.</li>
+<li>Whether you considered or experimented with <strong>event sourcing</strong>.</li>
+<li>Record decisions as <strong>Architecture Decision Records (ADRs)</strong>.</li>
+</ul>
+<hr />
+<h2 id="project-requirements-1"><a class="header" href="#project-requirements-1">Project Requirements</a></h2>
+<ul>
+<li>
+<p><strong>Team size</strong>: 3 students.</p>
+</li>
+<li>
+<p><strong>Workflow</strong>: Agile/Scrum/Kanban.</p>
+</li>
+<li>
+<p><strong>Repository</strong>:  GitHub with issues/boards and clear commits.</p>
+</li>
+<li>
+<p><strong>Setup</strong>: One-command run (<code>docker compose up</code>).</p>
+</li>
+<li>
+<p><strong>Environment</strong>: <code>.env.example</code> with safe defaults (no secrets).</p>
+</li>
+<li>
+<p><strong>CI/CD</strong>: Linting, testing, and building on PRs.</p>
+</li>
+<li>
+<p><strong>Deliverables</strong>:</p>
+<ul>
+<li>Source code + documentation in GitHub.</li>
+<li>Demo application with a domain model and entities.</li>
+<li>Research report + ADRs.</li>
+<li>Final presentation + reflection.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria-1"><a class="header" href="#assessment-criteria-1">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong> – quality of investigation and justification of chosen approach.</li>
+<li><strong>Functional Working</strong> – does the sync pipeline reliably keep MySQL in sync?</li>
+<li><strong>Domain Model</strong> – does the demo app use a clear domain with entities/aggregates?</li>
+<li><strong>Technical Quality</strong> – architecture, tests, recovery, observability.</li>
+<li><strong>Documentation</strong> – clarity and accessibility of docs.</li>
+<li><strong>Teamwork &amp; Process</strong> – iterative work, collaboration, Git usage.</li>
+<li><strong>Presentation &amp; Reflection</strong> – ability to explain and defend your solution.</li>
+</ol>
+<hr />
+<h2 id="definition-of-done-1"><a class="header" href="#definition-of-done-1">Definition of Done</a></h2>
+<p>The project is complete when:</p>
+<ul>
+<li>Research completed and documented:
+<ul>
+<li>Research question, core concepts, and comparative analysis are written up</li>
+<li>Experiments/benchmarks included where relevant</li>
+</ul>
+</li>
+<li>A working synchronization system exists (MongoDB → MySQL).</li>
+<li>The chosen approach is documented and justified.</li>
+<li>Must-have requirements are met, including a <strong>DDD-inspired domain model</strong> in the demo.</li>
+<li>Tests pass with good coverage.</li>
+<li>Documentation is complete</li>
+<li>The system runs locally with one command.</li>
+<li>A demo shows synchronization in action.</li>
+<li>Final presentation and reflection delivered.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="project-design-and-build-a-lightweight-frontend-framework-reactvue-inspired"><a class="header" href="#project-design-and-build-a-lightweight-frontend-framework-reactvue-inspired">Project: Design and Build a Lightweight Frontend Framework (React/Vue-Inspired)</a></h1>
+<h2 id="project-description-2"><a class="header" href="#project-description-2">Project Description</a></h2>
+<p>In this project, your team will design and implement a <strong>minimal but usable frontend framework</strong> inspired by modern libraries such as <strong>React, Vue, Preact, Solid, or Svelte</strong>.</p>
+<p>The goal is not to recreate these frameworks in full, but to <strong>understand and implement their core ideas</strong>:</p>
+<ul>
+<li>rendering strategy (virtual DOM diffing or fine-grained reactivity/signals)</li>
+<li>a simple <strong>component model</strong></li>
+<li>basic <strong>state management</strong></li>
+</ul>
+<p>You will choose the architecture (runtime vs compile-time), API style (JSX, template, or hyperscript), and packaging strategy. Along the way, you’ll compare alternatives, run experiments, and justify your design choices.</p>
+<p>This project emphasizes both <strong>technical depth</strong> (frontend architecture, rendering strategies, developer experience) and <strong>professional practices</strong> (teamwork, research, documentation, and iterative delivery).</p>
+<hr />
+<h2 id="goal-2"><a class="header" href="#goal-2">Goal</a></h2>
+<p>Deliver a <strong>small, coherent framework</strong> and a <strong>demo application</strong> that show you understand:</p>
+<ul>
+<li><strong>Component-based rendering</strong></li>
+<li><strong>State updates and re-rendering</strong></li>
+<li><strong>Performance trade-offs</strong></li>
+<li><strong>Developer-friendly APIs</strong></li>
+</ul>
+<p>Your framework should be accompanied by tests, examples, and clear documentation.</p>
+<hr />
+<h2 id="context-2"><a class="header" href="#context-2">Context</a></h2>
+<p>Popular frameworks like React and Vue hide a lot of complexity. By building your own simplified version, you will gain a deeper understanding of:</p>
+<ul>
+<li>how rendering works</li>
+<li>how state changes update the UI</li>
+<li>how components are structured and re-used</li>
+<li>what trade-offs exist between <strong>simplicity, performance, and developer experience</strong></li>
+</ul>
+<p>This knowledge will make you a stronger frontend engineer and help you evaluate or adopt frameworks more critically in the future.</p>
+<hr />
+<h2 id="desired-outcome-2"><a class="header" href="#desired-outcome-2">Desired Outcome</a></h2>
+<p>A working <strong>frontend framework prototype</strong> and a <strong>demo app</strong> that:</p>
+<ul>
+<li>Renders components declaratively and updates the DOM efficiently when state changes.</li>
+<li>Supports <strong>state, props, and events</strong>, with examples of conditional rendering and list rendering.</li>
+<li>Provides a <strong>mount API</strong> (e.g., <code>render(App, mountNode)</code>).</li>
+<li>Runs locally with a one-command setup (<code>npm run dev</code> or similar).</li>
+<li>Is open-sourced on GitHub, documented, and covered by basic tests.</li>
+</ul>
+<hr />
+<h2 id="functional-requirements-2"><a class="header" href="#functional-requirements-2">Functional Requirements</a></h2>
+<h3 id="must-haves-2"><a class="header" href="#must-haves-2">Must-Haves</a></h3>
+<ul>
+<li>
+<p><strong>Rendering strategy</strong> – choose one:</p>
+<ul>
+<li>Virtual DOM diffing + patching, or</li>
+<li>Fine-grained reactivity/signals (no full VDOM).</li>
+</ul>
+</li>
+<li>
+<p><strong>Component model</strong>:</p>
+<ul>
+<li>Components accept props and can hold internal state.</li>
+<li>Components re-render when state updates.</li>
+<li>Support for event handling.</li>
+</ul>
+</li>
+<li>
+<p><strong>Core features</strong>:</p>
+<ul>
+<li>Conditional rendering.</li>
+<li>List rendering.</li>
+<li>Simple mount API (<code>render(App, mountNode)</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Demo app</strong> showing off the features.</p>
+</li>
+<li>
+<p>Document your chosen design and justify trade-offs.</p>
+</li>
+</ul>
+<p><strong>Examples (adapt to your API):</strong></p>
+<pre><code class="language-ts">const Counter = () =&gt; {
+  const [count, setCount] = useState(0);
+  return h('button', { onClick: () =&gt; setCount(count() + 1) }, `Count: ${count()}`);
+};
+render(Counter, document.getElementById('app')!);
+</code></pre>
+<p>or</p>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;button @click="increment"&gt;
+    Count: {{ count }}
+  &lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'Counter',
+  data() {
+    return { count: 0 };
+  },
+  methods: {
+    increment() {
+      this.count++;
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<h3 id="could-haves-optional-stretch-goals"><a class="header" href="#could-haves-optional-stretch-goals">Could-Haves (Optional, Stretch Goals)</a></h3>
+<ul>
+<li>JSX or a tiny template parser.</li>
+<li>Hooks/effects (<code>useEffect</code>, <code>useMemo</code>).</li>
+<li>Lifecycle hooks (<code>onMount</code>, <code>onUnmount</code>).</li>
+<li>Context API or signals.</li>
+<li>A simple router.</li>
+<li>Keyed list diffing optimizations.</li>
+<li>Dev tooling (debug logs, render timings).</li>
+<li>Compile-time transforms (like a tiny compiler).</li>
+<li>SSR/hydration experiment.</li>
+<li>A custom renderer (e.g., render to <code>&lt;canvas&gt;</code> instead of the DOM).</li>
+</ul>
+<hr />
+<h2 id="non-functional-requirements-2"><a class="header" href="#non-functional-requirements-2">Non-Functional Requirements</a></h2>
+<ul>
+<li>
+<p><strong>TypeScript or Javascript</strong>: strict mode</p>
+</li>
+<li>
+<p><strong>Tests</strong>: unit + integration, ≥ 70% coverage on core modules.</p>
+</li>
+<li>
+<p><strong>Modularity</strong>: separate core, renderer, and optional JSX/parser.</p>
+</li>
+<li>
+<p><strong>Performance</strong>: basic benchmarks (initial render vs update re-render).</p>
+</li>
+<li>
+<p><strong>Build/Distribution</strong>: ESM build; optionally publish as npm/JSR package.</p>
+</li>
+<li>
+<p><strong>Documentation</strong>:</p>
+<ul>
+<li>README with Quick Start, Usage, and Troubleshooting.</li>
+<li>Examples showcasing common use cases.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="research--decision-making-2"><a class="header" href="#research--decision-making-2">Research &amp; Decision Making</a></h2>
+<p>You are expected to:</p>
+<ul>
+<li>Compare <strong>virtual DOM vs signals/reactivity</strong> and justify your choice.</li>
+<li>Investigate <strong>diffing strategies and schedulers</strong>.</li>
+<li>Explore different API designs (JSX vs template vs hyperscript).</li>
+<li>Run small <strong>benchmarks and experiments</strong> to support your choices.</li>
+<li>Look at existing frameworks (React, Vue, Solid, Svelte) for inspiration.</li>
+</ul>
+<hr />
+<h2 id="project-requirements-2"><a class="header" href="#project-requirements-2">Project Requirements</a></h2>
+<ul>
+<li>
+<p><strong>Team size</strong>: 3 students.</p>
+</li>
+<li>
+<p><strong>Workflow</strong>: Agile/Scrum/Kanban with code reviews.</p>
+</li>
+<li>
+<p><strong>Repository</strong>: Public GitHub repo with issues/boards.</p>
+</li>
+<li>
+<p><strong>Setup</strong>: One-command run (<code>npm run dev</code> or <code>make up</code>).</p>
+</li>
+<li>
+<p><strong>Environment</strong>: <code>.env.example</code> if configuration is needed.</p>
+</li>
+<li>
+<p><strong>CI/CD</strong>: Lint, test, and build on pull requests.</p>
+</li>
+<li>
+<p><strong>Deliverables</strong>:</p>
+<ul>
+<li>Framework code + documentation.</li>
+<li>Example/demo app.</li>
+<li>Research report</li>
+<li>Final presentation and reflection.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria-2"><a class="header" href="#assessment-criteria-2">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong> – how well you investigated and justified your choices.</li>
+<li><strong>Functional Working</strong> – does the framework render and update correctly?</li>
+<li><strong>Technical Quality</strong> – clean code, modularity, test coverage, performance.</li>
+<li><strong>Documentation</strong> – clear README, API docs, and examples.</li>
+<li><strong>Teamwork &amp; Process</strong> – iterative development, collaboration, Git workflow.</li>
+<li><strong>Presentation &amp; Reflection</strong> – ability to explain and defend your framework design.</li>
+</ol>
+<hr />
+<h2 id="definition-of-done-2"><a class="header" href="#definition-of-done-2">Definition of Done</a></h2>
+<p>The project is complete when:</p>
+<ul>
+<li>Research and comparative analysis are documented.</li>
+<li>A minimal but working framework is implemented.</li>
+<li>Must-have features (components, state, rendering, events, conditional + list rendering) are working.</li>
+<li>A demo app showcases the framework.</li>
+<li>Tests pass with reasonable coverage.</li>
+<li>Documentation (README, ADRs, examples) is complete.</li>
+<li>The framework can run locally with a single command.</li>
+<li>Final presentation and reflection delivered.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="project-pacman-and-ai-search-algorithms-toolkit--maze-demo"><a class="header" href="#project-pacman-and-ai-search-algorithms-toolkit--maze-demo">Project: Pacman and AI Search Algorithms (Toolkit + Maze Demo)</a></h1>
+<h2 id="project-description-3"><a class="header" href="#project-description-3">Project Description</a></h2>
+<p>Build a small, well-structured <strong>AI Search Toolkit</strong> that implements and compares classic <strong>search algorithms</strong>. You will create a reusable library of search algorithms and a demo environment (<strong>maze</strong> and <strong>Pacman-style</strong> scenario) to test and visualize them. Focus on <strong>correctness</strong>, <strong>clarity</strong>, and <strong>evidence-based comparison</strong>.</p>
+<p>Based on materials from <strong>CS50’s AI course</strong>, analyze different search techniques and implement them in your <strong>chosen programming language</strong> (within the course’s allowed runtimes). Reference: https://www.youtube.com/watch?v=WbzNRTTrX0g</p>
+<p>You choose the <strong>programming language</strong> and <strong>architecture</strong>, then justify your choices with <strong>research</strong> and small <strong>experiments</strong>. Keep the project easy to run, <strong>well tested</strong>, and <strong>documented</strong> so others can understand and reuse your work.</p>
+<p>Note: For inspiration on <strong>agent abstractions</strong> and <strong>code structure</strong>, you can study the <strong>AIMA Java</strong> codebase:</p>
+<ul>
+<li>https://github.com/aimacode/aima-java/tree/AIMA3e/aima-core/src/main/java/aima/core<br />
+This is the Java implementation of algorithms from Russell and Norvig’s “<strong>Artificial Intelligence: A Modern Approach (3rd Edition)</strong>”.</li>
+</ul>
+<hr />
+<h2 id="goal-3"><a class="header" href="#goal-3">Goal</a></h2>
+<p>Deliver a <strong>toolkit</strong> and <strong>demo</strong> that let you:</p>
+<ul>
+<li>Implement and run several <strong>search algorithms</strong> on the same <strong>problem model</strong>.</li>
+<li>Compare their behavior and performance with clear <strong>metrics</strong>.</li>
+<li>Explain <strong>trade-offs</strong> (completeness, optimality, time/space complexity) in practical terms.</li>
+</ul>
+<hr />
+<h2 id="context-3"><a class="header" href="#context-3">Context</a></h2>
+<p>Search algorithms are core to AI (<strong>pathfinding</strong>, <strong>puzzle solving</strong>, <strong>game AI</strong>). Implementing them yourself gives deep understanding of how they work and when to use which. The <strong>maze/Pacman</strong> demo makes results tangible and fun to evaluate.</p>
+<hr />
+<h2 id="desired-outcome-3"><a class="header" href="#desired-outcome-3">Desired Outcome</a></h2>
+<p>A working <strong>toolkit</strong> and <strong>demo</strong> that:</p>
+<ul>
+<li>Runs multiple algorithms on the same problems (<strong>maze/grid</strong> and a simple <strong>Pacman-like</strong> level).</li>
+<li>Produces comparable outputs (<strong>path found</strong>, <strong>nodes expanded</strong>, <strong>cost</strong>, <strong>time</strong>).</li>
+<li>Is easy to run locally in <strong>one command</strong> and is <strong>documented</strong> so others can use it.</li>
+</ul>
+<hr />
+<h2 id="functional-requirements-3"><a class="header" href="#functional-requirements-3">Functional Requirements</a></h2>
+<h3 id="must-haves-3"><a class="header" href="#must-haves-3">Must-Haves</a></h3>
+<ul>
+<li>Implement at least 4 algorithms:
+<ul>
+<li><strong>Depth-First Search (DFS)</strong></li>
+<li><strong>Breadth-First Search (BFS)</strong></li>
+<li><strong>Greedy Best-First Search</strong></li>
+<li><strong>A</strong>* Search (with a <strong>heuristic</strong> you explain)</li>
+</ul>
+</li>
+<li><strong>Common problem model</strong>:
+<ul>
+<li>Same <strong>state representation</strong> and <strong>interface</strong> for all algorithms (e.g., grid/maze with walls, start, goal).</li>
+</ul>
+</li>
+<li><strong>Reproducible outputs</strong>:
+<ul>
+<li>For a given seed/input, runs produce the same <strong>path</strong> and <strong>metrics</strong>.</li>
+</ul>
+</li>
+<li><strong>Demo application</strong>:
+<ul>
+<li><strong>CLI</strong> or simple <strong>UI</strong> to select algorithm, load a map, run, and show the result (<strong>path + stats</strong>).</li>
+</ul>
+</li>
+<li><strong>Metrics per run</strong>:
+<ul>
+<li><strong>Nodes expanded</strong>, <strong>path length/cost</strong>, <strong>runtime</strong> (and optionally <strong>memory</strong>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="could-haves-optional"><a class="header" href="#could-haves-optional">Could-Haves (Optional)</a></h3>
+<ul>
+<li><strong>Additional algorithms</strong>: Iterative Deepening, <strong>Dijkstra</strong>, <strong>Bidirectional Search</strong>, <strong>Minimax/Alpha-Beta</strong> (for adversarial play).</li>
+<li><strong>Visualizer</strong>:
+<ul>
+<li>Animate <strong>exploration order</strong>, <strong>frontier</strong>, and <strong>final path</strong>.</li>
+</ul>
+</li>
+<li><strong>Heuristic experiments</strong>:
+<ul>
+<li>Plug-in heuristics (<strong>Manhattan</strong>, <strong>Euclidean</strong>); compare their effects.</li>
+</ul>
+</li>
+<li><strong>Benchmark tool</strong>:
+<ul>
+<li>Run many maps and output a <strong>comparison table/plot</strong>.</li>
+</ul>
+</li>
+<li><strong>Pacman behaviors</strong>:
+<ul>
+<li><strong>Ghost logic</strong> or <strong>collectibles</strong> to make scenarios richer.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="non-functional-requirements-3"><a class="header" href="#non-functional-requirements-3">Non-Functional Requirements</a></h2>
+<ul>
+<li><strong>Testability</strong>:
+<ul>
+<li><strong>≥ 80% coverage</strong> on core search logic; <strong>deterministic tests</strong>.</li>
+</ul>
+</li>
+<li><strong>Modularity</strong>:
+<ul>
+<li>Separate <strong>problem model</strong>, <strong>algorithms</strong>, and <strong>demo UI/CLI</strong>.</li>
+</ul>
+</li>
+<li><strong>Observability</strong>:
+<ul>
+<li>Clear <strong>logs</strong> for steps/visited nodes (toggleable).</li>
+</ul>
+</li>
+<li><strong>Reproducibility</strong>:
+<ul>
+<li><strong>One-command</strong> setup/run on a clean machine.</li>
+</ul>
+</li>
+<li><strong>Documentation</strong>:
+<ul>
+<li><strong>README</strong> with <strong>Quick Start</strong>, <strong>Usage</strong>, <strong>Configuration</strong>, <strong>Troubleshooting</strong>.</li>
+<li>Short explanation of each <strong>algorithm</strong> and <strong>heuristic</strong> used.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="research--decision-making-3"><a class="header" href="#research--decision-making-3">Research &amp; Decision Making</a></h2>
+<p>You are expected to:</p>
+<ul>
+<li><strong>Compare algorithms</strong> conceptually:
+<ul>
+<li><strong>Completeness</strong>, <strong>optimality</strong>, <strong>time/space complexity</strong>; when to use which.</li>
+</ul>
+</li>
+<li><strong>Evaluate heuristics</strong>:
+<ul>
+<li>Why a heuristic is <strong>admissible/consistent</strong>; impact on <strong>A</strong>* and <strong>Greedy</strong>.</li>
+</ul>
+</li>
+<li><strong>Run small experiments</strong>:
+<ul>
+<li>Measure <strong>nodes expanded</strong>, <strong>runtime</strong>, and <strong>path quality</strong> on a few maps.</li>
+</ul>
+</li>
+<li><strong>Record major choices</strong>:
+<ul>
+<li><strong>Problem model</strong>, <strong>data structures</strong>, <strong>heuristics</strong>, <strong>visualization</strong> approach.</li>
+<li>Keep brief <strong>ADRs (Architecture Decision Records)</strong> for key decisions.</li>
+</ul>
+</li>
+<li><strong>Read the AIMA chapters on Agents and on Search</strong>, and consider how <strong>agent-based abstractions</strong> (<strong>environment</strong>, <strong>agent</strong>, <strong>percepts</strong>, <strong>actions</strong>) can inform your design. The relevant chapters are available via the provided resources; purchasing the book is not required.</li>
+</ul>
+<hr />
+<h2 id="project-requirements-3"><a class="header" href="#project-requirements-3">Project Requirements</a></h2>
+<ul>
+<li><strong>Team size</strong>:
+<ul>
+<li><strong>3 students</strong>.</li>
+</ul>
+</li>
+<li><strong>Language/runtime</strong>:
+<ul>
+<li>Everything except Java, reason demo code is in Java</li>
+</ul>
+</li>
+<li><strong>Repository (public GitHub)</strong>:
+<ul>
+<li>Commit regularly; use <strong>issues/board</strong>; <strong>PR reviews</strong>.</li>
+<li><strong>One-command run</strong> (e.g., <code>npm run dev</code> / <code>deno task start</code> / <code>make run</code>).</li>
+<li>Provide <strong><code>.env.example</code></strong> if configuration is needed; <strong>no secrets</strong> in repo.</li>
+</ul>
+</li>
+<li><strong>CI/CD</strong>:
+<ul>
+<li><strong>Lint</strong>, <strong>test</strong>, and <strong>build</strong> on pull requests; <strong>main stays green</strong>.</li>
+</ul>
+</li>
+<li><strong>Deliverables</strong>:
+<ul>
+<li><strong>Source code</strong> + <strong>documentation</strong> on GitHub.</li>
+<li><strong>Demo application</strong> (CLI or UI).</li>
+<li><strong>Research notes</strong> and <strong>ADRs</strong>.</li>
+<li><strong>Final presentation</strong> and <strong>reflection</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria-3"><a class="header" href="#assessment-criteria-3">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong>:
+<ul>
+<li>Quality of comparisons, heuristic rationale, and evidence from experiments.</li>
+</ul>
+</li>
+<li><strong>Functional Working</strong>:
+<ul>
+<li>Algorithms run correctly on shared problems; demo is usable.</li>
+</ul>
+</li>
+<li><strong>Technical Quality</strong>:
+<ul>
+<li>Code structure, tests, clarity, and performance basics.</li>
+</ul>
+</li>
+<li><strong>Documentation</strong>:
+<ul>
+<li>Clear README, examples, and explanation of results.</li>
+</ul>
+</li>
+<li><strong>Teamwork &amp; Process</strong>:
+<ul>
+<li>Iterative development, Git workflow, reviews.</li>
+</ul>
+</li>
+<li><strong>Presentation &amp; Reflection</strong>:
+<ul>
+<li>Ability to explain and defend choices; lessons learned.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="definition-of-done-3"><a class="header" href="#definition-of-done-3">Definition of Done</a></h2>
+<p>The project is complete when:</p>
+<ul>
+<li><strong>Research completed and documented</strong>:
+<ul>
+<li><strong>Algorithm comparisons</strong> and <strong>heuristic rationale</strong> written up.</li>
+<li><strong>Experiments/benchmarks</strong> (<strong>nodes expanded</strong>, <strong>runtime</strong>, <strong>path cost</strong>) included.</li>
+<li><strong>ADRs</strong> for key decisions present and linked.</li>
+</ul>
+</li>
+<li><strong>Functionality</strong>:
+<ul>
+<li>At least <strong>DFS</strong>, <strong>BFS</strong>, <strong>Greedy</strong>, and <strong>A</strong>* implemented against a <strong>common interface</strong>.</li>
+<li><strong>Demo</strong> runs on a <strong>maze</strong> and a small <strong>Pacman-style</strong> map, showing <strong>path</strong> and <strong>metrics</strong>.</li>
+</ul>
+</li>
+<li><strong>Quality</strong>:
+<ul>
+<li>Tests pass (<strong>≥ 80% coverage</strong> on core logic) in <strong>CI</strong>.</li>
+<li>Code is <strong>modular</strong> and <strong>readable</strong>; <strong>logs/metrics</strong> available.</li>
+</ul>
+</li>
+<li><strong>Delivery</strong>:
+<ul>
+<li><strong>Public GitHub repository</strong> with complete <strong>README</strong> and <strong>one-command run</strong>.</li>
+<li><strong>Final presentation</strong> and</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="project-build-an-aidriven-terminal-interface-with-plugin-architecture"><a class="header" href="#project-build-an-aidriven-terminal-interface-with-plugin-architecture">Project: Build an AI‑Driven Terminal Interface with Plugin Architecture</a></h1>
+<h2 id="project-description-4"><a class="header" href="#project-description-4">Project Description</a></h2>
+<p>In this project, you will work as a team to design and implement a modern <strong>terminal interface</strong> focused on <strong>developer productivity</strong>. Unlike a single CLI tool, you will build a full <strong>terminal experience</strong> that supports both <strong>classical shell commands</strong> and <strong>natural language prompts</strong>. The terminal should understand <strong>basic shell commands enhanced with an AI assistant</strong> (suggestions, explanations, safe/dry‑run previews) and render <strong>interactive block‑based input/output</strong>. It can orchestrate multiple <strong>AI agents</strong> with different roles (explain, execute, debug, etc.) and is extensible via a <strong>plugin architecture</strong> (at least one <strong>AI‑powered plugin</strong>).</p>
+<p>Inspiration: <strong>Warp</strong> (https://www.warp.dev/)<br />
+Warp is a modern, Rust‑based terminal that showcases:</p>
+<ul>
+<li>A <strong>block‑based interaction model</strong> (each command and output is a discrete, shareable block).</li>
+<li><strong>Smart input UX</strong> (command palette, rich completions, inline flag docs, templates/workflows).</li>
+<li><strong>Collaboration features</strong> (shareable blocks/sessions, searchable command history).</li>
+<li><strong>AI assistance</strong> (explain commands, generate command lines from intent, suggest safer alternatives).</li>
+</ul>
+<p>Use Warp’s ideas to guide UX and interaction patterns. Do not clone it 1:1—select and justify which ideas you adopt based on your goals and scope.</p>
+<p>This project emphasizes both <strong>technical depth</strong> (architecture, plugins, multi‑agent orchestration, safety) and <strong>professional practices</strong> (teamwork, iterative workflow, documentation, and open‑source release).</p>
+<hr />
+<h2 id="goal-4"><a class="header" href="#goal-4">Goal</a></h2>
+<p>Deliver an <strong>agentic CLI environment</strong> that enables:</p>
+<ul>
+<li><strong>Classic shell usage</strong> and <strong>natural language input</strong> side by side.</li>
+<li><strong>AI‑enhanced shell commands</strong> (suggest flags, explain/dry‑run, warn/confirm risky commands).</li>
+<li>A modular <strong>plugin system</strong> (AI and non‑AI).</li>
+<li>A <strong>visual, block‑based UI</strong> for input/output.</li>
+<li>Practical features that help developers (initialize projects, analyze code, generate tests, refactor).</li>
+</ul>
+<hr />
+<h2 id="context-4"><a class="header" href="#context-4">Context</a></h2>
+<p>Command‑line tools are central to software engineering. In parallel, <strong>AI assistants</strong> are reshaping developer workflows. This project combines both by creating a <strong>smart, visual, and extensible terminal</strong> that leverages <strong>AI</strong> to improve productivity and team collaboration. Your design should emphasize <strong>extensibility</strong>, <strong>operability</strong>, and <strong>developer experience</strong>.</p>
+<hr />
+<h2 id="desired-outcome-4"><a class="header" href="#desired-outcome-4">Desired Outcome</a></h2>
+<p>A working terminal application that:</p>
+<ul>
+<li>Provides a clear <strong>command structure</strong> with subcommands (e.g., <code>init</code>, <code>run</code>, <code>explain</code>).</li>
+<li>Supports <strong>natural language mode</strong> that maps prompts to executable actions.</li>
+<li>Implements a <strong>plugin architecture</strong> (discover, load, configure; at least one <strong>AI plugin</strong>).</li>
+<li>Renders <strong>interactive blocks</strong> for inputs/outputs (copy, annotate, expand details).</li>
+<li>Orchestrates <strong>multiple AI agents</strong> with different roles.</li>
+<li>Maintains <strong>context memory</strong> and supports <strong>shared workflows</strong>.</li>
+<li>Includes <strong>logging</strong>, <strong>error handling</strong>, <strong>tests</strong>, and <strong>documentation</strong>.</li>
+<li>Runs locally with a <strong>one‑command setup</strong>.</li>
+</ul>
+<hr />
+<h2 id="functional-requirements-4"><a class="header" href="#functional-requirements-4">Functional Requirements</a></h2>
+<h3 id="musthaves"><a class="header" href="#musthaves">Must‑Haves</a></h3>
+<ul>
+<li><strong>CLI core and subcommands</strong>: e.g., <code>init</code>, <code>run</code>, <code>info</code>, <code>explain</code>.</li>
+<li><strong>Basic shell commands with AI assistance</strong>:
+<ul>
+<li>Parse and execute common shell commands (<code>ls</code>, <code>cd</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>git</code>, …).</li>
+<li>Offer AI <strong>suggestions</strong>, <strong>auto‑corrections</strong>, and <strong>flag hints</strong>.</li>
+<li>Provide <strong>explanations</strong> and <strong>safe/dry‑run previews</strong> before risky actions (e.g., <code>rm -rf</code>, destructive Git ops).</li>
+<li>Require <strong>confirmation</strong> for dangerous operations.</li>
+</ul>
+</li>
+<li><strong>Natural language mode</strong>: user types free text; an <strong>AI plugin</strong> translates intent into actions/commands.</li>
+<li><strong>Plugin architecture</strong>:
+<ul>
+<li>Discover, load/unload third‑party plugins (AI and non‑AI).</li>
+<li>Provide clear extension points and a versioned <strong>plugin API</strong>.</li>
+</ul>
+</li>
+<li><strong>Block‑based UI</strong>:
+<ul>
+<li>Render input/output as <strong>interactive blocks</strong> (copy, annotate, expand/collapse).</li>
+<li>Show per‑block status, logs, and errors.</li>
+</ul>
+</li>
+<li><strong>Multi‑agent support</strong>:
+<ul>
+<li>Run multiple <strong>AI agents</strong> (planner, executor, explainer) and route tasks between them.</li>
+</ul>
+</li>
+</ul>
+<h3 id="couldhaves-optional"><a class="header" href="#couldhaves-optional">Could‑Haves (Optional)</a></h3>
+<ul>
+<li><strong>Plugin examples</strong>: <code>refactor</code>, <code>docgen</code>, <code>lint</code>, <code>format</code>, <code>testgen</code>.</li>
+<li><strong>Team workflows</strong>: shared context/workflows across sessions.</li>
+<li><strong>Integrations</strong>: Git, issue trackers, CI.</li>
+<li><strong>Advanced UX</strong>: themes/keybindings, command history visualization.</li>
+<li><strong>Dashboard</strong>: panel for active agents and block history.</li>
+</ul>
+<hr />
+<h2 id="nonfunctional-requirements"><a class="header" href="#nonfunctional-requirements">Non‑Functional Requirements</a></h2>
+<ul>
+<li><strong>Shell compatibility</strong>: works with Bash, Zsh, Fish, or PowerShell.</li>
+<li><strong>Reliability &amp; UX</strong>: robust error handling; clear prompts; readable colors.</li>
+<li><strong>Testability</strong>: <strong>≥ 70% coverage</strong> on core modules (CLI, plugins, agent routing).</li>
+<li><strong>Modularity</strong>: separate <strong>CLI</strong>, <strong>core</strong>, and <strong>plugins</strong>; avoid tight coupling.</li>
+<li><strong>Observability</strong>: per‑block logs; optional verbose tracing.</li>
+<li><strong>Documentation</strong>:
+<ul>
+<li><strong>README</strong> with <strong>Quick Start</strong>, <strong>Usage</strong>, <strong>Configuration</strong>, <strong>Troubleshooting</strong>.</li>
+<li><strong>API docs</strong> for the <strong>plugin interface</strong>.</li>
+<li>Example configurations and workflows.</li>
+</ul>
+</li>
+<li><strong>Reproducibility</strong>: <strong>one‑command local setup</strong>; deterministic bootstrap.</li>
+<li><strong>Security/Safety</strong>: guardrails for destructive commands; permission prompts; redact secrets in logs.</li>
+</ul>
+<hr />
+<h2 id="research--decision-making-4"><a class="header" href="#research--decision-making-4">Research &amp; Decision Making</a></h2>
+<p>You are expected to:</p>
+<ul>
+<li>Define your <strong>vision and philosophy</strong> for a modern terminal UX.</li>
+<li>Compare <strong>plugin architectures</strong> for CLIs and justify choices (loading, sandboxing, versioning).</li>
+<li>Explore <strong>AI interaction patterns</strong> for developer tooling (prompting, grounding, safety).</li>
+<li>Review <strong>multi‑agent</strong> orchestration strategies and when they help.</li>
+<li>Consider <strong>shell integration</strong> and cross‑platform concerns.</li>
+<li>Evaluate <strong>Warp</strong> patterns (blocks, palette, AI help, workflows) and document what you adopt and why.</li>
+<li>Propose an approach for <strong>context memory</strong> and collaboration.</li>
+<li>Record major choices as <strong>ADRs (Architecture Decision Records)</strong> and include short spikes/experiments.</li>
+</ul>
+<hr />
+<h2 id="project-requirements-4"><a class="header" href="#project-requirements-4">Project Requirements</a></h2>
+<ul>
+<li><strong>Team size</strong>: 3 students.</li>
+<li><strong>Runtime</strong>: your choice; <strong>Rust preferred</strong> but not required. <strong>JS/TS</strong>, <strong>Go</strong>, etc., are acceptable—justify your pick.</li>
+<li><strong>Repository</strong>: public <strong>GitHub</strong>; use <strong>issues/board</strong> and <strong>PR reviews</strong>.</li>
+<li><strong>Setup</strong>: <strong>one‑command run</strong> (e.g., <code>cargo run</code>, <code>npm run dev</code>, or <code>make run</code>).</li>
+<li><strong>Environment</strong>: include <strong><code>.env.example</code></strong>; no secrets in the repo.</li>
+<li><strong>CI/CD</strong>: <strong>lint</strong>, <strong>test</strong>, and <strong>build</strong> on PRs; main stays green.</li>
+<li><strong>Deliverables</strong>:
+<ul>
+<li><strong>Source code</strong> + <strong>documentation</strong> on GitHub.</li>
+<li><strong>Demo usage</strong> and <strong>example plugins</strong>.</li>
+<li><strong>Research notes</strong> and <strong>ADRs</strong>.</li>
+<li><strong>Final presentation</strong> and <strong>reflection</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria-4"><a class="header" href="#assessment-criteria-4">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong> – clarity of goals, comparisons, and evidence.</li>
+<li><strong>Functional Working</strong> – CLI, natural language mode, plugins, and multi‑agent flow work as specified.</li>
+<li><strong>Technical Quality</strong> – architecture, modularity, tests, and observability.</li>
+<li><strong>Documentation &amp; DX</strong> – easy to install, clear usage, plugin API docs, examples.</li>
+<li><strong>Teamwork &amp; Process</strong> – iterative development, Git workflow, code reviews.</li>
+<li><strong>Presentation &amp; Reflection</strong> – ability to explain and defend choices; lessons learned.</li>
+</ol>
+<hr />
+<h2 id="definition-of-done-4"><a class="header" href="#definition-of-done-4">Definition of Done</a></h2>
+<p>The project is done when:</p>
+<ul>
+<li><strong>Research completed and documented</strong>:
+<ul>
+<li>Vision, comparisons, and key trade‑offs are written up.</li>
+<li>Experiments/spikes inform decisions; <strong>ADRs</strong> are present and linked.</li>
+</ul>
+</li>
+<li><strong>Functionality</strong>:
+<ul>
+<li>CLI supports both <strong>classic commands</strong> and <strong>natural language</strong>.</li>
+<li>At least <strong>one AI plugin</strong> is implemented and usable.</li>
+<li><strong>Plugin architecture</strong> is demonstrably extensible (load/unload, versioning).</li>
+<li><strong>Block‑based UI</strong> with per‑block logs and errors is implemented.</li>
+</ul>
+</li>
+<li><strong>Quality</strong>:
+<ul>
+<li>Tests pass with <strong>≥ 70% coverage</strong> on core modules in <strong>CI</strong>.</li>
+<li>Codebase is <strong>modular</strong>, readable, and observable.</li>
+</ul>
+</li>
+<li><strong>Delivery</strong>:
+<ul>
+<li>Public <strong>GitHub repository</strong> with complete <strong>README</strong> and <strong>one‑command run</strong>.</li>
+<li>Demo showcases core features.</li>
+<li>Final <strong>presentation</strong> and <strong>reflection</strong> delivered.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="project-tags"><a class="header" href="#project-tags">Project Tags</a></h2>
+<p><code>#cli</code>, <code>#developer-tools</code>, <code>#ai</code>, <code>#plugin-architecture</code>, <code>#typescript</code> (or <code>#rust</code>), <code>#shell</code>, <code>#agentic-dev</code>, <code>#developer-experience</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="qa"><a class="header" href="#qa">Q&amp;A</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="project-doc-custom.js"></script>
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

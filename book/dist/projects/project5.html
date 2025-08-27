@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>AI-driven Terminalinterface - Software Engineering Project - Course Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../project-doc-custom.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../announcements.html">Announcements</a></li><li class="chapter-item expanded affix "><a href="../revisions.html">Revisions</a></li><li class="chapter-item expanded affix "><li class="part-title">Project info</li><li class="chapter-item expanded "><a href="../project_info/introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../project_info/overview/overview.html"><strong aria-hidden="true">2.</strong> Overview</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project_info/overview/teams_and_projects.html"><strong aria-hidden="true">2.1.</strong> Project selection and teams</a></li><li class="chapter-item "><a href="../project_info/overview/planning.html"><strong aria-hidden="true">2.2.</strong> Planning</a></li><li class="chapter-item "><a href="../project_info/overview/coaching.html"><strong aria-hidden="true">2.3.</strong> Coaching</a></li><li class="chapter-item "><a href="../project_info/overview/grading.html"><strong aria-hidden="true">2.4.</strong> Grading</a></li><li class="chapter-item "><a href="../project_info/overview/house_rules.html"><strong aria-hidden="true">2.5.</strong> House rules</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Projects</li><li class="chapter-item expanded "><a href="../projects/projects.html"><strong aria-hidden="true">3.</strong> Projects</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../projects/project1.html"><strong aria-hidden="true">3.1.</strong> ORM Library</a></li><li class="chapter-item "><a href="../projects/project2.html"><strong aria-hidden="true">3.2.</strong> CQRS Synchronization</a></li><li class="chapter-item "><a href="../projects/project3.html"><strong aria-hidden="true">3.3.</strong> Frontend Framework</a></li><li class="chapter-item "><a href="../projects/project4.html"><strong aria-hidden="true">3.4.</strong> Pacman and Search Algorithms</a></li><li class="chapter-item expanded "><a href="../projects/project5.html" class="active"><strong aria-hidden="true">3.5.</strong> AI-driven Terminalinterface</a></li></ol></li><li class="chapter-item expanded "><a href="../appendices/q_and_a.html"><strong aria-hidden="true">4.</strong> Q&A</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Software Engineering Project - Course Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="project-build-an-aidriven-terminal-interface-with-plugin-architecture"><a class="header" href="#project-build-an-aidriven-terminal-interface-with-plugin-architecture">Project: Build an AI‑Driven Terminal Interface with Plugin Architecture</a></h1>
+<h2 id="project-description"><a class="header" href="#project-description">Project Description</a></h2>
+<p>In this project, you will work as a team to design and implement a modern <strong>terminal interface</strong> focused on <strong>developer productivity</strong>. Unlike a single CLI tool, you will build a full <strong>terminal experience</strong> that supports both <strong>classical shell commands</strong> and <strong>natural language prompts</strong>. The terminal should understand <strong>basic shell commands enhanced with an AI assistant</strong> (suggestions, explanations, safe/dry‑run previews) and render <strong>interactive block‑based input/output</strong>. It can orchestrate multiple <strong>AI agents</strong> with different roles (explain, execute, debug, etc.) and is extensible via a <strong>plugin architecture</strong> (at least one <strong>AI‑powered plugin</strong>).</p>
+<p>Inspiration: <strong>Warp</strong> (https://www.warp.dev/)<br />
+Warp is a modern, Rust‑based terminal that showcases:</p>
+<ul>
+<li>A <strong>block‑based interaction model</strong> (each command and output is a discrete, shareable block).</li>
+<li><strong>Smart input UX</strong> (command palette, rich completions, inline flag docs, templates/workflows).</li>
+<li><strong>Collaboration features</strong> (shareable blocks/sessions, searchable command history).</li>
+<li><strong>AI assistance</strong> (explain commands, generate command lines from intent, suggest safer alternatives).</li>
+</ul>
+<p>Use Warp’s ideas to guide UX and interaction patterns. Do not clone it 1:1—select and justify which ideas you adopt based on your goals and scope.</p>
+<p>This project emphasizes both <strong>technical depth</strong> (architecture, plugins, multi‑agent orchestration, safety) and <strong>professional practices</strong> (teamwork, iterative workflow, documentation, and open‑source release).</p>
+<hr />
+<h2 id="goal"><a class="header" href="#goal">Goal</a></h2>
+<p>Deliver an <strong>agentic CLI environment</strong> that enables:</p>
+<ul>
+<li><strong>Classic shell usage</strong> and <strong>natural language input</strong> side by side.</li>
+<li><strong>AI‑enhanced shell commands</strong> (suggest flags, explain/dry‑run, warn/confirm risky commands).</li>
+<li>A modular <strong>plugin system</strong> (AI and non‑AI).</li>
+<li>A <strong>visual, block‑based UI</strong> for input/output.</li>
+<li>Practical features that help developers (initialize projects, analyze code, generate tests, refactor).</li>
+</ul>
+<hr />
+<h2 id="context"><a class="header" href="#context">Context</a></h2>
+<p>Command‑line tools are central to software engineering. In parallel, <strong>AI assistants</strong> are reshaping developer workflows. This project combines both by creating a <strong>smart, visual, and extensible terminal</strong> that leverages <strong>AI</strong> to improve productivity and team collaboration. Your design should emphasize <strong>extensibility</strong>, <strong>operability</strong>, and <strong>developer experience</strong>.</p>
+<hr />
+<h2 id="desired-outcome"><a class="header" href="#desired-outcome">Desired Outcome</a></h2>
+<p>A working terminal application that:</p>
+<ul>
+<li>Provides a clear <strong>command structure</strong> with subcommands (e.g., <code>init</code>, <code>run</code>, <code>explain</code>).</li>
+<li>Supports <strong>natural language mode</strong> that maps prompts to executable actions.</li>
+<li>Implements a <strong>plugin architecture</strong> (discover, load, configure; at least one <strong>AI plugin</strong>).</li>
+<li>Renders <strong>interactive blocks</strong> for inputs/outputs (copy, annotate, expand details).</li>
+<li>Orchestrates <strong>multiple AI agents</strong> with different roles.</li>
+<li>Maintains <strong>context memory</strong> and supports <strong>shared workflows</strong>.</li>
+<li>Includes <strong>logging</strong>, <strong>error handling</strong>, <strong>tests</strong>, and <strong>documentation</strong>.</li>
+<li>Runs locally with a <strong>one‑command setup</strong>.</li>
+</ul>
+<hr />
+<h2 id="functional-requirements"><a class="header" href="#functional-requirements">Functional Requirements</a></h2>
+<h3 id="musthaves"><a class="header" href="#musthaves">Must‑Haves</a></h3>
+<ul>
+<li><strong>CLI core and subcommands</strong>: e.g., <code>init</code>, <code>run</code>, <code>info</code>, <code>explain</code>.</li>
+<li><strong>Basic shell commands with AI assistance</strong>:
+<ul>
+<li>Parse and execute common shell commands (<code>ls</code>, <code>cd</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>git</code>, …).</li>
+<li>Offer AI <strong>suggestions</strong>, <strong>auto‑corrections</strong>, and <strong>flag hints</strong>.</li>
+<li>Provide <strong>explanations</strong> and <strong>safe/dry‑run previews</strong> before risky actions (e.g., <code>rm -rf</code>, destructive Git ops).</li>
+<li>Require <strong>confirmation</strong> for dangerous operations.</li>
+</ul>
+</li>
+<li><strong>Natural language mode</strong>: user types free text; an <strong>AI plugin</strong> translates intent into actions/commands.</li>
+<li><strong>Plugin architecture</strong>:
+<ul>
+<li>Discover, load/unload third‑party plugins (AI and non‑AI).</li>
+<li>Provide clear extension points and a versioned <strong>plugin API</strong>.</li>
+</ul>
+</li>
+<li><strong>Block‑based UI</strong>:
+<ul>
+<li>Render input/output as <strong>interactive blocks</strong> (copy, annotate, expand/collapse).</li>
+<li>Show per‑block status, logs, and errors.</li>
+</ul>
+</li>
+<li><strong>Multi‑agent support</strong>:
+<ul>
+<li>Run multiple <strong>AI agents</strong> (planner, executor, explainer) and route tasks between them.</li>
+</ul>
+</li>
+</ul>
+<h3 id="couldhaves-optional"><a class="header" href="#couldhaves-optional">Could‑Haves (Optional)</a></h3>
+<ul>
+<li><strong>Plugin examples</strong>: <code>refactor</code>, <code>docgen</code>, <code>lint</code>, <code>format</code>, <code>testgen</code>.</li>
+<li><strong>Team workflows</strong>: shared context/workflows across sessions.</li>
+<li><strong>Integrations</strong>: Git, issue trackers, CI.</li>
+<li><strong>Advanced UX</strong>: themes/keybindings, command history visualization.</li>
+<li><strong>Dashboard</strong>: panel for active agents and block history.</li>
+</ul>
+<hr />
+<h2 id="nonfunctional-requirements"><a class="header" href="#nonfunctional-requirements">Non‑Functional Requirements</a></h2>
+<ul>
+<li><strong>Shell compatibility</strong>: works with Bash, Zsh, Fish, or PowerShell.</li>
+<li><strong>Reliability &amp; UX</strong>: robust error handling; clear prompts; readable colors.</li>
+<li><strong>Testability</strong>: <strong>≥ 70% coverage</strong> on core modules (CLI, plugins, agent routing).</li>
+<li><strong>Modularity</strong>: separate <strong>CLI</strong>, <strong>core</strong>, and <strong>plugins</strong>; avoid tight coupling.</li>
+<li><strong>Observability</strong>: per‑block logs; optional verbose tracing.</li>
+<li><strong>Documentation</strong>:
+<ul>
+<li><strong>README</strong> with <strong>Quick Start</strong>, <strong>Usage</strong>, <strong>Configuration</strong>, <strong>Troubleshooting</strong>.</li>
+<li><strong>API docs</strong> for the <strong>plugin interface</strong>.</li>
+<li>Example configurations and workflows.</li>
+</ul>
+</li>
+<li><strong>Reproducibility</strong>: <strong>one‑command local setup</strong>; deterministic bootstrap.</li>
+<li><strong>Security/Safety</strong>: guardrails for destructive commands; permission prompts; redact secrets in logs.</li>
+</ul>
+<hr />
+<h2 id="research--decision-making"><a class="header" href="#research--decision-making">Research &amp; Decision Making</a></h2>
+<p>You are expected to:</p>
+<ul>
+<li>Define your <strong>vision and philosophy</strong> for a modern terminal UX.</li>
+<li>Compare <strong>plugin architectures</strong> for CLIs and justify choices (loading, sandboxing, versioning).</li>
+<li>Explore <strong>AI interaction patterns</strong> for developer tooling (prompting, grounding, safety).</li>
+<li>Review <strong>multi‑agent</strong> orchestration strategies and when they help.</li>
+<li>Consider <strong>shell integration</strong> and cross‑platform concerns.</li>
+<li>Evaluate <strong>Warp</strong> patterns (blocks, palette, AI help, workflows) and document what you adopt and why.</li>
+<li>Propose an approach for <strong>context memory</strong> and collaboration.</li>
+<li>Record major choices as <strong>ADRs (Architecture Decision Records)</strong> and include short spikes/experiments.</li>
+</ul>
+<hr />
+<h2 id="project-requirements"><a class="header" href="#project-requirements">Project Requirements</a></h2>
+<ul>
+<li><strong>Team size</strong>: 3 students.</li>
+<li><strong>Runtime</strong>: your choice; <strong>Rust preferred</strong> but not required. <strong>JS/TS</strong>, <strong>Go</strong>, etc., are acceptable—justify your pick.</li>
+<li><strong>Repository</strong>: public <strong>GitHub</strong>; use <strong>issues/board</strong> and <strong>PR reviews</strong>.</li>
+<li><strong>Setup</strong>: <strong>one‑command run</strong> (e.g., <code>cargo run</code>, <code>npm run dev</code>, or <code>make run</code>).</li>
+<li><strong>Environment</strong>: include <strong><code>.env.example</code></strong>; no secrets in the repo.</li>
+<li><strong>CI/CD</strong>: <strong>lint</strong>, <strong>test</strong>, and <strong>build</strong> on PRs; main stays green.</li>
+<li><strong>Deliverables</strong>:
+<ul>
+<li><strong>Source code</strong> + <strong>documentation</strong> on GitHub.</li>
+<li><strong>Demo usage</strong> and <strong>example plugins</strong>.</li>
+<li><strong>Research notes</strong> and <strong>ADRs</strong>.</li>
+<li><strong>Final presentation</strong> and <strong>reflection</strong>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assessment-criteria"><a class="header" href="#assessment-criteria">Assessment Criteria</a></h2>
+<ol>
+<li><strong>Research &amp; Analysis</strong> – clarity of goals, comparisons, and evidence.</li>
+<li><strong>Functional Working</strong> – CLI, natural language mode, plugins, and multi‑agent flow work as specified.</li>
+<li><strong>Technical Quality</strong> – architecture, modularity, tests, and observability.</li>
+<li><strong>Documentation &amp; DX</strong> – easy to install, clear usage, plugin API docs, examples.</li>
+<li><strong>Teamwork &amp; Process</strong> – iterative development, Git workflow, code reviews.</li>
+<li><strong>Presentation &amp; Reflection</strong> – ability to explain and defend choices; lessons learned.</li>
+</ol>
+<hr />
+<h2 id="definition-of-done"><a class="header" href="#definition-of-done">Definition of Done</a></h2>
+<p>The project is done when:</p>
+<ul>
+<li><strong>Research completed and documented</strong>:
+<ul>
+<li>Vision, comparisons, and key trade‑offs are written up.</li>
+<li>Experiments/spikes inform decisions; <strong>ADRs</strong> are present and linked.</li>
+</ul>
+</li>
+<li><strong>Functionality</strong>:
+<ul>
+<li>CLI supports both <strong>classic commands</strong> and <strong>natural language</strong>.</li>
+<li>At least <strong>one AI plugin</strong> is implemented and usable.</li>
+<li><strong>Plugin architecture</strong> is demonstrably extensible (load/unload, versioning).</li>
+<li><strong>Block‑based UI</strong> with per‑block logs and errors is implemented.</li>
+</ul>
+</li>
+<li><strong>Quality</strong>:
+<ul>
+<li>Tests pass with <strong>≥ 70% coverage</strong> on core modules in <strong>CI</strong>.</li>
+<li>Codebase is <strong>modular</strong>, readable, and observable.</li>
+</ul>
+</li>
+<li><strong>Delivery</strong>:
+<ul>
+<li>Public <strong>GitHub repository</strong> with complete <strong>README</strong> and <strong>one‑command run</strong>.</li>
+<li>Demo showcases core features.</li>
+<li>Final <strong>presentation</strong> and <strong>reflection</strong> delivered.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="project-tags"><a class="header" href="#project-tags">Project Tags</a></h2>
+<p><code>#cli</code>, <code>#developer-tools</code>, <code>#ai</code>, <code>#plugin-architecture</code>, <code>#typescript</code> (or <code>#rust</code>), <code>#shell</code>, <code>#agentic-dev</code>, <code>#developer-experience</code></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../projects/project4.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../appendices/q_and_a.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../projects/project4.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../appendices/q_and_a.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../project-doc-custom.js"></script>
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Projects - Software Engineering Project - Course Guide</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../project-doc-custom.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../announcements.html">Announcements</a></li><li class="chapter-item expanded affix "><a href="../revisions.html">Revisions</a></li><li class="chapter-item expanded affix "><li class="part-title">Project info</li><li class="chapter-item expanded "><a href="../project_info/introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../project_info/overview/overview.html"><strong aria-hidden="true">2.</strong> Overview</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../project_info/overview/teams_and_projects.html"><strong aria-hidden="true">2.1.</strong> Project selection and teams</a></li><li class="chapter-item "><a href="../project_info/overview/planning.html"><strong aria-hidden="true">2.2.</strong> Planning</a></li><li class="chapter-item "><a href="../project_info/overview/coaching.html"><strong aria-hidden="true">2.3.</strong> Coaching</a></li><li class="chapter-item "><a href="../project_info/overview/grading.html"><strong aria-hidden="true">2.4.</strong> Grading</a></li><li class="chapter-item "><a href="../project_info/overview/house_rules.html"><strong aria-hidden="true">2.5.</strong> House rules</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Projects</li><li class="chapter-item expanded "><a href="../projects/projects.html" class="active"><strong aria-hidden="true">3.</strong> Projects</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../projects/project1.html"><strong aria-hidden="true">3.1.</strong> ORM Library</a></li><li class="chapter-item "><a href="../projects/project2.html"><strong aria-hidden="true">3.2.</strong> CQRS Synchronization</a></li><li class="chapter-item "><a href="../projects/project3.html"><strong aria-hidden="true">3.3.</strong> Frontend Framework</a></li><li class="chapter-item "><a href="../projects/project4.html"><strong aria-hidden="true">3.4.</strong> Pacman and Search Algorithms</a></li><li class="chapter-item "><a href="../projects/project5.html"><strong aria-hidden="true">3.5.</strong> AI-driven Terminalinterface</a></li></ol></li><li class="chapter-item expanded "><a href="../appendices/q_and_a.html"><strong aria-hidden="true">4.</strong> Q&A</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Software Engineering Project - Course Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="projects"><a class="header" href="#projects">Projects</a></h1>
+<h1 id="projects-catalog"><a class="header" href="#projects-catalog">Projects catalog</a></h1>
+<p>This page explains what a project is in this course, how each brief is structured, what research is expected, and lists the available topics.</p>
+<hr />
+<h2 id="on-this-page"><a class="header" href="#on-this-page">On this page</a></h2>
+<ul>
+<li><a href="#what-is-a-project">What is a project?</a></li>
+<li><a href="#structure-of-each-project-brief">Structure of each project brief</a></li>
+<li><a href="#research-expectations">Research expectations</a></li>
+<li><a href="#how-to-use-this-catalog">How to use this catalog</a></li>
+<li><a href="#available-projects">Available projects</a></li>
+</ul>
+<hr />
+<h2 id="what-is-a-project"><a class="header" href="#what-is-a-project">What is a project?</a></h2>
+<p>A lecturer‑proposed, real‑world topic executed by a team of three. You will investigate unfamiliar technologies, make and defend engineering decisions, and deliver a working, documented, and tested solution. Your Bachelor’s thesis (BAP) runs in parallel to capture rationale, evidence, and reflection.</p>
+<p>See also: <a href="../project_info/overview/teams_and_projects.html">Project selection and teams</a>, <a href="../project_info/overview/planning.html">Planning</a>, <a href="../project_info/overview/coaching.html">Coaching</a>.</p>
+<h3 id="code-availability-and-usability-requirements"><a class="header" href="#code-availability-and-usability-requirements">Code availability and usability requirements</a></h3>
+<ul>
+<li>Host all project code in a public GitHub repository owned by your team.</li>
+<li>Deliver a ready‑to‑use artifact (app, library, CLI, or framework).</li>
+<li>Make installation and deployment a breeze:
+<ul>
+<li>One‑command setup (e.g., <code>make up</code>, <code>docker compose up</code>, or a single install script).</li>
+<li>Libraries: publish install instructions via the package manager (e.g., npm/JSR) and include runnable examples.</li>
+<li>Provide <code>env.example</code> and sensible default configs.</li>
+</ul>
+</li>
+<li>Document clearly:
+<ul>
+<li>README with Quick start, Features, Usage, Configuration, and Troubleshooting.</li>
+<li>Installation/deployment guide (local and, if relevant, containerized/cloud).</li>
+<li>Architecture overview and contribution/development notes.</li>
+</ul>
+</li>
+<li>Use GitHub as your workflow hub:
+<ul>
+<li>Commit and push regularly (daily during project weeks).</li>
+<li>Develop on feature branches;</li>
+<li>Keep main protected and green (CI on push/PR).</li>
+<li>Track work with Issues and a project board; link PRs to issues.</li>
+</ul>
+</li>
+</ul>
+<p>These requirements apply to all topics in this catalog.</p>
+<h3 id="documentation-cheatsheet"><a class="header" href="#documentation-cheatsheet">Documentation Cheatsheet</a></h3>
+<h4 id="minimum-files"><a class="header" href="#minimum-files">Minimum files</a></h4>
+<ul>
+<li><code>README.md</code> — Quick start, usage, config, tests, architecture link</li>
+<li><code>LICENSE</code> — MIT or Apache-2.0</li>
+<li><code>.env.example</code> — sample environment variables</li>
+<li><code>CHANGELOG.md</code> — notable changes</li>
+<li><code>.github/workflows/ci.yml</code> — CI on push/PR</li>
+<li><code>src/</code>, <code>tests/</code> — code and tests</li>
+</ul>
+<h4 id="pull-request-checklist"><a class="header" href="#pull-request-checklist">Pull Request checklist@</a></h4>
+<ul>
+<li><input disabled="" type="checkbox"/>
+One-command run works on a clean machine</li>
+<li><input disabled="" type="checkbox"/>
+README updated (Quick start, Usage, Config, Tests)</li>
+<li><input disabled="" type="checkbox"/>
+CI green (lint/test/build)</li>
+<li><input disabled="" type="checkbox"/>
+<code>.env.example</code> present, no secrets in repo</li>
+<li><input disabled="" type="checkbox"/>
+<code>CHANGELOG.md</code> updated</li>
+</ul>
+<h4 id="readme-sections-order"><a class="header" href="#readme-sections-order">README sections (order)</a></h4>
+<ol>
+<li>Quick start (3 steps, copy-paste commands)</li>
+<li>Features (3–6 bullets)</li>
+<li>Usage (examples or CLI/API calls)</li>
+<li>Configuration (<code>.env</code> keys explained)</li>
+<li>Tests (<code>npm test</code> / <code>deno test</code> / <code>go test</code>)</li>
+<li>Troubleshooting (2–4 common issues)</li>
+</ol>
+<h4 id="ci-essentials"><a class="header" href="#ci-essentials">CI essentials</a></h4>
+<ul>
+<li>Trigger on push + PR</li>
+<li>Steps: checkout → setup runtime → install → lint → test → build</li>
+<li>Keep lint/build optional via <code>--if-present</code></li>
+</ul>
+<hr />
+<h2 id="structure-of-each-project-brief"><a class="header" href="#structure-of-each-project-brief">Structure of each project brief</a></h2>
+<p>Each project page follows a consistent structure so you can compare topics easily:</p>
+<ul>
+<li>Title</li>
+<li>Project description
+<ul>
+<li>Goal</li>
+<li>Context</li>
+<li>Desired outcome
+<ul>
+<li>Functional requirements</li>
+<li>Non‑functional requirements</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Project requirements</li>
+<li>Useful information</li>
+</ul>
+<p>This mirrors the course template and the expectations used for grading and deliverables.</p>
+<h2 id="research-guideline-for-all-projects"><a class="header" href="#research-guideline-for-all-projects">Research guideline (for all projects)</a></h2>
+<p>Use this step-by-step guideline during your discovery phase. It is based on the selected steps (research question, core concepts, comparison, technology choices, publication/OSS, vision/philosophy, alternatives).</p>
+<hr />
+<h3 id="1-research-question-or-objective"><a class="header" href="#1-research-question-or-objective">1) Research question or objective</a></h3>
+<p>Define the central question and what success looks like.</p>
+<ul>
+<li>What problem are you solving and for whom?</li>
+<li>Success criteria: measurable outcomes (e.g., latency &lt; Xs, DX goals, feature scope).</li>
+<li>Scope: in/out; assumptions and constraints.</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>1–2 sentence research question.</li>
+<li>Success criteria and initial scope (bullets).</li>
+</ul>
+<hr />
+<h3 id="2-core-concepts-to-master"><a class="header" href="#2-core-concepts-to-master">2) Core concepts to master</a></h3>
+<p>List and explain the foundational ideas for your topic.</p>
+<ul>
+<li>Examples: CQRS; Event Sourcing vs direct updates; Eventual vs Strong consistency; Polyglot persistence; ORM patterns; agent workflows; rendering/reactivity.</li>
+<li>Add short definitions and links to 1–2 authoritative sources per concept.</li>
+<li>Optional: tiny spikes/prototypes to verify understanding.</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Concept notes (bullets + sources).</li>
+<li>Optional spike results (code snippets/screens).</li>
+</ul>
+<hr />
+<h3 id="3-comparative-analysis-existing-solutions"><a class="header" href="#3-comparative-analysis-existing-solutions">3) Comparative analysis (existing solutions)</a></h3>
+<p>Survey  relevant libraries, frameworks, or architectures.</p>
+<ul>
+<li>Compare on: flexibility, performance, extensibility, reliability, community, docs, licensing.</li>
+<li>Capture trade‑offs and “lessons learned” that shape your design.</li>
+<li>Include minimal experiments if feasible (benchmarks, API ergonomics trials).</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Comparison table + short summary (what you’ll adopt/avoid).</li>
+<li>Links to references and any micro-benchmarks.</li>
+</ul>
+<hr />
+<h3 id="4-technology-platforms--frameworks"><a class="header" href="#4-technology-platforms--frameworks">4) Technology platforms &amp; frameworks</a></h3>
+<p>Propose candidate stacks and justify the final choice.</p>
+<ul>
+<li>Candidates across: storage (NoSQL/RDBMS), messaging/event brokers, language/runtime, UI/CLI.</li>
+<li>Criteria: fit for purpose, complexity, team skills, ecosystem maturity, constraints (licensing, platform limits).</li>
+<li>Validate with small PoCs (e.g., connectivity, schema evolution, throughput).</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Evaluation matrix  for the chosen stack.</li>
+<li>PoC notes (scripts, compose file, or minimal code).</li>
+</ul>
+<hr />
+<h3 id="5-publication--open-source-strategy"><a class="header" href="#5-publication--open-source-strategy">5) Publication &amp; open-source strategy</a></h3>
+<p>Plan how you will publish, version, and support your work.</p>
+<ul>
+<li>Public GitHub repository, license (MIT/Apache‑2.0), issue templates.</li>
+<li>CI/CD: build, lint, test on PR; main stays green; tagged releases; CHANGELOG.</li>
+<li>Distribution: npm/JSR for libraries, container images or scripts for apps/CLIs.</li>
+<li>Documentation standard: README (Quick start, Usage, Config, Troubleshooting)</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Repo scaffold (LICENSE, README, CI workflow, .env.example).</li>
+<li>Release/publishing checklist (how to cut a release).</li>
+</ul>
+<hr />
+<h3 id="6-vision-and-design-philosophy"><a class="header" href="#6-vision-and-design-philosophy">6) Vision and design philosophy</a></h3>
+<p>Clarify the intent, principles, and non‑goals.</p>
+<ul>
+<li>Problems solved and unique value; target users and usage scenarios.</li>
+<li>Guiding principles (simplicity, extensibility, determinism, operability, DX).</li>
+<li>Non‑functional priorities (reliability, performance, maintainability).</li>
+</ul>
+<p>Deliverables</p>
+<ul>
+<li>Vision note (1 page max) with principles and non‑goals.</li>
+<li>High‑level architecture sketch (components and flows).</li>
+</ul>
+<hr />
+<h3 id="7-alternatives-considered"><a class="header" href="#7-alternatives-considered">7) Alternatives considered</a></h3>
+<p>Record key decisions and rejected options.</p>
+<ul>
+<li>For each major decision: context, options, criteria, decision, consequences, evidence.</li>
+<li>link to experiments and comparisons.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../project_info/overview/house_rules.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../projects/project1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../project_info/overview/house_rules.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../projects/project1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../project-doc-custom.js"></script>
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
