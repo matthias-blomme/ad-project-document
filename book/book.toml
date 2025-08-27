@@ -1,9 +1,9 @@
 [book]
-authors = ["M. Blomme", "D. Casier"]
+authors = ["M. Blomme", "A. Audenaert"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Software Engineering Project - Course Guide"
+title = "Analysis & Development Project - Course Guide"
 
 [preprocessor.mermaid]
 command = "./book/plugins/mdbook-mermaid"
