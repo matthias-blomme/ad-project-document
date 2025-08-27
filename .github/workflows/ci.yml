@@ -1,4 +1,4 @@
-name: SEP-Document-CI
+name: AD-Project-CI
 
 on:
   push:
