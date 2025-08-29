@@ -1,11 +1,14 @@
 # Proof of Concept - Server
 
-The server is the implementation of the agreed upon POC. Only implement the POC, all the rest is fictional and for Adria documentation purposes only.
+The server is the implementation of the agreed upon POC. 
+
+Only implement the POC, all the rest is fictional and for Adria documentation purposes only.
 
 ## Starter Project
 The start repository serves as the **server-side starter project**.
 
 It offers the foundational structure for an OpenAPI web server with a mySQL database.
+
 Working in this folder structure with .NET 8 and minimal web api's is mandatory.
 
 ## Requirements
@@ -48,7 +51,7 @@ docker compose -f config/docker/docker-compose.yml up -d
 ```
 2. Run the server project with the command
 ```bash
- **dotnet run --project src/Adria.Main**
+ dotnet run --project src/Adria.Main
  ```
 
 ## Local Endpoints
@@ -64,10 +67,14 @@ docker compose -f config/docker/docker-compose.yml up -d
   - Accessible at `http://localhost:8000/api/`.
 
 ## Production
-In this project, there is no production environment. There is only a test environment that will run on your local machine. That's why it's important that the gitlab-ci.yml file is correctly configured to push the docker image to the howest docker registry. In the end the test environment will pull all images from the howest docker registry and run the Adria solution.
+In this project, there is no production environment. 
+
+There is only a test environment that will run on your local machine. That's why it's important that the gitlab-ci.yml file is correctly configured to push the docker image to the howest docker registry. 
+
+In the end the test environment will pull all images from the howest docker registry and run the Adria solution.
 
 ## Build Pipeline
-- The build pipeline is pre-configured with:
+- The build pipeline is partially pre-configured:
   - Executes unit tests on every push to the main branch.
   - Generates a SonarQube analysis.
 
@@ -80,6 +87,6 @@ In this project, there is no production environment. There is only a test enviro
 - Test properties: `src/Adria.Main/appsettings.json`
 
 ## Database Management
-- Do not manipulate the database manually, always use the available sql file in the repository.
-- Use the **Migrations** and **Seeders** scripts in the `infrastructure/persistence` folder.
+- Do not manipulate the database manually
+  - Use the **Migrations** and **Seeders** scripts in the `infrastructure/persistence` folder.
 - The database will be recreated (Migration) and repopulated (Seeder) every time you run the API.
