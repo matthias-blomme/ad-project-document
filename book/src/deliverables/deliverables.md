@@ -63,4 +63,4 @@ We expect all of the following deliverables:
 
 
 
-  **!Omission of a single deliverable will result in a failing score for the entire module!**
+  **Omission of a single deliverable will result in a failing score for the entire module**
