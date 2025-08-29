@@ -63,14 +63,14 @@ Any deviations need to be consolidated with the group mentors.
 | Push notifications | Support for notification sent by the server. | 2 |
 | Graphs (Canvas, SVG and/or Chart.js) | Interactive client-side graphs that enable the user to have an immersive data experience. | 2 |
 | Maps (Leaflet) | Interactive maps via OpenStreetMap which at the very least use the geolocation feature (which for Adria can obviously be spoofed). Add markers, routes, area descriptions… whatever fits your need. | 2 |
-| Native drag ‘n drop | Level-1 — Small enhancements. | 1 |
-| History API | Level-1 — Small enhancements. | 1 |
-| Fullscreen API | Level-1 — Small enhancements. | 1 |
-| Vibration API | Level-1 — Small enhancements. | 1 |
-| Sensor APIs (accelerometer, gyroscope, proximity sensor, ambient light sensor...) | Level-1 — Small enhancements. | 1 |
-| CSS animations (consistent across all pages and components, not just a single animation!) | Level-2 — Useful features. | 2 |
-| MediaStream ImageCapture API | Level-2 — Useful features. | 2 |
-| Connected hardware via IoT (e.g. raspberry PI, …) | Level-2 — Useful features. | 2 |
+| Native drag ‘n drop | Support for native drag and drop functionality in the web client. | 1 |
+| History API | Support for navigation through the browser history. | 1 |
+| Fullscreen API | Support for fullscreen mode in the web client. | 1 |
+| Vibration API | Support for vibration on devices that support it. | 1 |
+| Sensor APIs (accelerometer, gyroscope, proximity sensor, ambient light sensor...) | Support for reading data from device sensors. | 1 |
+| CSS animations (consistent across all pages and components, not just a single animation!) | Add animations to enhance the user experience. | 2 |
+| MediaStream ImageCapture API | Use the MediaStream ImageCapture API to take photos or capture video from a user's camera. | 2 |
+| Connected hardware via IoT (e.g. raspberry PI, …) | Extend your application to interact with connected hardware devices. This could involve using a Raspberry Pi or similar device to collect data, control hardware components, or interface with other IoT devices. | 2 |
 
 #### Server side tests
 Testing is not optional. There should be no need to fire up the client to test your code!
