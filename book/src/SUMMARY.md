@@ -2,7 +2,7 @@
 [Revisions](revisions.md)
 [Q&A](./appendices/q_and_a.md)
 
-# Context
+# CONTEXT
 - [Project](./project/project.md)
   - [Summary](./project/project_summary.md)
   - [Planning](./project/project_planning.md)
@@ -13,7 +13,7 @@
   - [Restrictions](./concept/concept_restrictions.md)
   - [Concept choice process](./concept/concept_choise.md)
 
-# Deliverables
+# DELIVERABLES
 - [Deliverables](./deliverables/deliverables.md)
   - [D1 - Business Case](./deliverables/business_case.md)
   - [D2 - Project website](./deliverables/project_website.md)
