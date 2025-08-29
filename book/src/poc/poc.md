@@ -72,7 +72,7 @@ Not all mandatory topics are taught in class. You will need to do some self-stud
 ## Customizable Requirements
 In addition to the mandatory requirements, you need to implement some other technologies/principles listed below. Customization should fit the needs of your application.
 
-**Caution**: Proper feature integration into the product is required! Again, don't add these as an afterthought, but as a useful contribution to your product.
+**Caution**: Proper feature integration into the product is required! <br>Again, don't add these as an afterthought, but as a useful contribution to your product.
 
 You need to complete at least 4 points worth of topics. For example, you can choose 4 topics worth 1 point each or 2 topics worth 2 points each, etc.
 
