@@ -24,7 +24,7 @@ All implementations must implement the **mandatory requirements** and **customis
 
 ## Mandatory requirements for all projects
 
-The following are mandatory requirements that **must** be implemented in your project:
+The following are mandatory requirements that **must** be implemented in your project. See the page of each repository (client, server, test environment) for specific details.
 
 - **Coding guidelines**: use all good practices from **previous and current** other courses.
   - Create readable code
@@ -34,16 +34,37 @@ The following are mandatory requirements that **must** be implemented in your pr
   - Sonar passes!
 
 - The **web client** is build with a front-end framework (we recommend Vue). The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
+  - It must be possible to dockerize the client application. Build a working Dockerfile. 
+  - Build a gitlab-ci file that:
+    - Published the source code to sonar for quality checks.
+    - Dockerizes the client application and pushes the image to the gitlab docker registry.
 
 - The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
   - **Tests**: only test the application layer and domain layer.
 Develop the tests as you’re writing the code. Adding them as an afterthought is pointless and
 waste of valuable resources... 
-
-  - As usual, we will be integrating SonarQube for automated code
+    - As usual, we will be integrating SonarQube for automated code
 quality checks, for client as well as server code.
-    - Coverage: > 95% (aim for it)
-    - Bugs, vulnerabilities, code smells, duplication: Sonar must pass. 
+      - Coverage: > 95% (aim for it)
+      - Bugs, vulnerabilities, code smells, duplication: Sonar must pass. 
+  - **Docker**:
+    - The database of the server must run in a docker container. Use the provided
+      docker-compose.yaml file to start the database.
+    - It must be possible to dockerize the server application. A working Dockerfile is provided. Adapt this file if you change the project structure.
+    - Extend the provided .gitlab-ci.yml file to build and push the docker image to the gitlab docker registry.
+
+    - web api authentication
+- .NET user secrets
+- integratietesten
+
+
+Add warning about security issues in S3
+Remove the server readme -> project docs!
+
+Client
+- choose your implementation
+- build gitlab-ci file
+- dockerize
 
 - The **test environment** is a docker solution that is able to run your whole Adria solution. It should at least contain:
   - A database container (MySQL)
@@ -69,17 +90,19 @@ Any deviations need to be consolidated with the group mentors.
 
 | Title | Description | Points |
 | --- | --- | --- |
-| Push notifications | Support for notification sent by the server. | 2 |
-| Graphs (Canvas, SVG and/or Chart.js) | Interactive client-side graphs that enable the user to have an immersive data experience. | 2 |
-| Maps (Leaflet) | Interactive maps via OpenStreetMap which at the very least use the geolocation feature (which for Adria can obviously be spoofed). Add markers, routes, area descriptions… whatever fits your need. | 2 |
-| Native drag ‘n drop | Support for native drag and drop functionality in the web client. | 1 |
+| Native drag 'n drop | Support for native drag and drop functionality in the web client. | 1 |
 | History API | Support for navigation through the browser history. | 1 |
 | Fullscreen API | Support for fullscreen mode in the web client. | 1 |
 | Vibration API | Support for vibration on devices that support it. | 1 |
 | Sensor APIs (accelerometer, gyroscope, proximity sensor, ambient light sensor...) | Support for reading data from device sensors. | 1 |
+| Push notifications | Support for notification sent by the server. | 2 |
+| Graphs (Canvas, SVG and/or Chart.js) | Interactive client-side graphs that enable the user to have an immersive data experience. | 2 |
+| Maps (Leaflet) | Interactive maps via OpenStreetMap which at the very least use the geolocation feature (which for Adria can obviously be spoofed). Add markers, routes, area descriptions… whatever fits your need. | 2 |
 | CSS animations (consistent across all pages and components, not just a single animation!) | Add animations to enhance the user experience. | 2 |
 | MediaStream ImageCapture API | Use the MediaStream ImageCapture API to take photos or capture video from a user's camera. | 2 |
 | Connected hardware via IoT | Extend your application to interact with connected hardware devices. This could involve using a Raspberry Pi or similar device to collect data, control hardware components, or interface with other IoT devices. | 2 |
+| Sensitive information | Implement secure handling of sensitive information, such as API keys, passwords, or personal data. Take a look at dotnet user secrets and how to pass **env** files to a docker service. The end goals is not sensitive information in the repositories | 2 |
+| End to end tests | Implement end-to-end tests that cover critical user journeys in your application. The testing suit must be executed with a single click or command | 2 | 
 
 
 #### Bonus grades
