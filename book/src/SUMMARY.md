@@ -11,7 +11,7 @@
 - [Concept](./concept/concept.md)
   - [Requirements](./concept/conceptual_requirements.md)
   - [Restrictions](./concept/concept_restrictions.md)
-  - [Concept choice process](./concept/concept_choise.md
+  - [Concept choice process](./concept/concept_choise.md)
 
 # Deliverables
 - [Deliverables](./deliverables/deliverables.md)
