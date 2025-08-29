@@ -22,36 +22,26 @@ reflections.
 
 # Mandatory requirements for all projects
 
-   1. Coding guidelines: use all good practices from previous and current other courses. Don’t
+   1. Coding guidelines: use all good practices from **previous and current** other courses. Don’t
       forget:
           - Create readable code
-          - No redundant code
           - Small functions
           - Functions do 1 thing
-          - No duplication
           - Refactor code!
+          - Sonar passes!
 
-   2. The web client is a Vue.js application. You use Vuetify as UI framework. No other
-      Javascript frameworks are permitted. The usage of libraries to extend the functionality
-      is permitted, however only limited technical support will be offered when choosing a
-      library not offered in the curriculum.
+   2. The **web client** is build with a front-end framework (we recommend Vue). 
+   The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
 
-   3. The server is a Java server which uses the vert.x library to provide the necessary
-      building blocks for the communication of JSON between both platforms. The startup
-      project is written in predefined structure. The student must work in this structure. No
+   3. The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
 
+   4. The **test environment** is a docker solution that is able to run your whole Adria solution. It should at least contain:
+          - A database container (MySQL)
+          - A server container
+          - A client container
+          - A network to connect the containers
+          - A volume to persist the database data
 
-
-
-
-         boilerplate code cannot be removed except for everything todo with the included
-         todoApp. No other Java libraries or frameworks are permitted, except by explicit
-         confirmation of the group mentor.
-
-   4. A Web API built according to OpenAPI (http) ospecs is mandatory for data exchange
-      between client and server.
-
-   5. A SQLite database holds the user collected data.
 
 #### Customisable requirements
 Additionally, to the mandatory requirements, you need to implement some other technologies /
