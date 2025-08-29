@@ -58,19 +58,19 @@ Any deviations need to be consolidated with the group mentors.
 
 ### Additional Topics
 
-| Additional Topic | Notes |
-| --- | --- |
-| Push notifications | Support for notification sent by the server. |
-| Graphs (Canvas, SVG and/or Chart.js) | Interactive client-side graphs that enable the user to have an immersive data experience. |
-| Maps (Leaflet) | Interactive maps via OpenStreetMap which at the very least use the geolocation feature (which for Adria can obviously be spoofed). Add markers, routes, area descriptions… whatever fits your need. |
-| Native drag ‘n drop | Level-1 — Small enhancements. |
-| History API | Level-1 — Small enhancements. |
-| Fullscreen API | Level-1 — Small enhancements. |
-| Vibration API | Level-1 — Small enhancements. |
-| Sensor APIs (accelerometer, gyroscope, proximity sensor, ambient light sensor...) | Level-1 — Small enhancements. |
-| CSS animations (consistent across all pages and components, not just a single animation!) | Level-2 — Useful features. |
-| MediaStream ImageCapture API | Level-2 — Useful features. |
-| Connected hardware via IoT (e.g. raspberry PI, …) | Level-2 — Useful features. |
+| Title | Description | Points |
+| --- | --- | --- |
+| Push notifications | Support for notification sent by the server. | 2 |
+| Graphs (Canvas, SVG and/or Chart.js) | Interactive client-side graphs that enable the user to have an immersive data experience. | 2 |
+| Maps (Leaflet) | Interactive maps via OpenStreetMap which at the very least use the geolocation feature (which for Adria can obviously be spoofed). Add markers, routes, area descriptions… whatever fits your need. | 2 |
+| Native drag ‘n drop | Level-1 — Small enhancements. | 1 |
+| History API | Level-1 — Small enhancements. | 1 |
+| Fullscreen API | Level-1 — Small enhancements. | 1 |
+| Vibration API | Level-1 — Small enhancements. | 1 |
+| Sensor APIs (accelerometer, gyroscope, proximity sensor, ambient light sensor...) | Level-1 — Small enhancements. | 1 |
+| CSS animations (consistent across all pages and components, not just a single animation!) | Level-2 — Useful features. | 2 |
+| MediaStream ImageCapture API | Level-2 — Useful features. | 2 |
+| Connected hardware via IoT (e.g. raspberry PI, …) | Level-2 — Useful features. | 2 |
 
 #### Server side tests
 Testing is not optional. There should be no need to fire up the client to test your code!
