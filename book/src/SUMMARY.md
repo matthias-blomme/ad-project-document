@@ -19,10 +19,12 @@
 - [D1 - Business Case](./deliverables/business_case.md)
 - [D2 - Project website](./deliverables/project_website.md)
 - [D3 - Analysis document](./deliverables/analysis_document.md)
+- [D4 - Partial Exam](./deliverables/partial_exam.md)
+- [D5 - Proof of Concept](./deliverables/poc.md)
 
 # Proof of Concept
-- [Proof of Concept](poc.md)
-- [Server](poc_server.md)
-- [Client](poc_client.md)
-- [Test environment](poc_test_environment.md)
+- [Proof of Concept](./poc/poc.md)
+- [Server](./poc/poc_server.md)
+- [Client](./poc/poc_client.md)
+- [Test environment](./poc/poc_test_environment.md)
 
