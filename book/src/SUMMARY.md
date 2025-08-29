@@ -18,6 +18,7 @@
 - [Deliverables](./deliverables/deliverables.md)
 - [D1 - Business Case](./deliverables/business_case.md)
 - [D2 - Project website](./deliverables/project_website.md)
+- [D3 - Analysis document](./deliverables/analysis_document.md)
 
 # Proof of Concept
 - [Proof of Concept](poc.md)
