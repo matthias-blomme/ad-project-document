@@ -20,7 +20,7 @@ The start repository is empty.
 <br>**You will need to do some self-study to implement them.**
 
 ## Prerequisites
-- Docker desktop is installed on your machine.
+Docker desktop is installed on your machine.
 
 ## Requirements
 - Create a working docker-compose file that runs the complete Adria solution.
