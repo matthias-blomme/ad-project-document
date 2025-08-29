@@ -1,5 +1,5 @@
 # Proof of Concept
-In this project, you will implement a Proof of Concept (POC) of your chosen concept. The POC should demonstrate the core functionalities of your application, showcasing its potential and feasibility. 
+In this project, you will implement a Proof of Concept (POC) of your chosen concept. <br>The POC should demonstrate the core functionalities of your application, showcasing its potential and feasibility. 
 
 **Remember, the POC is only a small part of your overall concept.**
 
@@ -11,17 +11,17 @@ The jury will help you align objectives and definitively set the scope for the P
 
 No modifications to the scope are allowed without the explicit consent of the group mentors!
 
-## What Do We Expect?
+## What do we expect?
 You will be given four repositories on the http://gitlab.ti.howest.be space:
 
-   -  A **documentation** repository
-     - All documents, links, diagrams, etc. related to the project
-   -  A **client** repository
-     - The web client application connecting to the server
-   -  A **server** repository
-     - The server application containing the business logic and a web API
-   -  A **test environment** repository
-     - A Docker solution that is able to run your entire Adria solution
+-  A **documentation** repository
+  - All documents, links, diagrams, etc. related to the project
+-  A **client** repository
+  - The web client application connecting to the server
+-  A **server** repository
+  - The server application containing the business logic and a web API
+-  A **test environment** repository
+  - A Docker solution that is able to run your entire Adria solution
 
 These repositories will hold all deliverable content, except for the peer assessments, retrospectives, and reflections.
 
