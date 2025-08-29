@@ -3,7 +3,7 @@ In this project, you will implement a Proof of Concept (POC) of your chosen conc
 should demonstrate the core functionalities of your application, showcasing its potential and
 feasibility. 
 
-Remember, the POC is only a small part of your overall concept.
+**Remember, the POC is only a small part of your overall concept.**
 
 ## What do we expect?
 You will be given four repositories on the http://gitlab.ti.howest.be space.
@@ -20,9 +20,9 @@ You will be given four repositories on the http://gitlab.ti.howest.be space.
 These will hold all deliverable content, except for the peer assessments, retrospections and
 reflections.
 
-# Mandatory requirements for all projects
+## Mandatory requirements for all projects
 
-   1. Coding guidelines: use all good practices from **previous and current** other courses. Don’t
+   1. **Coding guidelines**: use all good practices from **previous and current** other courses. Don’t
       forget:
           - Create readable code
           - Small functions
@@ -43,55 +43,34 @@ reflections.
           - A volume to persist the database data
 
 
-#### Customisable requirements
-Additionally, to the mandatory requirements, you need to implement some other technologies /
+## Customisable requirements
+Additionally, to the mandatory requirements (see below), you need to implement some other technologies /
 principles listed below. Customisation is to fit the needs of your application.
 
-Caution: proper feature integration into product is required! Again, don’t add these as an
+**Caution**: proper feature integration into product is required! Again, don’t add these as an
 afterthought, but as a useful contribution to your product.
 
-You need to complete at least 2 of the class-taught topics and a total of 2 points for the self-
-study topics. The level == point worth. (E.g. implementing one level-2 topic == 2 points,
-implementing two level-1 topics == 2 points)
+You need to complete at least 4 points of additional topic. E.g. you can choose 4 topics of 1 point or 2 topics of 2 points, etc.
+
+Some of the topics are class-taught, others are self-study.
 
 Any deviations need to be consolidated with the group mentors.
 
-                      Class-taught topics:
- Push notifications                       Support for notification sent by the server.
+### Additional Topics
 
- Graphs (Canvas, SVG and/or Chart.js)     Interactive client-side graphs that enable the user to have
-                                          an immersive data experience
-
- Maps (Leaflet)                           Interactive maps via OpenStreetMap which at the very
-                                          least use the geolocation feature (which for Adria can
-                                          obviously be spoofed). Add markers, routes, area
-                                          descriptions… whatever fits your need
-
-
-
-
-                      Self-study topics:
- Level                                     Topics
-
- Level-1                                       -    Native drag ‘n drop
- Small enhancements                            -    History API
-                                               -    Fullscreen API
-                                               -    Vibration API
-                                               -    Sensor APIs (accelerometer, gyroscope, proximity
-                                                    sensor, ambient light sensor...)
-
-
-
-
-
-
- Level-2                                       -   CSS animations (consistent across all pages and
- Useful features                                   components, not just a single animation!)
-                                               -   MediaStream ImageCapture API
-                                               -   Connected hardware via IoT (e.g. raspberry PI, …)
-
-
-
+| Additional Topic | Notes |
+| --- | --- |
+| Push notifications | Support for notification sent by the server. |
+| Graphs (Canvas, SVG and/or Chart.js) | Interactive client-side graphs that enable the user to have an immersive data experience. |
+| Maps (Leaflet) | Interactive maps via OpenStreetMap which at the very least use the geolocation feature (which for Adria can obviously be spoofed). Add markers, routes, area descriptions… whatever fits your need. |
+| Native drag ‘n drop | Level-1 — Small enhancements. |
+| History API | Level-1 — Small enhancements. |
+| Fullscreen API | Level-1 — Small enhancements. |
+| Vibration API | Level-1 — Small enhancements. |
+| Sensor APIs (accelerometer, gyroscope, proximity sensor, ambient light sensor...) | Level-1 — Small enhancements. |
+| CSS animations (consistent across all pages and components, not just a single animation!) | Level-2 — Useful features. |
+| MediaStream ImageCapture API | Level-2 — Useful features. |
+| Connected hardware via IoT (e.g. raspberry PI, …) | Level-2 — Useful features. |
 
 #### Server side tests
 Testing is not optional. There should be no need to fire up the client to test your code!
