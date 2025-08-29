@@ -67,7 +67,8 @@ Not all mandatory topcis are taught in class. You will need to do some self-stud
       - Published the source code to sonar for quality checks.
       - Dockerizes the client application and pushes the image to the gitlab docker registry.
 
-- The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. <br>The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
+- The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. <br>The startup project is written in predefined structure. 
+  - The student must work in this structure. No boilerplate code cannot be removed.
   - **Tests**: only test the application layer and domain layer.
 Develop the tests as you’re writing the code. Adding them as an afterthought is pointless and
 waste of valuable resources... 
