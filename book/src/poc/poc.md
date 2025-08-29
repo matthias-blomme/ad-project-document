@@ -20,6 +20,8 @@ You will be given four repositories on the http://gitlab.ti.howest.be space.
 These will hold all deliverable content, except for the peer assessments, retrospections and
 reflections.
 
+All implementations must implement the **mandatory requirements** and **customisable requirements** as described below.
+
 ## Mandatory requirements for all projects
 
 The following are mandatory requirements that **must** be implemented in your project:
@@ -55,19 +57,19 @@ quality checks, for client as well as server code.
 
 
 ## Customisable requirements
-Additionally, to the mandatory requirements (see below), you need to implement some other technologies /
+Additionally, to the mandatory requirements, you need to implement some other technologies /
 principles listed below. Customisation is to fit the needs of your application.
 
 **Caution**: proper feature integration into product is required! Again, don’t add these as an
 afterthought, but as a useful contribution to your product.
 
-You need to complete at least 4 points of additional topic. E.g. you can choose 4 topics of 1 point or 2 topics of 2 points, etc.
+You need to complete at least 4 points of topics. E.g. you can choose 4 topics of 1 point or 2 topics of 2 points, etc.
 
 Some of the topics are class-taught, others are self-study.
 
 Any deviations need to be consolidated with the group mentors.
 
-### Additional Topics
+### Topics
 
 | Title | Description | Points |
 | --- | --- | --- |
