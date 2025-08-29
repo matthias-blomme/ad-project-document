@@ -1,5 +1,27 @@
+# Proof of Concept
+In this project, you will implement a Proof of Concept (POC) of your chosen concept. The POC
+should demonstrate the core functionalities of your application, showcasing its potential and
+feasibility. 
 
-#### Mandatory requirements for all projects
+Remember, the POC is only a small part of your overall concept.
+
+## What do we expect?
+You will be given four repositories on the http://gitlab.ti.howest.be space.
+
+   -  A **documentation** repository
+     - All documents, links, diagrams, ... related to the project
+   -  A **client** repository
+     - The web client application connecting to the server
+   -  A **server** repository
+     - The server application containing the business logic and a web api
+   -  A **Test environment** repository
+     - A docker solution that is able to run your whole Adria solution
+
+These will hold all deliverable content, except for the peer assessments, retrospections and
+reflections.
+
+# Mandatory requirements for all projects
+
    1. Coding guidelines: use all good practices from previous and current other courses. Don’t
       forget:
           - Create readable code

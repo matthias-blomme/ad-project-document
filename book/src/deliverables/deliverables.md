@@ -1,15 +1,5 @@
 # Deliverables
 
-## What do we expect?
-You will be given three repositories on the http://gitlab.ti.howest.be space.
-
-   -  A documentation repository
-   -  A client repository
-   -  A server repository
-   -  A Test environment repository
-
-These will hold all deliverable content, except for the peer assessments, retrospections and
-reflections.
 
 We expect all of the following deliverables:
 
