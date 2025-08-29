@@ -1,4 +1,4 @@
-# 8. Planning
+# Planning
 
 
 ### Project work planning

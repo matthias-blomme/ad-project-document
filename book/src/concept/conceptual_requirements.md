@@ -1,4 +1,4 @@
-# 4. Conceptual requirements
+# Conceptual requirements
 
 Your application needs to contain all conceptual requirements below. One requirement may
 take a larger focus than another, yet all are imperative. Failure to comply will result in a failed

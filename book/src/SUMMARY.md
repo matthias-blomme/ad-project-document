@@ -2,18 +2,16 @@
 [Revisions](revisions.md)
 [Q&A](./appendices/q_and_a.md)
 
-# Project
-- [Project context within the curriculum](ch1.md)
-- [Summary](ch2.md)
-- [Planning](ch8.md)
-- [Coaching](ch9.md)
-- [Evaluation](ch10.md)
-
-# Concept
-- [Concept](ch3.md)
-  - [Conceptual requirements](ch4.md)
-  - [Context - restrictions](ch5.md)
-  - [Concept choice process](ch7.md)
+# Context
+- [Project](./project/project.md)
+  - [Summary](./project/project_summary.md)
+  - [Planning](./project/project_planning.md)
+  - [Coaching](./project/project_coaching.md)
+  - [Evaluation](./project/project_evaluation.md)
+- [Concept](./concept/concept.md)
+  - [Requirements](./concept/conceptual_requirements.md)
+  - [Restrictions](./concept/concept_restrictions.md)
+  - [Concept choice process](./concept/concept_choise.md
 
 # Deliverables
 - [Deliverables](./deliverables/deliverables.md)

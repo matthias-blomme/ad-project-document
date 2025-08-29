@@ -1,4 +1,4 @@
-# 10. Evaluation
+# Evaluation
 
 ### Scoring calculation
  When executing a project, any aspect must meet minimal standards. This means that a very low

@@ -1,4 +1,4 @@
-# 7. Concept choice process
+# Concept choice process
 
 
 ### Which software system to develop?

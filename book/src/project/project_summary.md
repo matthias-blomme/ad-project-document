@@ -1,4 +1,4 @@
-# 2. Summary
+# Summary
 
 The year is 2084.
 

@@ -1,4 +1,4 @@
-# 9. Coaching
+# Coaching
 
 There are two types of coaches who will assist you: group mentors and topic experts
 
