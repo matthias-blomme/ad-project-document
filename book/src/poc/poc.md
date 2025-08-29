@@ -26,34 +26,30 @@ All implementations must implement the **mandatory requirements** and **customis
 
 The following are mandatory requirements that **must** be implemented in your project:
 
-   1. **Coding guidelines**: use all good practices from **previous and current** other courses.
-     - Create readable code
-     - Small functions
-     - Functions do 1 thing
-     - Refactor code!
-     - Sonar passes!
+- **Coding guidelines**: use all good practices from **previous and current** other courses.
+  - Create readable code
+  - Small functions
+  - Functions do 1 thing
+  - Refactor code!
+  - Sonar passes!
 
-   2. The **web client** is build with a front-end framework (we recommend Vue). 
-   The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
+- The **web client** is build with a front-end framework (we recommend Vue). The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
 
-   3. The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
-        - **Tests**: only test the application layer and domain layer.
+- The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
+  - **Tests**: only test the application layer and domain layer.
 Develop the tests as you’re writing the code. Adding them as an afterthought is pointless and
 waste of valuable resources... 
 
-As usual, we will be integrating SonarQube for automated code
+  - As usual, we will be integrating SonarQube for automated code
 quality checks, for client as well as server code.
-            - Coverage: > 95% (aim for it)
-            - Bugs, vulnerabilities, code smells, duplication: Sonar must pass. 
+    - Coverage: > 95% (aim for it)
+    - Bugs, vulnerabilities, code smells, duplication: Sonar must pass. 
 
-
-
-   4. The **test environment** is a docker solution that is able to run your whole Adria solution. It should at least contain:
-          - A database container (MySQL)
-          - A server container
-          - A client container
-          - A network to connect the containers
-          - A volume to persist the database data
+- The **test environment** is a docker solution that is able to run your whole Adria solution. It should at least contain:
+  - A database container (MySQL)
+  - A server container
+  - A client container- A network to connect the containers
+  - A volume to persist the database data
 
 
 ## Customisable requirements
