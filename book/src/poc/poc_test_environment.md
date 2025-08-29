@@ -4,13 +4,13 @@ This repository will contain the code to run the test environment for the Adria 
 
 ## Goal
 
-The test environment is used to run the complete Adria solution on your local machine independently of any IDE or source code. It's meant to simulate a production environment as closely as possible.
+The test environment is used to run the **complete Adria solution** on your local machine independently of any IDE or source code. It's meant to simulate a production environment as closely as possible.
 
 Use this environment to do final testing of your application before the final delivery.
 
 ## Starter Project
 The start repository is empty.
-Not all mandatory topics are taught in class. You will need to do some self-study to implement them.
+<br>Not all mandatory topics are taught in class. **You will need to do some self-study to implement them.**
 
 ## Prerequisites
 - Docker desktop is installed on your machine.
