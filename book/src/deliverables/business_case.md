@@ -1,4 +1,4 @@
-# Business Case (D1)
+# D1: Business Case
 The following items need to be covered in detail in the business case document, which consists
 of two parts: a “conceptual section” and a “financial section”.
 

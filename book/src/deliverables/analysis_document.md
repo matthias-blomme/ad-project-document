@@ -1,4 +1,4 @@
-# Analysis document (D3)
+# D3: Analysis document
    The following items need to be covered in detail in the analysis document.
 
    Important note: you are allowed and even encouraged to use AI to finetune and flesh

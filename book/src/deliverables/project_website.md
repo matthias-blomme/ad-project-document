@@ -1,4 +1,4 @@
-# Project website (D2)
+# D2: Project website
 
 ## About the website
 Using a self-hosted instance of WordPress, you will build a website. This website has two parts,
