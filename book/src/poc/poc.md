@@ -117,8 +117,8 @@ Any deviations need to be consolidated with the group mentors.
 | CSS animations (consistent across all pages and components, not just a single animation!) | Add animations to enhance the user experience. | 2 |
 | MediaStream ImageCapture API | Use the MediaStream ImageCapture API to take photos or capture video from a user's camera. | 2 |
 | Connected hardware via IoT | Extend your application to interact with connected hardware devices. This could involve using a Raspberry Pi or similar device to collect data, control hardware components, or interface with other IoT devices. | 2 |
-| Sensitive information | Implement secure handling of sensitive information, such as API keys, passwords, or personal data. Take a look at dotnet user secrets and how to pass **env** files to a docker service. The end goals is not sensitive information in the repositories | 2 |
-| End to end tests | Implement end-to-end tests that cover critical user journeys in your application. The testing suit must be executed with a single click or command | 2 | 
+| Sensitive information (server) | Implement secure handling of sensitive information, such as API keys, passwords, or personal data. Take a look at dotnet user secrets and how to pass **env** files to a docker service. The end goals is not sensitive information in the repositories | 2 |
+| End to end tests (server) | Implement end-to-end tests that cover critical user journeys in your application. The testing suit must be executed with a single click or command | 2 | 
 | Web Api authentication | Implement authentication for your web API using JWT token. Ensure that only authenticated users can access certain endpoints and that user roles and permissions are properly managed. | 2 |
 
 
