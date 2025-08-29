@@ -26,11 +26,11 @@ The following are mandatory requirements that **must** be implemented in your pr
 
    1. **Coding guidelines**: use all good practices from **previous and current** other courses. Don’t
       forget:
-          - Create readable code
-          - Small functions
-          - Functions do 1 thing
-          - Refactor code!
-          - Sonar passes!
+     - Create readable code
+     - Small functions
+     - Functions do 1 thing
+     - Refactor code!
+     - Sonar passes!
 
    2. The **web client** is build with a front-end framework (we recommend Vue). 
    The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
