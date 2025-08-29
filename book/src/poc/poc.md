@@ -74,7 +74,7 @@ In addition to the mandatory requirements, you need to implement some other tech
 
 **Caution**: Proper feature integration into the product is required! <br>Again, don't add these as an afterthought, but as a useful contribution to your product.
 
-You need to complete at least 4 points worth of topics. For example, you can choose 4 topics worth 1 point each or 2 topics worth 2 points each, etc.
+**You need to complete at least 4 points worth of topics.** <br>For example, you can choose 4 topics worth 1 point each or 2 topics worth 2 points each, etc.
 
 Some of the topics are class-taught, others require self-study.
 
