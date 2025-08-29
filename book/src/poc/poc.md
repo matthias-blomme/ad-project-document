@@ -37,7 +37,9 @@ The following are mandatory requirements that **must** be implemented in your pr
    3. The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
         - **Tests**: only test the application layer and domain layer.
 Develop the tests as you’re writing the code. Adding them as an afterthought is pointless and
-waste of valuable resources... As usual, we will be integrating SonarQube for automated code
+waste of valuable resources... 
+
+As usual, we will be integrating SonarQube for automated code
 quality checks, for client as well as server code.
             - Coverage: > 95% (aim for it)
             - Bugs, vulnerabilities, code smells, duplication: Sonar must pass. 
