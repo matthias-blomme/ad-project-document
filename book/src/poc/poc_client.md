@@ -12,18 +12,18 @@ You have the freedom to choose your own client-side framework (Vue, React, Angul
 
 
 ## Requirements
-- Follow good practices from previous and current courses.
+- **Follow** good practices from previous and current courses.
   - Create readable code
   - Write small functions
   - Ensure functions do one thing
   - Refactor code regularly
   - Pass Sonar quality checks
-- Dockerize the client application by building a working Dockerfile.
-- Build a gitlab-ci file that:
+- **Dockerize** the client application by building a working Dockerfile.
+- Build a **gitlab-ci** file that:
   - Publishes the source code to Sonar for quality checks
   - Dockerizes the client application and pushes the image to the GitLab Docker registry
-- Sonar quality gates should be green.
-- No tests are required for the client application.
+- **Sonar quality** gates should be green.
+- **No tests** are required for the client application.
 
 ## Prerequisites
 - Docker desktop is installed on your machine.
