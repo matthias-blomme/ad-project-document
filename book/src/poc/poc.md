@@ -48,6 +48,9 @@ Endpoints not belonging to the poc must return a 'not implemented' error.
 
 The following are mandatory requirements that **must** be implemented in your project. <br>See the page of each repository (client, server, test environment) for specific details.
 
+Not all mandatory topcis are taught in class. You will need to do some self-study to implement them.
+Don't worry, the POC scope is only a small part of your overall concept.
+
 - **Coding guidelines**: use all good practices from **previous and current** other courses.
   - Create readable code
   - Small functions
