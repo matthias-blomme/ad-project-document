@@ -27,7 +27,7 @@
 
 # Proof of Concept
 - [Proof of Concept](./poc/poc.md)
-- [Server](./poc/poc_server.md)
-- [Client](./poc/poc_client.md)
-- [Test environment](./poc/poc_test_environment.md)
+  - [Server](./poc/poc_server.md)
+  - [Client](./poc/poc_client.md)
+  - [Test environment](./poc/poc_test_environment.md)
 
