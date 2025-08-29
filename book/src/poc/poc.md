@@ -49,7 +49,7 @@ Endpoints not belonging to the poc must return a 'not implemented' error.
 The following are mandatory requirements that **must** be implemented in your project. <br>See the page of each repository (client, server, test environment) for specific details.
 
 Not all mandatory topcis are taught in class. You will need to do some self-study to implement them.
-Don't worry, the POC scope is only a small part of your overall concept.
+<br>Don't worry, the POC scope is only a small part of your overall concept.
 
 - **Coding guidelines**: use all good practices from **previous and current** other courses.
   - Create readable code
@@ -59,10 +59,13 @@ Don't worry, the POC scope is only a small part of your overall concept.
   - Sonar passes!
 
 - The **web client** is build with a **front-end framework** (we recommend Vue). <br>The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
+  - **Docker**:
+    - Dockerize the client application. Build a working Dockerfile.
   - It must be possible to dockerize the client application. Build a working Dockerfile. 
-  - Build a gitlab-ci file that:
-    - Published the source code to sonar for quality checks.
-    - Dockerizes the client application and pushes the image to the gitlab docker registry.
+  - **CI**
+    - Build a gitlab-ci file that:
+      - Published the source code to sonar for quality checks.
+      - Dockerizes the client application and pushes the image to the gitlab docker registry.
 
 - The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. <br>The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
   - **Tests**: only test the application layer and domain layer.
@@ -76,6 +79,7 @@ quality checks, for client as well as server code.
     - The database of the server must run in a docker container. Use the provided
       docker-compose.yaml file to start the database.
     - It must be possible to dockerize the server application. A working Dockerfile is provided. Adapt this file if you change the project structure.
+  - **CI**:
     - Extend the provided .gitlab-ci.yml file to build and push the docker image to the gitlab docker registry.
 
 - The **test environment** is a docker solution that is able to run your whole Adria solution. It should at least contain:
