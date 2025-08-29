@@ -24,7 +24,7 @@
   - [D7 - Retrospections and peer assessments](./deliverables/retrospections_and_peers.md)
   - [D8 - Presentation](./deliverables/presentations.md)
 
-# Proof of Concept
+# POC
 - [Proof of Concept](./poc/poc.md)
   - [Server](./poc/poc_server.md)
   - [Client](./poc/poc_client.md)
