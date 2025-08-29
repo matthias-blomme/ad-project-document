@@ -42,7 +42,7 @@ In the end the test environment will pull all images from the howest docker regi
 
 ## Useful code snippets
 
-File: sonar-project.properties
+**File: sonar-project.properties**
 <br>Purpose: Configuration file for SonarQube analysis of the client project.
 ```properties
 #CHANGE XX TO GROUP NUMBER e.g. XX -> 01
@@ -52,7 +52,7 @@ sonar.host.url=https://sonarqube.ti.howest.be/
 sonar.sources=src
 ```
 
-File: package.json
+**File: package.json**
 <br>Purpose: Minimal package.json with necessary CI scripts
 ```json
 {
@@ -74,7 +74,7 @@ File: package.json
 }
 ```
 
-File: .vnuignore
+**File: .vnuignore**
 <br>Purpose: Ignore file for HTML validation
 ```
 The "date" input type.*
