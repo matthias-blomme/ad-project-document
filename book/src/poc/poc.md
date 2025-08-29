@@ -24,7 +24,7 @@ All implementations must implement the **mandatory requirements** and **customis
 
 ## Mandatory requirements for all projects
 
-The following are mandatory requirements that **must** be implemented in your project. See the page of each repository (client, server, test environment) for specific details.
+The following are mandatory requirements that **must** be implemented in your project. <br>See the page of each repository (client, server, test environment) for specific details.
 
 - **Coding guidelines**: use all good practices from **previous and current** other courses.
   - Create readable code
@@ -33,13 +33,13 @@ The following are mandatory requirements that **must** be implemented in your pr
   - Refactor code!
   - Sonar passes!
 
-- The **web client** is build with a **front-end framework** (we recommend Vue). The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
+- The **web client** is build with a **front-end framework** (we recommend Vue). <br>The usage of libraries to extend the functionality is permitted, however only (very) limited technical support will be offered when choosing a library not offered in the curriculum. 
   - It must be possible to dockerize the client application. Build a working Dockerfile. 
   - Build a gitlab-ci file that:
     - Published the source code to sonar for quality checks.
     - Dockerizes the client application and pushes the image to the gitlab docker registry.
 
-- The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
+- The **server** is a .NET 8 solution which uses minimal Web Api's to provide the necessary communication with the client. <br>The startup project is written in predefined structure. The student must work in this structure. No boilerplate code cannot be removed.
   - **Tests**: only test the application layer and domain layer.
 Develop the tests as you’re writing the code. Adding them as an afterthought is pointless and
 waste of valuable resources... 
