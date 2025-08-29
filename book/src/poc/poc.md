@@ -27,13 +27,6 @@ These repositories will hold all deliverable content, except for the peer assess
 
 All implementations must implement the **mandatory requirements** and **customizable requirements** as described below.
 
-## Publicly Accessible API
-Document your publicly accessible API according to the OpenAPI specification. <br>This will be taught in the "Information Systems" module.
-
-Remember that you are documenting the **entirety of the concept** here. <br>The objective is to consider which aspects of your solution you will expose to the public and how. <br>Not all endpoints or channels written in the API specification will be implemented. The implemented endpoints depend on the POC scope.
-
-Endpoints not belonging to the POC must return a 'not implemented' error.
-
 ## Mandatory Requirements for All Projects
 
 The following are mandatory requirements that **must** be implemented in your project. <br>See the page of each repository (client, server, test environment) for specific details.
@@ -105,6 +98,13 @@ Any deviations need to be consolidated with the group mentors.
 | Sensitive information (server) | Implement secure handling of sensitive information, such as API keys, passwords, or personal data. Take a look at dotnet user secrets and how to pass **env** files to a Docker service. The end goal is to have no sensitive information in the repositories. | 2 |
 | End-to-end tests (server) | Implement end-to-end tests that cover critical user journeys in your application. The testing suite must be executed with a single click or command. | 2 | 
 | Web API authentication | Implement authentication for your web API using JWT tokens. Ensure that only authenticated users can access certain endpoints and that user roles and permissions are properly managed. | 2 |
+
+## Publicly Accessible API
+Document your publicly accessible API according to the OpenAPI specification. <br>This will be taught in the "Information Systems" module.
+
+Remember that you are documenting the **entirety of the concept** here. <br>The objective is to consider which aspects of your solution you will expose to the public and how. <br>Not all endpoints or channels written in the API specification will be implemented. The implemented endpoints depend on the POC scope.
+
+Endpoints not belonging to the POC must return a 'not implemented' error.
 
 ## Bonus Grades
 Projects that go the extra mile will be awarded bonus points. <br>This is a scoring measure that is applied on top of the already existing score, ignoring any penalties that may be in effect.
