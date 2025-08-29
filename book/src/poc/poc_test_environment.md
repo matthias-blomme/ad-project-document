@@ -8,15 +8,27 @@ The test environment is used to run the **complete Adria solution** on your loca
 
 Use this environment to do final testing of your application before the final delivery.
 
+- Navigate to the root of this repository and run:
+```bash
+docker compose -f docker-compose.yml up -d
+```
+
+- Test your application through the web client or API (Swagger).
+
+
+
 ## Starter Project
 The start repository is empty.
-<br>Not all mandatory topics are taught in class. **You will need to do some self-study to implement them.**
+<br>Not all mandatory topics are taught in class. 
+<br>**You will need to do some self-study to implement them.**
 
 ## Prerequisites
 - Docker desktop is installed on your machine.
 
 ## Requirements
 - Create a working docker-compose file that runs the complete Adria solution.
+  - Server runs on **port 8000**
+  - Client runs on **port 80**
 - The docker-compose file must contain at least:
   - A database container (MySQL)
   - A server container
