@@ -14,6 +14,12 @@
 - [Context - restrictions](ch5.md)
 - [Concept choice process](ch7.md)
 
+# Proof of Concept
+- [Proof of Concept](poc.md)
+- [Server](poc_server.md)
+- [Client](poc_client.md)
+- [Test environment](poc_test_environment.md)
+
 # Deliverables
 - [Deliverables](ch3.md)
 - [Deliverables: specific requirements](ch6.md)
