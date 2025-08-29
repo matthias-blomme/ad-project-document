@@ -12,10 +12,7 @@ Use this environment to do final testing of your application before the final de
 ```bash
 docker compose -f docker-compose.yml up -d
 ```
-
 - Test your application through the web client or API (Swagger).
-
-
 
 ## Starter Project
 The start repository is empty.
