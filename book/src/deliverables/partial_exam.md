@@ -8,4 +8,4 @@ On the same day there will be a server exam in which you will need to add some b
 to the start code of the server in a structured manner. You must use the Gitlab server of TI to
 submit. A start repository will be available.
 
-The quiz and exam are individual. More details about the quiz & server exam are on Leho.
+The quiz and exam are individual. More details about the quiz & server exam in the section **Partial Exam**.
