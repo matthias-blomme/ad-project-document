@@ -6,9 +6,6 @@
 - Parts: 
   - client exam (1 hour)
   - server exam (2 hours)
-- **Must pass: >= 10/20**
-  - TODO: retake is possible in januari
-
 
 ## Client exam
 - Start: 09:30
@@ -30,3 +27,8 @@
 - **Hints:**
   - Watch the server videos
   - Extend the example server repository
+
+## Evaluation
+TODO: Lorum ipsum  
+  - Must pass: >= 10/20
+    - Retake is possible in januari
