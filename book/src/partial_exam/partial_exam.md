@@ -27,6 +27,6 @@
 - Duration: 2 hours
 - Type: practical exam
 - Parts: .NET
-**- Hints:**
+- **Hints:**
   - Watch the server videos
   - Extend the example server repository
