@@ -12,7 +12,7 @@ This document describes what to expect, how to prepare.
 
 **Explore the example server repository in depth**
 
-// TODO: add link to example server repository
+[Example server repository](https://gitlab.ti.howest.be/ti/2025-2026/s3/analysis-and-development-project/student-resources/example-server)
 
 Try to extend the example server repository with new features. 
 
