@@ -1,5 +1,4 @@
-[Announcements](announcements.md)
-[Revisions](revisions.md)
+[Resources](./appendices/resources.md)
 [Q&A](./appendices/q_and_a.md)
 
 # CONTEXT
