@@ -78,6 +78,8 @@ In addition to the mandatory requirements, you need to implement some other tech
 
 Some of the topics are class-taught, others require self-study.
 
+Take a look at the tutorials of the module [Web Technology](https://gitlab.ti.howest.be/ti/2025-2026/s3/web-technology/tutorials)
+
 Any deviations need to be consolidated with the group mentors.
 
 ### Topics
