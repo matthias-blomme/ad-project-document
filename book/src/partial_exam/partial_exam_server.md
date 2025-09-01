@@ -8,6 +8,18 @@ In this exam you are going to prove that you have the necessary skills to extend
 
 This document describes what to expect, how to prepare.
 
+## How to prepare
+
+**Explore the example server repository in depth**
+
+// TODO: add link to example server repository
+
+Try to extend the example server repository with new features. 
+
+This will help you to understand how to extend the server project.
+
+Below are some possible **examples**.
+
 ## Requirements
 - You must follow the folder **structure** and **way of working** like discussed in the Leho video's.
 - The code must **compile**.
@@ -48,14 +60,3 @@ In this type of use case you will be asked to add a new query to the domain. You
  - Extend the **infrastructure** layer with
    - A new web api end point
 
-## How to prepare
-
-**Explore the example server repository in depth**
-
-// TODO: add link to example server repository
-
-Try to extend the example server repository with new features. 
-
-This will help you to understand how to extend the server project.
-
-Below are some possible **examples**.
