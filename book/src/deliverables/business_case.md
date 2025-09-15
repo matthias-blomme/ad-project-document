@@ -24,12 +24,12 @@ design thinking exercise.
 ### People
 In this section, describe the organisation of your company in more detail:
 
-    -   who will do what within the company?
-    -   will you be working with freelancers?
-    -   are you going to look for additional employees in the near future (or maybe say goodbye
-        to specific employees after a specific period of time)?
-    -   how are you going to handle all of this?
-    -   …
+-   who will do what within the company?
+-   will you be working with freelancers?
+-   are you going to look for additional employees in the near future (or maybe say goodbye
+    to specific employees after a specific period of time)?
+-   how are you going to handle all of this?
+-   …
 
 
 ### Risk management
