@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Q&amp;A - Analysis &amp; Development Project - Course Guide</title>
+        <title>Test environment - Analysis &amp; Development Project - Course Guide</title>
 
 
         <!-- Custom HTML head -->
@@ -176,20 +176,63 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="qa"><a class="header" href="#qa">Q&amp;A</a></h1>
-<p>This section will be expanded with questions and answers that arise during the project.</p>
+                        <h1 id="proof-of-concept---test-environment"><a class="header" href="#proof-of-concept---test-environment">Proof of Concept - Test Environment</a></h1>
+<p>This repository will contain the code to run the test environment for the Adria project.</p>
+<h2 id="goal"><a class="header" href="#goal">Goal</a></h2>
+<p>The test environment is used to run the <strong>complete Adria solution</strong> on your local machine independently of any IDE or source code. It's meant to simulate a production environment as closely as possible.</p>
+<p>Use this environment to do final testing of your application before the final delivery.</p>
+<ul>
+<li>Navigate to the root of this repository and run:</li>
+</ul>
+<pre><code class="language-bash">docker compose -f docker-compose.yml up -d
+</code></pre>
+<ul>
+<li>Test your application through the web client or API (Swagger).</li>
+</ul>
+<h2 id="starter-project"><a class="header" href="#starter-project">Starter Project</a></h2>
+<p>The start repository is empty.
+<br>Not all mandatory topics are taught in class.
+<br><strong>You will need to do some self-study to implement them.</strong></p>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<p>Docker desktop is installed on your machine.</p>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<ul>
+<li>Create a working docker-compose file that runs the complete Adria solution.
+<ul>
+<li>Server runs on <strong>port 8000</strong></li>
+<li>Client runs on <strong>port 80</strong></li>
+</ul>
+</li>
+<li>The docker-compose file must contain at least:
+<ul>
+<li>A database container (MySQL)</li>
+<li>A server container</li>
+<li>A client container</li>
+<li>A network to connect the containers</li>
+<li>A volume to persist the database data</li>
+</ul>
+</li>
+<li>This repository only contains Docker code.</li>
+<li>It must be possible to run the complete Adria solution with a single command:
+<ul>
+<li>The lecturer will clone your repository, navigate to the folder containing the docker-compose file and run the command</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash">docker compose -f docker-compose.yml up -d
+</code></pre>
+<ul>
+<li>No CI is required for this repository.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../appendices/resources.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../poc/poc_client.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../project/project.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -197,13 +240,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../appendices/resources.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../poc/poc_client.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../project/project.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>

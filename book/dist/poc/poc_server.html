@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Q&amp;A - Analysis &amp; Development Project - Course Guide</title>
+        <title>Server - Analysis &amp; Development Project - Course Guide</title>
 
 
         <!-- Custom HTML head -->
@@ -176,18 +176,147 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="qa"><a class="header" href="#qa">Q&amp;A</a></h1>
-<p>This section will be expanded with questions and answers that arise during the project.</p>
+                        <h1 id="proof-of-concept---server"><a class="header" href="#proof-of-concept---server">Proof of Concept - Server</a></h1>
+<p>The server is the implementation of the agreed upon POC.</p>
+<p>Only implement the POC, all the rest is fictional and for Adria documentation purposes only.</p>
+<h2 id="starter-project"><a class="header" href="#starter-project">Starter Project</a></h2>
+<p>The start repository serves as the <strong>server-side starter project</strong>.</p>
+<p>It offers the foundational structure for an OpenAPI web server with a mySQL database.</p>
+<p>Working in this folder structure with .NET 8 and minimal web api's is mandatory.</p>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<ul>
+<li>Adhere to the project structure as detailed in the Leho instructional videos and example server.
+<ul>
+<li><strong>Please review example repository and these videos thoroughly</strong>.</li>
+</ul>
+</li>
+<li>Ensure unit testing for both the application and domain layers.
+<ul>
+<li>Refer to the project document for detailed testing guidelines.</li>
+</ul>
+</li>
+<li>Complete the <strong>docker-compose.yaml</strong> file with a mySQL database setup.</li>
+<li>Complete the <strong>.gitlab-ci.yml</strong> file with a job to dockerize and push the image to the docker registry.</li>
+<li>Correctly configure the .NET properties files.
+<ul>
+<li><code>appsettings.json</code> for the test environment.
+<ul>
+<li>The connection string should point to the database container defined in the docker-compose file.</li>
+</ul>
+</li>
+<li><code>appsettings.Development.json</code> for the local development environment.</li>
+</ul>
+</li>
+<li>Sonar quality gates should be green.</li>
+</ul>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<ul>
+<li>Ensure .NET 8 and docker desktop are installed on your machine.</li>
+<li>Agree with your team on a database credentials and update the files:
+<ul>
+<li><code>src/Adria.Main/appsettings.Development.json</code></li>
+<li><code>config/docker/docker-compose.yml</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="security"><a class="header" href="#security">Security</a></h2>
+<p>In this project, there is sensitive information such as database credentials. This is not done securely on purpose to facilitate easy setup for students. In a real-world scenario, sensitive information should be managed using secure methods such as environment variables or secret management tools.</p>
+<p>If you have choosen the <strong>sensitive information self study topic</strong>, please ensure that you implement secure handling of sensitive information in your project. If not, you will learn this in the build and deploy project of S4.</p>
+<h2 id="push-notifications"><a class="header" href="#push-notifications">Push notifications</a></h2>
+<p>If you have chosen the <strong>push notifications self study topic</strong>, please ensure that you implement push notifications in the corresponding parts of your project.</p>
+<h2 id="testing--quality-checks-locally"><a class="header" href="#testing--quality-checks-locally">Testing &amp; quality checks locally</a></h2>
+<ul>
+<li>In this project, the sonar is only updated through the build pipeline.
+<ul>
+<li><a href="https://sonarqube.ti.howest.be/dashboard?id=2025.ad-project.adria.XX.server">SonarQube Dashboard - Adria Server</a></li>
+<li><a href="https://sonarqube.ti.howest.be/dashboard?id=2025.ad-project.adria.XX.client">SonarQube Dashboard - Adria Client</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="running-the-project-locally"><a class="header" href="#running-the-project-locally">Running the project locally</a></h2>
+<ol>
+<li>Boot your database container.</li>
+</ol>
+<pre><code class="language-bash">docker compose -f config/docker/docker-compose.yml up -d
+</code></pre>
+<ol start="2">
+<li>Run the server project with the command</li>
+</ol>
+<pre><code class="language-bash"> dotnet run --project src/Adria.Main
+</code></pre>
+<h2 id="local-endpoints"><a class="header" href="#local-endpoints">Local Endpoints</a></h2>
+<ul>
+<li><strong>Database</strong>:
+<ul>
+<li>Connect to the mysql database with any MySQL client (e.g. DataGrip).</li>
+</ul>
+</li>
+<li><strong>Server Logs</strong>:
+<ul>
+<li>Available via terminal output.</li>
+</ul>
+</li>
+<li><strong>Swagger Interface</strong>:
+<ul>
+<li>Run the application and navigate to <code>http://localhost:8000/swagger/index.html</code>.</li>
+</ul>
+</li>
+<li><strong>Web Client Project</strong>:
+<ul>
+<li>Launch using an IDE like WebStorm/PhpStorm (refer to the client-side README).</li>
+</ul>
+</li>
+<li><strong>Server API</strong>:
+<ul>
+<li>Accessible at <code>http://localhost:8000/api/</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="production"><a class="header" href="#production">Production</a></h2>
+<p>In this project, there is no production environment.</p>
+<p>There is only a test environment that will run on your local machine. That's why it's important that the gitlab-ci.yml file is correctly configured to push the docker image to the howest docker registry.</p>
+<p>In the end the test environment will pull all images from the howest docker registry and run the Adria solution.</p>
+<h2 id="build-pipeline"><a class="header" href="#build-pipeline">Build Pipeline</a></h2>
+<ul>
+<li>
+<p>The build pipeline is partially pre-configured:</p>
+<ul>
+<li>Executes unit tests on every push to the main branch.</li>
+<li>Generates a SonarQube analysis.</li>
+</ul>
+</li>
+<li>
+<p>The build pipeline is not fully configured, the following tasks are still required:</p>
+<ul>
+<li>Dockerizing the application.</li>
+<li>Pushing the docker image to a howest docker registry.</li>
+</ul>
+</li>
+</ul>
+<h2 id="configuring-properties"><a class="header" href="#configuring-properties">Configuring Properties</a></h2>
+<ul>
+<li>Local properties: <code>src/Adria.Main/appsettings.Development.json</code></li>
+<li>Test properties: <code>src/Adria.Main/appsettings.json</code></li>
+</ul>
+<h2 id="database-management"><a class="header" href="#database-management">Database Management</a></h2>
+<ul>
+<li>Do not manipulate the database manually
+<ul>
+<li>Use the <strong>Migrations</strong> and <strong>Seeders</strong> scripts in the <code>infrastructure/persistence</code> folder.</li>
+</ul>
+</li>
+<li>The database will be recreated (Migration) and repopulated (Seeder) every time you run the API.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../appendices/resources.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../poc/poc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../project/project.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../poc/poc_client.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -197,11 +326,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../appendices/resources.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../poc/poc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../project/project.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../poc/poc_client.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

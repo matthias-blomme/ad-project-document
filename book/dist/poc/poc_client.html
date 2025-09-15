@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Q&amp;A - Analysis &amp; Development Project - Course Guide</title>
+        <title>Client - Analysis &amp; Development Project - Course Guide</title>
 
 
         <!-- Custom HTML head -->
@@ -176,18 +176,121 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="qa"><a class="header" href="#qa">Q&amp;A</a></h1>
-<p>This section will be expanded with questions and answers that arise during the project.</p>
+                        <h1 id="proof-of-concept---client"><a class="header" href="#proof-of-concept---client">Proof of Concept - Client</a></h1>
+<p>The client is the implementation of the agreed upon POC.</p>
+<p>Only implement the POC, all the rest is fictional and for Adria documentation purposes only.</p>
+<h2 id="starter-project"><a class="header" href="#starter-project">Starter Project</a></h2>
+<p>The start repository is almost empty.
+You have the freedom to choose your own client-side framework (Vue, React, Angular, ...) and strcuture.</p>
+<ul>
+<li>However, we recommend Vue.</li>
+<li>Look up the best practices for the choosen front-end.</li>
+</ul>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<ul>
+<li><strong>Follow</strong> good practices from previous and current courses.
+<ul>
+<li>Create readable code</li>
+<li>Write small functions</li>
+<li>Ensure functions do one thing</li>
+<li>Refactor code regularly</li>
+<li>Pass Sonar quality checks</li>
+</ul>
+</li>
+<li><strong>Dockerize</strong> the client application by building a working Dockerfile.</li>
+<li>Build a <strong>gitlab-ci</strong> file that:
+<ul>
+<li>Publishes the source code to Sonar for quality checks</li>
+<li>Dockerizes the client application and pushes the image to the GitLab Docker registry</li>
+</ul>
+</li>
+<li><strong>Sonar quality</strong> gates should be green.</li>
+<li><strong>No tests</strong> are required for the client application.</li>
+</ul>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<ul>
+<li>Docker desktop is installed on your machine.</li>
+</ul>
+<h2 id="testing--quality-checks-locally"><a class="header" href="#testing--quality-checks-locally">Testing &amp; quality checks locally</a></h2>
+<ul>
+<li>In this project, the sonar is only updated through the build pipeline.
+<ul>
+<li><a href="https://sonarqube.ti.howest.be/dashboard?id=2025.ad-project.adria.XX.server">SonarQube Dashboard - Adria Server</a></li>
+<li><a href="https://sonarqube.ti.howest.be/dashboard?id=2025.ad-project.adria.XX.client">SonarQube Dashboard - Adria Client</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="production"><a class="header" href="#production">Production</a></h2>
+<p>In this project, there is no production environment.</p>
+<p>There is only a test environment that will run on your local machine. That's why it's important that the gitlab-ci.yml file is correctly configured to push the docker image to the howest docker registry.</p>
+<p>In the end the test environment will pull all images from the howest docker registry and run the Adria solution.</p>
+<h2 id="useful-code-snippets"><a class="header" href="#useful-code-snippets">Useful code snippets</a></h2>
+<p><strong>File: sonar-project.properties</strong>
+<br>Purpose: Configuration file for SonarQube analysis of the client project.</p>
+<pre><code class="language-properties">#CHANGE XX TO GROUP NUMBER e.g. XX -&gt; 01
+sonar.projectKey=2025.ad-project.adria.XX.client
+sonar.projectName=2025.ad-project.adria.XX.client
+sonar.host.url=https://sonarqube.ti.howest.be/
+sonar.sources=src
+</code></pre>
+<p><strong>File: package.json</strong>
+<br>Purpose: Minimal package.json with necessary CI scripts</p>
+<pre><code class="language-json">{
+  "name": "2025-adria-client",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate-html": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --Werror --filterpattern \".*(v-|@).*\" --filterfile .vnuignore --skip-non-html ./src",
+    "sonar-ci": "node_modules/sonar-scanner/bin/sonar-scanner",
+    "validate-on-ci": "npm run validate-html &amp;&amp; npm run sonar-ci"
+  },
+  "dependencies": {
+    "sonar-scanner": "^3.1.0",
+    "vnu-jar": "^20.2.28"
+  },
+  "devDependencies": {
+  }
+}
+</code></pre>
+<p><strong>File: .vnuignore</strong>
+<br>Purpose: Ignore file for HTML validation</p>
+<pre><code>The "date" input type.*
+The “date” input type.*
+</code></pre>
+<p>File: .gitlab-ci.yml
+<br>Purpose: GitLab CI configuration file for building, validating, and deploying the client application
+<br>Note: the script sections are gone</p>
+<pre><code class="language-yaml">image: registry.ci.infra.lan:5000/project-2:client-QA
+
+stages:
+  - QA
+
+before_script:
+  - ln -s /ci/node_modules .
+
+validateHTML:
+  stage: QA
+  only:
+    - main
+  script:
+
+SonarQube:
+  stage: QA
+  only:
+    - main
+  script:
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../appendices/resources.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../poc/poc_server.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../project/project.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../poc/poc_test_environment.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -197,11 +300,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../appendices/resources.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../poc/poc_server.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../project/project.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../poc/poc_test_environment.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
