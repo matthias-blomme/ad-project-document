@@ -1,79 +1,45 @@
 # D2: Project website
 
 ## About the website
-Using a self-hosted instance of WordPress, you will build a website. This website has two parts,
-targeted towards two separate audiences:
 
-   -   Public part: presenting yourself as a company to the world
-   -   Secured part: this should be a blog, containing your daily standups. Also, a link to your
-       deployed application is included.
+Using Google Sites, hosted under the Howest domain (important!), you will build a public client-facing website.
+
+You will present yourself as a company to the world.
 
 The website is an integral part of the project assignment. Layout (is everything displayed in a
-clear fashion, do you adhere to your company branding, …) and content (relevancy, …) will be
-graded, but you are not allowed to code the entire website itself manually using HTML/CSS/JS
-or server-side technologies.
+clear fashion, do you adhere to your company branding, ...) and content (relevancy,...) will be graded, but you are not allowed to code the entire website itself manually using HTML/CSS/JS or server-side technologies.
 
-There is no need to use paid hosting either.
+There is no need to use paid hosting, nor do you need to purchase a custom domain.
 
-Tip: use the Combell hosting offered through Academic Software. One project member per
-group can register a domain name with associated webhosting through this channel and that
-can then be used throughout the project.
+## Concepts
 
+### Basic concept and approach
 
-## Public part
+#### What will you build and why are you building it?
 
-Basic concept and approach
-What will you build and why are you building it?
-
-Get across a clear picture of what your product is and what it’ll do. It is not necessary to go into
-as much detail as in the business case document itself. Think about the message you want to
-convey to potential customers or investors.
-
-Website page you should build as a result of this exercise:
-
-   -   Home page
-   -   Products/services page
-   -   About us
-
-
-
-
-
-Human resources
-In this part, you will define the organisational structure of your Adrian enterprise:
-
-   1. How will you be organising your team?
-   2. Task distribution: who will do what?
+Get across a clear picture of what your product is and what it will do. It is not necessary to go into as much detail as in the business case document itself. Think about the message you want to convey to potential customers or investors.
 
 Website pages you should build as a result of this exercise:
 
-   -   Our team
-   -   Job offers
-   -   Contact us
+-   Home page
+-   Products/services page
+-   About us
 
+#### Human resources
 
-## Secured part
+In this part, you will define the organisational structure of your Adrian enterprise:
 
-Blog posts
-In the secured part (only accessible using specific login credentials: see below), you should add
-a short blog post per daily standup.
+1. How will you be organising your team?
+2. Task distribution: who will do what?
 
-Deployed application
-There should also be a link towards the deployed version of your application
+Website pages you should build as a result of this exercise:
 
-AI prompts
-AI can and should be used to assist in the generation of proper content (text and media) for the
-website. Therefore you must keep track of the AI prompts you used and include them in this
-section of the secured website.
+-   Our team
+-   Job offers (include the vacancy and the LinkedIn mock-up)
+-   Contact us
 
+## Some notes
 
+Also check out other companies'/startup's websites to determine their strengths and weaknesses.
 
-Login credentials you need to setup:
-
-Username (mandatory): lecturer
-
-Password (mandatory and unique per group): will be communicated to the group members by the
-lecturers through automated mail.
-
-You need to include these login credentials in the Gitlab documentation repo’s README (see
-earlier).
+Do not forget to include a message in the footer of the website that it is a fictitious company, part of an educational project! **This is mandatory.**
