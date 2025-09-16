@@ -10,8 +10,10 @@ This document describes what to expect, how to prepare.
 
 ## How to prepare
 
-**Explore the example server repository in depth**
+**!Study the server tutorial!**
+[Server tutorial](https://ad-project.technet.howest.be/server-tutorial/)
 
+**Explore the example server repository in depth**
 [Example server repository](https://gitlab.ti.howest.be/ti/2025-2026/s3/analysis-and-development-project/student-resources/example-server)
 
 Try to extend the example server repository with new features. 
