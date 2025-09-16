@@ -24,6 +24,9 @@ jobs:
       - name: Copy server-tutorial to dist
         run: cp -r server-tutorial/ dist/
 
+      - name: log the dist folder
+        run: ls -la dist/
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
