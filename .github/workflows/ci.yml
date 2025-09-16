@@ -22,7 +22,7 @@ jobs:
         run: ./mdbook-linux build book --dest-dir dist
 
       - name: Copy server-tutorial to dist
-        run: cp -r server-tutorial/ dist/
+        run: cp -r server-tutorial book/dist/
 
       - name: log the dist folder
         run: ls -la dist/
