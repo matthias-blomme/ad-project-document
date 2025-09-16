@@ -15,7 +15,7 @@ We expect all of the following deliverables:
        Marketing website showcasing your company and launch product. There is also a blog
        part that contains the daily-standups of your project. Link and admin credentials are
        provided in the readme of the repo.
-       This is a Wordpress-site. Details on the contents of this website will be handled in the
+       This is a Google site. Details on the contents of this website will be handled in the
        input sessions “Business Case and documentation”
 
    -   **D3: Analysis document**                                                  documentation repo
