@@ -420,3 +420,31 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
+const initAccordion = () => {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+        const question = item.querySelector('.accordion-question');
+        const answer = item.querySelector('.accordion-answer');
+
+        question.addEventListener('click', () => {
+            // Close other active items
+            const currentlyActiveItem = document.querySelector('.accordion-item.active');
+            if (currentlyActiveItem && currentlyActiveItem !== item) {
+                currentlyActiveItem.classList.remove('active');
+                currentlyActiveItem.querySelector('.accordion-answer').style.maxHeight = null;
+            }
+
+            // Toggle the clicked item
+            item.classList.toggle('active');
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+                answer.style.maxHeight = null;
+            }
+        });
+    });
+};
+
+initAccordion();

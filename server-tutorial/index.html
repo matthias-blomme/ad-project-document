@@ -209,6 +209,18 @@
             <span class="toc-text">Watch Out</span>
           </a>
         </li>
+        <li>
+          <a href="#investigation">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                <path d="M10.5 7.5a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2a.5.5 0 01.5-.5z" fill="currentColor"></path>
+                <path d="M10.5 13.5a.5.5 0 01.5.5v.5a.5.5 0 01-1 0v-.5a.5.5 0 01.5-.5z" fill="currentColor"></path>
+              </svg>
+            </span>
+            <span class="toc-text">Investigation</span>
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -1357,6 +1369,124 @@ public async Task Execute_WithExistingUser_ReturnsUserTodoLists()
                 <li>Ensure configuration (connection strings, API keys) flows through DI, not hard-coded.</li>
                 <li>Write unit tests for adapters’ error handling—fail fast when external systems misbehave.</li>
               </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="investigation" data-title="Investigation">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                <path d="M10.5 7.5a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2a.5.5 0 01.5-.5z" fill="currentColor"></path>
+                <path d="M10.5 13.5a.5.5 0 01.5.5v.5a.5.5 0 01-1 0v-.5a.5.5 0 01.5-.5z" fill="currentColor"></path>
+              </svg>
+            </span>
+            Investigation
+          </h2>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-question">
+                What is the difference between a "command" and a "query" in the context of this application? Where can you find examples of each?
+              </button>
+              <div class="accordion-answer">
+                <p>A command modifies the state of the application (e.g., creating, updating, deleting data), while a query only reads and returns data without changing anything.</p>
+                <ul>
+                    <li><strong>Command Example:</strong> <code>CreateTodoList.cs</code> in <code>Taskly.Application/TodoLists</code>. It creates a new to-do list.</li>
+                    <li><strong>Query Example:</strong> <code>SearchAllTodoListsByUserId.cs</code> in <code>Taskly.Application/TodoLists</code>. It retrieves all to-do lists for a user.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                What is the role of the IUseCase interface in the Taskly.Application project?
+              </button>
+              <div class="accordion-answer">
+                <p>The <code>IUseCase</code> interface defines a standard contract for all use cases (both commands and queries). It takes an input and returns an output, making the application's features uniform and predictable. It's a key part of the "Ports & Adapters" pattern, acting as an <strong>input port</strong>.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                In Taskly.Domain, what is the difference between an "Entity" and a "Value Object"? Can you name one of each?
+              </button>
+              <div class="accordion-answer">
+                <ul>
+                    <li>An <strong>Entity</strong> is an object with a unique identity that persists over time. Its attributes can change, but its identity remains the same. Example: <code>TodoList</code> or <code>User</code>.</li>
+                    <li>A <strong>Value Object</strong> is an immutable object defined by its attributes, not by a unique ID. If you change an attribute, you get a new value object. Example: <code>DueDate</code>. Two <code>DueDate</code> objects with the same date are considered equal.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                What is the purpose of the ITodoListRepository interface in Taskly.Domain and where is it implemented?
+              </button>
+              <div class="accordion-answer">
+                <p><code>ITodoListRepository</code> is an <strong>output port</strong>. It defines the contract for how the application layer can save and retrieve <code>TodoList</code> entities, without knowing the details of the database. It's implemented in the <code>Taskly.Infrastructure</code> project by <code>AdoTodoListRepository.cs</code>, which contains the actual ADO.NET code to talk to the SQL database.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                How does the application handle database connections? Look at AbstractAdoRepository.cs.
+              </button>
+              <div class="accordion-answer">
+                <p>The <code>AbstractAdoRepository</code> class in <code>Taskly.Infrastructure</code> manages the database connection. It receives a <code>DbProviderFactory</code> and a connection string via dependency injection. It has methods like <code>ExecuteReaderAsync</code> and <code>ExecuteNonQueryAsync</code> that create a <code>DbConnection`, open it, execute a command, and then close it. This ensures that connection management is centralized and not duplicated in every repository.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                What is the "Composition Root" and which project in this solution represents it?
+              </button>
+              <div class="accordion-answer">
+                <p>The "Composition Root" is the place in the application where all the different parts are wired together. It's where dependency injection is configured. In this solution, the <code>Taskly.Main</code> project is the composition root. Specifically, files like <code>Program.cs</code> and the <code>Module.cs</code> files in the <code>Modules</code> folder are responsible for registering services (like repositories and use cases) with the DI container.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                What is the difference between an "Input Port" and an "Output Port" in this application? Give an example of each.
+              </button>
+              <div class="accordion-answer">
+                <p>An <strong>Input Port</strong> is an interface that defines how an external actor (like the UI or an API call) can trigger a business action. <code>IUseCase</code> is the primary input port. A <strong>Driving Adapter</strong> (like a controller) calls an input port. An <strong>Output Port</strong> is an interface that the application use cases use to access external services like databases or message queues. <code>ITodoListRepository</code> is an example of an output port. A <strong>Driven Adapter</strong> (like <code>AdoTodoListRepository</code>) implements an output port.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                How does the application handle different response types (e.g., Success, Not Found, Bad Request) in the WebApi controllers? Look at CreateTodoListController.cs.
+              </button>
+              <div class="accordion-answer">
+                <p>The controllers use <code>TypedResults</code> (e.g., <code>TypedResults.Created</code>, <code>TypedResults.Ok</code>, <code>TypedResults.BadRequest</code>`). This provides a strongly-typed way to return HTTP status codes and results, which improves code clarity and allows for better compile-time checking and OpenAPI/Swagger documentation generation. Exception handling middleware in <code>WebApi/Module.cs</code> also catches specific exceptions like <code>ElementNotFoundException</code> and maps them to appropriate HTTP status codes (like 404 Not Found).</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                What is the purpose of the AbstractAdoRepository.cs class in the persistence layer?
+              </button>
+              <div class="accordion-answer">
+                <p><code>AbstractAdoRepository</code> centralizes the logic for interacting with the database using ADO.NET. It handles creating database connections (<code>DbConnection</code>), commands (<code>DbCommand</code>), and parameters (<code>DbParameter</code>). It provides helper methods like <code>ExecuteNonQueryAsync</code> and <code>ExecuteReaderAsync</code> so that concrete repository implementations (<code>AdoUserRepository</code>, <code>AdoTodoListRepository</code>) don't have to repeat this boilerplate code. It's a good example of the Template Method pattern.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                How are API endpoints registered in this application? What is the role of Routes.cs?
+              </button>
+              <div class="accordion-answer">
+                <p>API endpoints are registered in <code>Taskly.Infrastructure/WebApi/Routes.cs</code> using extension methods on <code>WebApplication</code>. For example, <code>MapTodoListRoutes</code> defines all routes related to to-do lists (e.g., <code>app.MapPost("/api/todolists", ...)</code>). This approach centralizes route configuration, making it easy to see all available endpoints in one place, rather than scattering them across multiple files using attributes.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                What is the purpose of the AddPersistenceModule, AddWebApiModule, and AddUseCases methods called in Program.cs?
+              </button>
+              <div class="accordion-answer">
+                <p>These are extension methods that encapsulate the dependency injection (DI) configuration for each layer/module. <code>AddPersistenceModule</code> registers services like <code>IUserRepository</code> and <code>ITodoListRepository</code>. <code>AddWebApiModule</code> sets up API-related services like Swagger. <code>AddUseCases</code> registers all the application use cases. This keeps the main <code>Program.cs</code> file clean and organized, following the "Composition Root" pattern where all dependencies are wired together at the application's entry point.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-question">
+                In CreateTodoList.cs, why is it important to first fetch the User entity before creating the TodoList?
+              </button>
+              <div class="accordion-answer">
+                <p>This is a validation step to ensure that a to-do list is only created for a user that actually exists in the system. The use case is responsible for orchestrating business rules, and one of those rules is that a <code>TodoList</code> must be associated with a valid <code>User</code>. If the user is not found, it throws an <code>ElementNotFoundException</code>, which prevents invalid data from being created.</p>
+              </div>
             </div>
           </div>
         </section>
