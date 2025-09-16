@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taskly Clean Architecture Guide</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Local highlighting: external highlight.js CSS removed; styling is in styles.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- External highlight.js scripts removed; local highlighter is built into script.js -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    .section-title {
+      background: #ffe600;
+      color: #111;
+      padding: 1.2em 2em;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto 1.5em auto;
+      width: fit-content;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      font-weight: 700;
+      font-size: 1.4em;
+      transition: box-shadow 0.3s ease;
+    }
+    .section-title:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .section-title .heading-icon {
+      margin-right: 0.75em;
+      vertical-align: middle;
+      font-size: 1.8em;
+    }
+    .callout {
+      background-color: #f0f4f8;
+      border: 1px solid #d1e7dd;
+      color: #0f5132;
+      padding: 1em;
+      border-radius: 0.5em;
+      margin: 1em 0;
+    }
+    .callout.warning {
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+    }
+    p, ul, ol, li {
+      margin-bottom: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <div class="page" data-theme="light">
+    <nav class="sidebar" aria-label="Table of contents">
+      <div class="brand">
+        <span class="brand-title">Adria Server Turorial</span>
+        <p class="brand-subtitle">.NET 8 & minimal web api's</p>
+      </div>
+      <ul class="toc">
+        <li>
+          <a href="#high-level">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9.75 12 3l9 6.75v10.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.25V9.75z"></path>
+                <path d="M9 21v-6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 15v6"></path>
+              </svg>
+            </span>
+            <span class="toc-text">1. High-Level View</span>
+          </a>
+        </li>
+        <li>
+          <a href="#ports-adapters">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7.5h13.5"></path>
+                <path d="M12.75 3 18 7.5l-5.25 4.5"></path>
+                <path d="M21 16.5H7.5"></path>
+                <path d="M11.25 21 6 16.5l5.25-4.5"></path>
+              </svg>
+            </span>
+            <span class="toc-text">2. Ports &amp; Adapters</span>
+          </a>
+        </li>
+        <li>
+          <a href="#in-depth">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 3 8.25v7.5L12 21l9-5.25v-7.5L12 3z"></path>
+                <path d="M12 21v-7.5"></path>
+                <path d="M21 8.25 12 13.5 3 8.25"></path>
+              </svg>
+            </span>
+            <span class="toc-text">3. In-Depth</span>
+          </a>
+          <ul>
+            <li>
+              <a href="#domain-layer">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 5.25h6.75v6.75H4.5z"></path>
+                    <path d="M12.75 5.25H19.5v6.75h-6.75z"></path>
+                    <path d="M4.5 13.5h6.75v6.75H4.5z"></path>
+                    <path d="M12.75 13.5H19.5v6.75h-6.75z"></path>
+                  </svg>
+                </span>
+                <span class="toc-text">Domain Layer</span>
+              </a>
+            </li>
+            <li>
+              <a href="#application-layer">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13.5 2.25 6 13.5h5.25L10.5 21l7.5-11.25h-5.25z"></path>
+                  </svg>
+                </span>
+                <span class="toc-text">Application Layer</span>
+              </a>
+            </li>
+            <li>
+              <a href="#infrastructure-layer">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 21h15"></path>
+                    <path d="M6 21V9.75L12 6l6 3.75V21"></path>
+                    <path d="M9 21v-3.75"></path>
+                    <path d="M15 21v-3.75"></path>
+                    <path d="M12 9v2.25"></path>
+                  </svg>
+                </span>
+                <span class="toc-text">Infrastructure Layer</span>
+              </a>
+            </li>
+            <li>
+              <a href="#composition-root">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 6.75h15a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 11.25v-3a1.5 1.5 0 0 1 1.5-1.5z"></path>
+                    <path d="M4.5 15.75h15a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.25v-3a1.5 1.5 0 0 1 1.5-1.5z"></path>
+                    <path d="M8.25 9.75h.008"></path>
+                    <path d="M8.25 18.75h.008"></path>
+                  </svg>
+                </span>
+                <span class="toc-text">Main Component</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#command-tutorial">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 4.5 18 10.5l-5.25 1.5 2.25 5.25-2.25 1.5L9.75 12 6 10.5z"></path>
+              </svg>
+            </span>
+            <span class="toc-text">4. Tutorial: Command</span>
+          </a>
+        </li>
+        <li>
+          <a href="#query-tutorial">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11.25" cy="11.25" r="5.25"></circle>
+                <path d="M16.5 16.5 20.25 20.25"></path>
+              </svg>
+            </span>
+            <span class="toc-text">5. Tutorial: Query</span>
+          </a>
+        </li>
+        <li>
+          <a href="#beyond-todo">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.25c3.75 0 7.5 3.375 7.5 7.5 0 4.125-3 9.75-7.5 12.75-4.5-3-7.5-8.625-7.5-12.75 0-4.125 3.75-7.5 7.5-7.5z"></path>
+                <path d="M9.75 11.25a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0z"></path>
+                <path d="M9 19.5 7.5 21.75"></path>
+                <path d="M15 19.5 16.5 21.75"></path>
+              </svg>
+            </span>
+            <span class="toc-text">6. Build Your App</span>
+          </a>
+        </li>
+        <li>
+          <a href="#watch-outs">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4.5 3.75 19.5h16.5L12 4.5z"></path>
+                <path d="M12 9.75v3.75"></path>
+                <path d="M12 17.25h.008"></path>
+              </svg>
+            </span>
+            <span class="toc-text">Watch Out</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <main id="content">
+
+      <article>
+        <section id="high-level" data-title="High-Level View of the Codebase">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9.75 12 3l9 6.75v10.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.25V9.75z"></path>
+                <path d="M9 21v-6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 15v6"></path>
+              </svg>
+            </span>
+            High-Level View of the Codebase
+          </h2>
+          <p>
+            Taskly is intentionally small so you can focus on the architectural patterns. The solution follows a Clean Architecture slice: <strong>Domain</strong> (pure logic), <strong>Application</strong>
+            (use cases), <strong>Infrastructure</strong> (adapters), and <strong>Main</strong> (composition root).
+          </p>
+          <div class="callout warning">
+            <h4>Warning</h4>
+            <p>Keep the editor open and inspect the source while you read—simply skimming these pages will not cement the ideas.</p>
+          </div>
+          <div class="two-column">
+            <div>
+              <h3>Folder Layout Cheat Sheet</h3>
+              <div class="folder-grid keyword-grid" role="list">
+                <article class="folder-card" role="listitem">
+                  <h4><code>Taskly.Domain</code></h4>
+                  <p>Pure business rules: entities, value objects, domain exceptions, and repository ports.</p>
+                </article>
+                <article class="folder-card" role="listitem">
+                  <h4><code>Taskly.Application</code></h4>
+                  <p>Use cases, input/output models, and query contracts that orchestrate the domain.</p>
+                </article>
+                <article class="folder-card" role="listitem">
+                  <h4><code>Taskly.Infrastructure</code></h4>
+                  <p>Adapters for persistence, APIs, and notifications that fulfill the ports.</p>
+                </article>
+                <article class="folder-card" role="listitem">
+                  <h4><code>Taskly.Main</code></h4>
+                  <p>Composition root where ASP.NET Core wiring and dependency injection live.</p>
+                </article>
+                <article class="folder-card" role="listitem">
+                  <h4><code>tests/UnitTests</code></h4>
+                  <p>Fast tests for domain invariants and application behaviors using mocks.</p>
+                </article>
+              </div>
+            </div>
+            <div>
+              <h3>Layer Overview</h3>
+              <figure class="diagram" aria-label="Layered view of Taskly">
+                <pre class="mermaid">
+                  flowchart TD
+    Client[Web API] --> UC[Application Use Cases]
+    UC --> Domain[Domain Model]
+    UC --> Ports[Ports Interfaces]
+    Ports --> Infra[Infrastructure Adapters]
+</pre>
+                <figcaption>Layers communicate inwards, while dependencies point toward the Domain.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <section class="keyword-cheat" aria-label="Keyword Cheat Sheet">
+            <h3>Keyword Cheat Sheet</h3>
+            <div class="folder-grid keyword-grid" role="list">
+              <article class="folder-card" role="listitem">
+                <h4>Entity</h4>
+                <p>A domain object with identity and behavior (e.g., <code>TodoList</code>).</p>
+              </article>
+              <article class="folder-card" role="listitem">
+                <h4>Value Object</h4>
+                <p>Immutable concept represented by value, such as <code>DueDate</code>.</p>
+              </article>
+              <article class="folder-card" role="listitem">
+                <h4>Repository</h4>
+                <p>A port interface that describes persistence operations (e.g., <code>ITodoListRepository</code>).</p>
+              </article>
+              <article class="folder-card" role="listitem">
+                <h4>Dependency Injection</h4>
+                <p>Runtime wiring that binds ports to adapters inside <code>Taskly.Main</code>.</p>
+              </article>
+              <article class="folder-card" role="listitem">
+                <h4>Domain Logic</h4>
+                <p>Pure decisions encoded inside entities and value objects without framework dependencies.</p>
+              </article>
+              <article class="folder-card" role="listitem">
+                <h4>Infrastructure Logic</h4>
+                <p>Technology-specific code (SQL, HTTP, logging) kept inside adapters.</p>
+              </article>
+            </div>
+          </section>
+
+          <div class="quickstart">
+            <h3>One-Screen Quickstart</h3>
+            <div class="quickstart-grid">
+              <div>
+                <h4>Run the API</h4>
+                <p>Requires Docker for MySQL + .NET 8 SDK.</p>
+                <pre><code class="language-bash">docker compose -f config/docker/docker-compose.yml up -d
+DOTNET_ENVIRONMENT=Development dotnet run --project src/Taskly.Main
+# Swagger UI: http://localhost:8000/swagger/index.html</code></pre>
+              </div>
+              <div>
+                <h4>Run the Tests</h4>
+                <p>Fast safety net before changing anything.</p>
+                <pre><code class="language-bash">dotnet test
+# Optional cleanup
+# dotnet clean &amp;&amp; dotnet build</code></pre>
+              </div>
+            </div>
+
+          <div class="callout try" role="note">
+            <h4>Try it yourself</h4>
+            <p>Trace a request in Swagger. For each API operation, jot down which use case and repository it touches.</p>
+          </div>
+        </section>
+
+        <section id="ports-adapters" data-title="Ports and Adapters">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7.5h13.5"></path>
+                <path d="M12.75 3 18 7.5l-5.25 4.5"></path>
+                <path d="M21 16.5H7.5"></path>
+                <path d="M11.25 21 6 16.5l5.25-4.5"></path>
+              </svg>
+            </span>
+            Ports &amp; Adapters (High Level + Code Snippets)
+          </h2>
+          <p>
+            Ports are stable contracts owned by the Domain and Application layers. Adapters are technology-specific
+            implementations in Infrastructure that satisfy those contracts. Together they form the plug-and-play seam of
+            Clean Architecture.
+          </p>
+
+          <div class="two-page" role="group" aria-label="Ports and adapters deep dive">
+            <article>
+              <h3>Understanding Ports</h3>
+              <p>
+                Ports are the stable, narrow interfaces that define how the core of your application (Domain and Application layers) interacts with the outside world. They focus on business needs, not technical details.
+              </p>
+              <div class="two-column">
+                <div>
+                  <h4>What Makes Ports Special?</h4>
+                  <ul>
+                    <li><strong>Business-Focused:</strong> Expressed in domain language, free from framework, database, or transport specifics.</li>
+                    <li><strong>Stable Contracts:</strong> Once defined, they change rarely, ensuring long-term compatibility.</li>
+                    <li><strong>Testable:</strong> Interfaces allow easy mocking for unit tests without external dependencies.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Types of Ports in Taskly</h4>
+                  <p>
+                    Taskly distinguishes between two port types to maintain clean separation:
+                  </p>
+                  <ul>
+                    <li><strong>Input Ports:</strong> Like the <code>IUseCase</code> interface, called by driving adapters (e.g., API controllers) to trigger business actions.</li>
+                    <li><strong>Output Ports:</strong> Such as <code>ITodoListRepository</code> or query contracts, used by use cases to access infrastructure (e.g., databases).</li>
+                  </ul>
+                  <p>
+                    This design keeps the Domain pure and allows seamless swapping of technologies on either side.
+                  </p>
+                </div>
+              </div>
+              <figure class="mini-diagram" aria-label="Port definition">
+                <pre class="mermaid tall">
+                  graph LR
+    DrivingAdapter["Driving Adapter
+    (CreateTodoListController)"] -- calls --> InputPort(("Input Port 
+    (IUseCase)"))
+    InputPort -- implemented by --> UseCase["Use Case
+    (CreateTodoList)"]
+    UseCase -- uses --> OutputPort(("Output Port
+    (ITodoListRepository)"))
+    UseCase -- calls --> Entity["Entity
+    (TodoList)"]
+    OutputPort -- implemented by --> DrivenAdapter["Driven Adapter"]
+
+    subgraph DomainLayer ["Domain"]
+        Entity
+    end
+    subgraph ApplicationCore ["Application"]
+        InputPort
+        UseCase
+        OutputPort
+    end
+    subgraph Infrastructure ["Infrastructure"]
+        DrivingAdapter
+        DrivenAdapter
+    end
+</pre>
+              </figure>
+              <figure class="mini-diagram" aria-label="Concrete port example">
+                <pre class="mermaid">
+                  flowchart LR
+  CreateTodoList[[CreateTodoList Use Case]] --> ITodoListPort[(ITodoListRepository)]
+  ITodoListPort --> TodoList[TodoList Aggregate]
+  ITodoListPort -. "implemented by" .-> AdoRepo[AdoTodoListRepository]
+  AdoRepo --> SQL[(SQL Database)]
+</pre>
+                <figcaption>Real classes: <code>CreateTodoList</code> depends on <code>ITodoListRepository</code>, implemented by <code>AdoTodoListRepository</code>.</figcaption>
+              </figure>
+            </article>
+            <article>
+              <h3>Designing Adapters</h3>
+              <p>
+                Adapters are the technology-facing counterparts to ports. Driving adapters (like Minimal API endpoints)
+                translate transport details into input models and call a use case (the input port). Driven adapters
+                (like repositories and query adapters) implement output ports and translate between the core and the outside
+                world: SQL, HTTP, files, or messaging.
+              </p>
+              <div class="two-column">
+                <div>
+                  <h4>Key Principles</h4>
+                  <ol>
+                    <li><strong>Translate, don’t decide:</strong> Apply business rules in the use case, not in adapters.</li>
+                    <li><strong>Depend on ports:</strong> Constructors accept interfaces, factories, and configuration—not controllers.</li>
+                    <li><strong>Handle failures:</strong> Add timeouts, retries where appropriate, and wrap transient issues.</li>
+                    <li><strong>Observe I/O:</strong> Log and trace around external calls for diagnosability.</li>
+                  </ol>
+                </div>
+                <div>
+                  <h4>Responsibilities</h4>
+                  <p>
+                    Keep adapters thin and focused on translation and resilience. They manage connections, transactions, retries,
+                    and timeouts; map between domain types and storage; and surface errors as domain-friendly failures.
+                    All decisions about <em>what</em> to do belong in the use case—adapters only describe <em>how</em> to do it for a given technology.
+                  </p>
+                </div>
+              </div>
+              <figure class="mini-diagram" aria-label="Adapter responsibilities">
+                <pre class="mermaid">sequenceDiagram
+  title Adapter Collaboration Overview
+  participant Port as Port Interface
+  participant Adapter as Adapter
+  participant System as External System
+  Port->>Adapter: Persist(todoList)
+  Adapter->>System: SQL Command / API Call
+  System-->>Adapter: Result / Error
+  Adapter-->>Port: Success or Failure
+</pre>
+              </figure>
+              <figure class="mini-diagram" aria-label="Concrete adapter example">
+                <pre class="mermaid">sequenceDiagram
+  title TodoLists Adapter Walkthrough
+  participant UseCase as CreateTodoList
+  participant Port as ITodoListRepository
+  participant Adapter as AdoTodoListRepository
+  participant Db as SQL Database
+  UseCase->>Port: Save(todoList)
+  Port->>Adapter: Persist(todoList)
+  Adapter->>Db: EXEC usp_SaveTodoList
+  Db-->>Adapter: Rows affected
+  Adapter-->>UseCase: Completed
+</pre>
+                <figcaption>The ADO adapter fulfills <code>ITodoListRepository</code> by calling SQL stored procedures.</figcaption>
+              </figure>
+            </article>
+          </div>
+
+
+          <figure class="diagram" aria-label="Concrete example of ports and adapters">
+            <pre class="mermaid">
+              ---
+title: Use Case to Adapter Example
+---
+flowchart LR
+  CreateTodoList[[CreateTodoList]] --> ITodoListRepo[(ITodoListRepository)]
+  SearchLists[[SearchAllTodoListsByUserId]] --> IListQuery[(ITodoListByIdAndUserIdQuery)]
+  ITodoListRepo -. "implemented by" .-> AdoRepo[AdoTodoListRepository]
+  IListQuery -. "implemented by" .-> QueryAdapter[TodoListByIdAndUserIdQuery]
+  AdoRepo --> Sql[(SQL Database)]
+  QueryAdapter --> Sql
+</pre>
+            <figcaption>Concrete mapping: both use cases depend on ports that ADO-based adapters fulfill against SQL.</figcaption>
+          </figure>
+
+          <figure class="diagram" aria-label="Ports and adapters flow">
+            <pre class="mermaid">
+              ---
+title: Ports and Adapters Interaction
+---
+flowchart TB
+  subgraph Application
+    UseCase[Use Case]
+    Port[(Port Interface)]
+  end
+  subgraph Infrastructure
+    Adapter[Adapter Implementation]
+  end
+  UseCase -->|depends on| Port
+  Adapter -->|implements| Port
+  Adapter -->|uses| External[(External System)]
+              
+</pre>
+            <figcaption>Use cases only reference ports. Adapters contain all technology-specific details.</figcaption>
+          </figure>
+          <section class="rules" aria-label="Port and adapter rules">
+            <h3>Rules to Live By</h3>
+            <ul>
+              <li><strong>Domain owns the interface:</strong> Adapters implement ports; they do not invent their own signatures.</li>
+              <li><strong>One adapter per responsibility:</strong> Keep persistence separate from messaging to avoid tangled dependencies.</li>
+              <li><strong>Only cross via ports:</strong> Use cases speak to infrastructure exclusively through port abstractions.</li>
+            </ul>
+            <h3>Best Practices</h3>
+            <ul>
+              <li><strong>Codify mapping:</strong> Centralize conversions between domain entities and DTOs to keep adapters lean.</li>
+              <li><strong>Instrument adapters:</strong> Add logging around I/O boundaries so failures are diagnosable.</li>
+              <li><strong>Mock ports in tests:</strong> Unit tests cover use cases via fake implementations, proving the seam works.</li>
+            </ul>
+          </section>
+
+          <article>
+            <h3 class="title-with-icon">
+              <span class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 7.5h13.5"></path>
+                  <path d="M12.75 3 18 7.5l-5.25 4.5"></path>
+                  <path d="M21 16.5H7.5"></path>
+                  <path d="M11.25 21 6 16.5l5.25-4.5"></path>
+                </svg>
+              </span>
+              A Port (ITodoListRepository) with Its Adapter (AdoTodoListRepository)
+            </h3>
+          </article>
+          <div class="code-grid">
+            <figure class="code-sample" data-path="src/Taskly.Domain/TodoLists/ITodoListRepository.cs">
+              <figcaption>src/Taskly.Domain/TodoLists/ITodoListRepository.cs</figcaption>
+              <p>This interface defines the contract for the TodoList repository port in the Domain layer, specifying methods for retrieving TodoList entities by ID, user, or status, and for saving or removing them. It ensures the Domain remains pure by abstracting persistence operations.</p>
+              <pre><code class="language-csharp">public interface ITodoListRepository
+{
+    Task&lt;TodoList?&gt; ById(Guid todoListId);
+    Task&lt;TodoList?&gt; ByIdAndTrashStatus(Guid todoListId, bool inTrash);
+    Task&lt;IReadOnlyCollection&lt;TodoList&gt;&gt; ByUserId(Guid userId);
+    Task Save(TodoList todoList);
+    Task Remove(TodoList todoList);
+}</code></pre>
+            </figure>
+            <figure class="code-sample" data-path="src/Taskly.Infrastructure/Persistence/Repositories/AdoTodoListRepository.cs">
+              <figcaption>src/Taskly.Infrastructure/Persistence/Repositories/AdoTodoListRepository.cs</figcaption>
+              <p>This adapter implements the ITodoListRepository interface in the Infrastructure layer using ADO.NET to interact with the SQL database. It translates domain operations into SQL queries, handles data mapping between domain entities and database records, and manages database connections and transactions.</p>
+              <pre><code class="language-csharp">public async Task&lt;TodoList?&gt; ById(Guid todoListId)
+{
+    DbParameter id = CreateParameter("@Id", todoListId.ToString().ToLower());
+    DbDataReader dbDataReader = await ExecuteReaderAsync(SELECT_TODO_LIST_BY_ID_WITH_ITEMS, [id]);
+    try
+    {
+        if (await dbDataReader.ReadAsync())
+        {
+            var title = dbDataReader.GetString(dbDataReader.GetOrdinal(COL_TITLE));
+            var isLocked = dbDataReader.GetBoolean(dbDataReader.GetOrdinal(COL_IS_LOCKED));
+            var userId = dbDataReader.GetGuid(dbDataReader.GetOrdinal(COL_USER_ID));
+            var inTrash = dbDataReader.GetBoolean(dbDataReader.GetOrdinal(COL_IN_TRASH));
+            var items = new List&lt;TodoItem&gt;();
+
+            do
+            {
+                if (!await dbDataReader.IsDBNullAsync(dbDataReader.GetOrdinal(COL_ITEM_ID)))
+                {
+                    items.Add(new TodoItem(
+                        dbDataReader.GetGuid(dbDataReader.GetOrdinal(COL_ITEM_ID)),
+                        dbDataReader.GetString(dbDataReader.GetOrdinal(COL_DESCRIPTION)),
+                        dbDataReader.GetBoolean(dbDataReader.GetOrdinal(COL_IS_DONE)),
+                        dbDataReader.GetDateTime(dbDataReader.GetOrdinal(COL_DUE_DATE))));
+                }
+            } while (await dbDataReader.ReadAsync());
+
+            return new TodoList(todoListId, userId, title, isLocked, inTrash, items);
+        }
+
+        return null;
+    }
+    finally
+    {
+        await dbDataReader.DisposeAsync();
+    }
+}</code></pre>
+            </figure>
+          </div>
+
+          <div class="callout try" role="note">
+            <h4>Try it yourself</h4>
+            <p>Mock <code>ITodoListRepository</code> in a unit test and confirm a use case works without touching the database.</p>
+          </div>
+        </section>
+
+        <section id="in-depth" data-title="In-Depth Architecture">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 3 8.25v7.5L12 21l9-5.25v-7.5L12 3z"></path>
+                <path d="M12 21v-7.5"></path>
+                <path d="M21 8.25 12 13.5 3 8.25"></path>
+              </svg>
+            </span>
+            In-Depth (Goal • Why • How)
+          </h2>
+          <p>
+            Each layer has a clear goal. Follow the arrows: requests enter through the Web API, flow to use cases, touch domain
+            entities, and finally exit through adapters.
+          </p>
+          <figure class="diagram" aria-label="Use case collaboration">
+            <pre class="mermaid">sequenceDiagram
+  title CreateTodoList Execution Path
+  participant API as API Endpoint
+  participant UC as Use Case
+  participant Domain as Domain Entity
+  participant Port as Port Interface
+  participant Repo as Repository Adapter
+  API->>UC: Execute(CreateTodoList)
+  UC->>Port: Request user &amp; persistence
+  Domain-->>UC: Validated TodoList
+  UC->>Repo: Save(todoList)
+  UC-->>API: TodoListId
+</pre>
+            <figcaption>Use cases orchestrate domain logic and delegate external work via ports.</figcaption>
+          </figure>
+
+          <section id="domain-layer" data-title="Domain Layer">
+            <h3 class="title-with-icon">
+              <span class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 5.25h6.75v6.75H4.5z"></path>
+                  <path d="M12.75 5.25H19.5v6.75h-6.75z"></path>
+                  <path d="M4.5 13.5h6.75v6.75H4.5z"></path>
+                  <path d="M12.75 13.5H19.5v6.75h-6.75z"></path>
+                </svg>
+              </span>
+              Domain Layer
+            </h3>
+            <p>
+              The Domain expresses business rules with entities (<code>TodoList</code>, <code>TodoItem</code>), value objects (<code>DueDate</code>), and domain-specific exceptions. It is free of frameworks, which means every rule can be unit tested without bootstrapping infrastructure—just instantiate entities and value objects and assert behavior.
+            </p>
+            <div class="code-grid">
+              <figure class="code-sample" data-path="src/Taskly.Domain/TodoLists/TodoList.cs">
+                <figcaption>src/Taskly.Domain/TodoLists/TodoList.cs</figcaption>
+                <p>This class (constructor shown) represents the TodoList entity in the Domain layer, encapsulating business logic for creating and managing todo lists, including validation of user IDs and titles, and managing associated todo items.</p>
+                <pre><code class="language-csharp">public TodoList(Guid id, Guid userId, string title, bool isLocked, bool inTrash, List&lt;TodoItem&gt;? items = default)
+{
+    EnsureUserIdIsValid(userId);
+    EnsureTodoListTitleIsValid(title);
+
+    Id = id;
+    UserId = userId;
+    Title = title;
+    IsLocked = isLocked;
+    InTrash = inTrash;
+    _items = items ?? [];
+}</code></pre>
+              </figure>
+              <figure class="code-sample" data-path="src/Taskly.Domain/TodoLists/DueDate.cs">
+                <figcaption>src/Taskly.Domain/TodoLists/DueDate.cs</figcaption>
+                <p>This value object represents a due date in the Domain layer, ensuring due dates are not set in the past and providing a status method to check if the date is expired, upcoming, or none.</p>
+                <pre><code class="language-csharp">public sealed class DueDate
+{
+    public DateTime Date { get; }
+
+    public DueDate(DateTime dueDate)
+    {
+        EnsureDueDateIsNotInThePast(dueDate);
+        Date = dueDate;
+    }
+
+    public DueDateStatus Status()
+        => Date <= DateTime.Now.AddSeconds(-2)
+            ? DueDateStatus.EXPIRED
+            : Date &lt; DateTime.Now.AddDays(7)
+                ? DueDateStatus.UPCOMING
+                : DueDateStatus.NONE;
+}</code></pre>
+              </figure>
+            </div>
+            <div class="callout why" role="note">
+              <h4>Why purity matters</h4>
+              <p>No database calls, HTTP clients, or logging frameworks live here. Pure code means easier unit tests and reuse—construct a domain type, execute a method, and assert the outcome without mocking infrastructure.</p>
+            </div>
+          </section>
+
+          <section id="application-layer" data-title="Application Layer">
+            <h3 class="title-with-icon">
+              <span class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13.5 2.25 6 13.5h5.25L10.5 21l7.5-11.25h-5.25z"></path>
+                </svg>
+              </span>
+              Application Layer (Use Cases)
+            </h3>
+            <p>
+              Use cases are the traffic controllers of Taskly. They coordinate inputs, call domain logic, interact with ports,
+              and shape the outputs without ever leaking technology concerns. Because dependencies are injected as interfaces, you can unit test handlers by mocking ports and asserting orchestration logic.
+            </p>
+            <ul class="usecase-facets">
+              <li><span class="facet-icon" aria-hidden="true">⚙️</span><strong>Commands</strong> perform state changes and usually return IDs or nothing.</li>
+              <li><span class="facet-icon" aria-hidden="true">🔍</span><strong>Queries</strong> gather read models and never mutate domain state.</li>
+              <li><span class="facet-icon" aria-hidden="true">✔️</span><strong>Validation</strong> happens up front to protect domain invariants before reaching adapters.</li>
+              <li><span class="facet-icon" aria-hidden="true">📈</span><strong>Logging and telemetry</strong> are injected dependencies, allowing observability without hard coupling.</li>
+            </ul>
+
+            <figure class="diagram" aria-label="Use case orchestration">
+              <pre class="mermaid">
+                ---
+title: Use Case Orchestration Steps
+---
+flowchart LR
+  Input[Input DTO]
+  Input --> Validate[Validate & Guard]
+  Validate --> DomainCall[Invoke Domain Entities]
+  DomainCall --> PortsCall[Invoke Ports & Queries]
+  PortsCall --> Output[Return Result DTO]
+</pre>
+              <figcaption>Use cases validate input, orchestrate domain logic, then delegate I/O via ports.</figcaption>
+            </figure>
+            <div class="code-grid">
+              <figure class="code-sample" data-path="src/Taskly.Application/TodoLists/CreateTodoList.cs">
+                <figcaption>src/Taskly.Application/TodoLists/CreateTodoList.cs</figcaption>
+                <p>This use case handles the creation of a new TodoList, validating the user via the repository, constructing the domain entity, saving it through the repository port, logging the action, and returning the new TodoList ID.</p>
+                <pre><code class="language-csharp">public sealed record CreateTodoListInput(string Title, Guid UserId);
+
+public sealed class CreateTodoList : IUseCase&lt;CreateTodoListInput, Task&lt;Guid&gt;&gt;
+{
+    public async Task&lt;Guid&gt; Execute(CreateTodoListInput input)
+    {
+        User user = (await _userRepository.ById(input.UserId))
+            ?? throw new ElementNotFoundException($"User with ID {input.UserId} not found.");
+
+        TodoList todoList = new(user.Id, input.Title);
+        await _todoListRepository.Save(todoList);
+        _logger.LogInformation("New todo list created with ID {TodoListId}", todoList.Id);
+        return todoList.Id;
+    }
+}</code></pre>
+              </figure>
+              <figure class="code-sample" data-path="src/Taskly.Application/TodoLists/SearchAllTodoListsByUserId.cs">
+                <figcaption>src/Taskly.Application/TodoLists/SearchAllTodoListsByUserId.cs</figcaption>
+                <p>This use case retrieves all TodoLists for a given user by delegating to a query port, logging the operation, and returning a collection of read models (TodoListData) optimized for the API.</p>
+                <pre><code class="language-csharp">public sealed record SearchAllTodoListsByUserIdInput(Guid UserId);
+
+public sealed class SearchAllTodoListsByUserId
+    : IUseCase&lt;SearchAllTodoListsByUserIdInput, Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt;&gt;
+{
+    public async Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt; Execute(SearchAllTodoListsByUserIdInput input)
+    {
+        _logger.LogInformation("Fetching all todo lists for user {UserId}", input.UserId);
+        return await _allTodoListsByUserIdQuery.Fetch(input.UserId);
+    }
+}</code></pre>
+              </figure>
+            </div>
+              <div class="callout concept" role="note">
+              <h4>Concept: CQRS lite</h4>
+              <p>Commands return identifiers or void. Queries return read models defined in <code>Taskly.Application.Contracts.Data</code>.</p>
+            </div>
+          </section>
+
+          <section id="infrastructure-layer" data-title="Infrastructure Layer">
+            <h3 class="title-with-icon">
+              <span class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 21h15"></path>
+                  <path d="M6 21V9.75L12 6l6 3.75V21"></path>
+                  <path d="M9 21v-3.75"></path>
+                  <path d="M15 21v-3.75"></path>
+                  <path d="M12 9v2.25"></path>
+                </svg>
+              </span>
+              Infrastructure Layer
+            </h3>
+            <p>
+              Infrastructure maps ports to real technologies. Repositories translate between domain objects and tables, while
+              query adapters craft read-optimized DTOs. Each adapter encapsulates persistence, messaging, or external API concerns, keeping technology-specific code centralized and swappable.
+            </p>
+            <div class="code-grid">
+              <figure class="code-sample" data-path="src/Taskly.Infrastructure/Persistence/Repositories/AdoTodoListRepository.cs">
+                <figcaption>src/Taskly.Infrastructure/Persistence/Repositories/AdoTodoListRepository.cs</figcaption>
+                <p>This adapter implements the ITodoListRepository interface in the Infrastructure layer using ADO.NET to interact with the SQL database. It translates domain operations into SQL queries, handles data mapping between domain entities and database records, and manages database connections and transactions.</p>
+                <pre><code class="language-csharp">public async Task Save(TodoList todoList)
+{
+    string todoListQuery = INSERT_TODO_LIST;
+    if ((await ById(todoList.Id)) != null)
+    {
+        todoListQuery = UPDATE_TODO_LIST;
+    }
+
+    await ExecuteNonQueryAsync(todoListQuery, CreateTodoListParameters(todoList));
+    await ExecuteNonQueryAsync(DELETE_ALL_TODO_ITEMS, [CreateParameter("@TodoListId", todoList.Id.ToString().ToLower())]);
+
+    if (todoList.Items.Count &gt; 0)
+    {
+        await BulkInsertTodoItems(todoList.Items, todoList.Id);
+    }
+}</code></pre>
+              </figure>
+              <figure class="code-sample" data-path="src/Taskly.Infrastructure/Persistence/Queries/AllTodoListsByUserIdQuery.cs">
+                <figcaption>src/Taskly.Infrastructure/Persistence/Queries/AllTodoListsByUserIdQuery.cs</figcaption>
+                <p>This query adapter implements the IAllTodoListsByUserIdQuery interface, executing SQL queries to fetch read models (TodoListData) from the database, mapping the results to DTOs optimized for the API.</p>
+                <pre><code class="language-csharp">public async Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt; Fetch(Guid userId)
+{
+    using var connection = _factory.CreateConnection()
+        ?? throw new InvalidOperationException("DbProviderFactory returned a null DbConnection.");
+
+    connection.ConnectionString = _connectionString;
+    await connection.OpenAsync();
+
+    using var command = connection.CreateCommand();
+
+    var userIdParam = command.CreateParameter();
+    userIdParam.ParameterName = "@UserId";
+    userIdParam.Value = userId.ToString();
+
+    command.CommandText = QRY;
+    command.Parameters.Add(userIdParam);
+
+    using var reader = await command.ExecuteReaderAsync();
+
+    var todoLists = new Dictionary&lt;Guid, TodoListData&gt;();
+
+    while (await reader.ReadAsync())
+    {
+        var todoListIdOrd = reader.GetOrdinal("id");
+        var titleOrd = reader.GetOrdinal("title");
+        var todoListId = reader.GetGuid(todoListIdOrd);
+
+        if (!todoLists.TryGetValue(todoListId, out TodoListData? value))
+        {
+            value = new TodoListData(
+                Id: todoListId,
+                Title: reader.GetString(titleOrd),
+                IsLocked: reader.GetBoolean(reader.GetOrdinal("islocked")),
+                User: new UserData(
+                    Id: reader.GetGuid(reader.GetOrdinal("userid")),
+                    Name: reader.GetString(reader.GetOrdinal("username")),
+                    Email: reader.GetString(reader.GetOrdinal("useremail"))
+                ),
+                InTrash: reader.GetBoolean(reader.GetOrdinal("intrash")),
+                Items: []
+            );
+            todoLists[todoListId] = value;
+        }
+
+        if (!await reader.IsDBNullAsync(reader.GetOrdinal("itemid")))
+        {
+            value.Items.Add(new TodoItemData(
+                Id: reader.GetGuid(reader.GetOrdinal("itemid")),
+                Description: reader.GetString(reader.GetOrdinal("description")),
+                DueDate: reader.GetDateTime(reader.GetOrdinal("duedate")),
+                IsDone: reader.GetBoolean(reader.GetOrdinal("isdone"))
+            ));
+        }
+    }
+
+    return todoLists.Values.ToList().AsReadOnly();
+}</code></pre>
+              </figure>
+            </div>
+            <div class="callout why" role="note">
+              <h4>Why adapters stay thin</h4>
+              <p>Adapters focus on translation only. Validation and business rules already happened in the Application layer.</p>
+            </div>
+          </section>
+
+          <section id="composition-root" data-title="Composition Root">
+            <h3 class="title-with-icon">
+              <span class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 6.75h15a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 11.25v-3a1.5 1.5 0 0 1 1.5-1.5z"></path>
+                  <path d="M4.5 15.75h15a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20.25v-3a1.5 1.5 0 0 1 1.5-1.5z"></path>
+                  <path d="M8.25 9.75h.008"></path>
+                  <path d="M8.25 18.75h.008"></path>
+                </svg>
+              </span>
+              Main / Composition Root
+            </h3>
+            <p>
+              The composition root wires everything together. Dependency Injection chooses which adapter implements each port, configures ASP.NET Core hosting, and ensures each request resolves fresh scoped services.
+            </p>
+            <div class="code-grid">
+              <figure class="code-sample" data-path="src/Taskly.Main/Modules/Persistence/Module.cs">
+                <figcaption>src/Taskly.Main/Modules/Persistence/Module.cs</figcaption>
+                <p>This module configures dependency injection for persistence-related services, binding repository and query interfaces to their ADO.NET implementations, and injecting necessary dependencies like DbProviderFactory and connection strings.</p>
+                <pre><code class="language-csharp">return services
+    .AddScoped&lt;IUserRepository, AdoUserRepository&gt;(sp =>
+        new AdoUserRepository(
+            sp.GetRequiredService&lt;DbProviderFactory&gt;(),
+            _connectionString,
+            sp.GetRequiredService&lt;ILogger&lt;AdoUserRepository&gt;&gt;()))
+    .AddScoped&lt;ITodoListRepository, AdoTodoListRepository&gt;(sp =>
+        new AdoTodoRepository(
+            sp.GetRequiredService&lt;DbProviderFactory&gt;(),
+            _connectionString,
+            sp.GetRequiredService&lt;ILogger&lt;AdoTodoListRepository&gt;&gt;()))
+    .AddScoped&lt;ITodoListByIdAndUserIdQuery, TodoListByIdAndUserIdQuery&gt;(sp =>
+        new TodoListByIdAndUserIdQuery(
+            sp.GetRequiredService&lt;DbProviderFactory&gt;(),
+            _connectionString,
+            sp.GetRequiredService&lt;ILogger&lt;TodoListByIdAndUserIdQuery&gt;&gt;()));</code></pre>
+              </figure>
+              <figure class="code-sample" data-path="src/Taskly.Main/Program.cs">
+                <figcaption>src/Taskly.Main/Program.cs</figcaption>
+                <p>This is the entry point of the application, setting up the ASP.NET Core web application, registering modules for persistence, web API, and use cases, and running the app asynchronously.</p>
+                <pre><code class="language-csharp">var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddPersistenceModule(builder.Configuration)
+    .AddWebApiModule(builder.Configuration)
+    .AddUseCases();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService&lt;ILogger&lt;Program&gt;&gt;();
+    logger.LogInformation("Infrastructure ready, DI bindings applied.");
+}
+
+await app
+    .UsePersistenceModule()
+    .UseWebApiModule()
+    .RunAsync();</code></pre>
+              </figure>
+              <figure class="code-sample" data-path="src/Taskly.Main/Modules/WebApi/Module.cs">
+                <figcaption>src/Taskly.Main/Modules/WebApi/Module.cs</figcaption>
+                <p>This module configures the web API services, including Swagger documentation, endpoint exploration, and problem details handling for error responses.</p>
+                <pre><code class="language-csharp">services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen(options =>
+    {
+        options.SwaggerDoc(configuration["WebApi:Version"], configuration.BuildOpenApiInfo());
+    })
+    .AddProblemDetails(options =>
+    {
+        options.CustomizeProblemDetails = context =>
+        {
+            (context.ProblemDetails.Status, context.ProblemDetails.Title, context.HttpContext.Response.StatusCode) = context.Exception switch
+            {
+                ValidationException or ArgumentException =&gt; (400, "Validation Error", 400),
+                ElementNotFoundException =&gt; (404, "Not Found", 404),
+                _ =&gt; (context.ProblemDetails.Status, context.ProblemDetails.Title, 500)
+            };
+        };
+    });</code></pre>
+              </figure>
+            </div>
+            <div class="callout try" role="note">
+              <h4>Try it yourself</h4>
+              <p>Follow a dependency from <code>Program.cs</code> to the adapter. Can you identify where the database connection string is injected?</p>
+            </div>
+          </section>
+        </section>
+
+        <section id="command-tutorial" data-title="Command Tutorial">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 4.5 18 10.5l-5.25 1.5 2.25 5.25-2.25 1.5L9.75 12 6 10.5z"></path>
+              </svg>
+            </span>
+            Tutorial: Add a Command Feature (Step-by-Step)
+          </h2>
+          <p>
+            Commands change state. Instead of inventing a brand-new feature, walk through the existing
+            <code>CreateTodoList</code> command to see how all layers collaborate. Then you can mirror the pattern for your own feature.
+          </p>
+          <figure class="diagram" aria-label="Command flow">
+            <pre class="mermaid">sequenceDiagram
+  title CreateTodoList Command Flow
+participant Client
+participant Controller as Minimal API
+participant UseCase as CreateTodoList
+participant Users as IUserRepository
+participant Repo as ITodoListRepository
+Client->>Controller: POST /api/todolists
+Controller->>UseCase: Execute(CreateTodoListInput)
+UseCase->>Users: ById(UserId)
+UseCase->>Repo: Save(todoList)
+UseCase-->>Controller: New TodoList Id
+Controller-->>Client: 201 Created
+</pre>
+            <figcaption>The existing command validates the user, constructs the domain entity, and persists it via the repository port.</figcaption>
+          </figure>
+
+          <h3>Implementation Checklist</h3>
+          <ul class="checklist">
+            <li><input type="checkbox" disabled />Define the input DTO and handler inside <code>Taskly.Application</code>.</li>
+            <li><input type="checkbox" disabled />Coordinate domain and port dependencies inside the handler.</li>
+            <li><input type="checkbox" disabled />Surface the command through a Web API endpoint.</li>
+            <li><input type="checkbox" disabled />Update the Routes.cs file in the infrastructure layer.</li>
+            <li><input type="checkbox" disabled />Register the use case in dependency injection.</li>
+            <li><input type="checkbox" disabled />Cover the behavior with unit tests using mocks.</li>
+          </ul>
+
+          <h3>1. Study the Input &amp; Handler</h3>
+          <p>This code snippet defines the command input record and the use case class. The record structures the input data immutably, ensuring type safety. The use case implements the IUseCase interface, orchestrating validation, domain logic, and persistence through injected ports, while logging the operation for observability.</p>
+          <figure class="code-sample" data-path="src/Taskly.Application/TodoLists/CreateTodoList.cs">
+            <figcaption>src/Taskly.Application/TodoLists/CreateTodoList.cs</figcaption>
+            <pre><code class="language-csharp">public sealed record CreateTodoListInput(string Title, Guid UserId);
+
+public sealed class CreateTodoList : IUseCase&lt;CreateTodoListInput, Task&lt;Guid&gt;&gt;
+{
+    public async Task&lt;Guid&gt; Execute(CreateTodoListInput input)
+    {
+        User user = (await _userRepository.ById(input.UserId))
+            ?? throw new ElementNotFoundException($"User with ID {input.UserId} not found.");
+
+        TodoList todoList = new(user.Id, input.Title);
+        await _todoListRepository.Save(todoList);
+        _logger.LogInformation("New todo list created with ID {TodoListId}", todoList.Id);
+        return todoList.Id;
+    }
+}</code></pre>
+          </figure>
+          <p>This handler validates the user existence via a repository port, constructs a domain entity, saves it through another port, and logs the creation. It behaves as a command handler, ensuring business rules are enforced before state changes, and returns the new entity's ID for API responses.</p>
+
+          <h3>2. Inspect the API Boundary</h3>
+          <p>This controller method structures the API endpoint as a static function for minimal API integration, accepting a request body and injecting the use case. It behaves by performing basic validation on the user ID, executing the use case, and returning a Created response with the new resource location, keeping HTTP concerns separate from business logic.</p>
+          <figure class="code-sample" data-path="src/Taskly.Infrastructure/WebApi/Controllers/CreateTodoListController.cs">
+            <figcaption>src/Taskly.Infrastructure/WebApi/Controllers/CreateTodoListController.cs</figcaption>
+            <pre><code class="language-csharp">public static async Task&lt;Results&lt;Created, BadRequest&gt;&gt; Invoke(
+    [FromBody] CreateTodoListBody body,
+    [FromServices] IUseCase&lt;CreateTodoListInput, Task&lt;Guid&gt;&gt; createTodoList)
+{
+    if (body.UserId == Guid.Empty)
+    {
+        throw new ArgumentException("UserId cannot be empty.");
+    }
+
+    Guid todoListId = await createTodoList.Execute(new CreateTodoListInput(body.Title, body.UserId));
+    return TypedResults.Created($"/api/todolists/{todoListId}");
+}</code></pre>
+          </figure>
+          <p>The controller stays thin by delegating to the use case, handling only transport-level validation and response formatting. It ensures the API boundary is clean, with error handling delegated to global middleware.</p>
+
+          <h3>3. Follow the DI Registration</h3>
+          <p>This module configures dependency injection by registering use case interfaces to their implementations as scoped services. Its structure uses a fluent API for adding services, ensuring each request gets fresh instances. It behaves by binding abstractions to concretes, allowing the composition root to resolve dependencies automatically without tight coupling.</p>
+          <figure class="code-sample" data-path="src/Taskly.Main/Modules/UseCases/Module.cs">
+            <figcaption>src/Taskly.Main/Modules/UseCases/Module.cs</figcaption>
+            <pre><code class="language-csharp">return services
+    .AddScoped&lt;IUseCase&lt;CreateUserInput, Task&lt;Guid&gt;&gt;, CreateUser&gt;()
+    .AddScoped&lt;IUseCase&lt;CreateTodoListInput, Task&lt;Guid&gt;&gt;, CreateTodoList&gt;()
+    .AddScoped&lt;IUseCase&lt;AddItemToTodoListInput, Task&lt;Guid&gt;&gt;, AddTodoItemToTodoList&gt;();</code></pre>
+          </figure>
+          <p>The registration ensures that when the controller requests the IUseCase interface, the DI container provides the CreateTodoList implementation, enabling loose coupling and testability.</p>
+
+          <h3>4. Update the Routes.cs file in the infrastructure layer</h3>
+          <p>This file maps the Web API endpoints to their respective controllers, ensuring the command is accessible via HTTP. It registers routes for the CreateTodoList command, handling HTTP methods and paths.</p>
+          <figure class="code-sample" data-path="src/Taskly.Infrastructure/WebApi/Routes.cs">
+            <figcaption>src/Taskly.Infrastructure/WebApi/Routes.cs</figcaption>
+            <pre><code class="language-csharp">public static class Routes
+{
+    public static void MapTodoListRoutes(this WebApplication app)
+    {
+        app.MapPost("/api/todolists", CreateTodoListController.Invoke)
+            .WithName("CreateTodoList")
+            .WithOpenApi();
+        // Additional routes for other commands...
+    }
+}</code></pre>
+          </figure>
+          <p>The Routes.cs file centralizes endpoint definitions, making it easy to manage and update API routes without scattering them across controllers.</p>
+
+          <h3>5. Verify with Unit Tests</h3>
+          <p>This unit test structures the test method with the [Fact] attribute for xUnit, setting up mock dependencies and test data. It behaves by executing the use case with a valid input, asserting that the result is a valid GUID, and verifying the repository's Save method was called, ensuring the command logic works independently of infrastructure.</p>
+          <figure class="code-sample" data-path="tests/UnitTests/Taskly.Application/TodoLists/CreateTodoListTests.cs">
+            <figcaption>tests/UnitTests/Taskly.Application/TodoLists/CreateTodoListTests.cs</figcaption>
+            <pre><code class="language-csharp">[Fact]
+public async Task Execute_WithValidInput_CreatesTodoListAndReturnsId()
+{
+    var user = new User("John Doe", "john.doe@example.com", userId);
+    var mockTodoListRepository = new MockTodoListRepository();
+    var mockUserRepository = new MockUserRepository();
+    mockUserRepository.AddUser(user);
+
+    var useCase = new CreateTodoList(mockTodoListRepository, mockUserRepository, new MockLogger&lt;CreateTodoList&gt;());
+    var result = await useCase.Execute(new CreateTodoListInput("My Todo List", userId));
+
+    Assert.NotEqual(Guid.Empty, result);
+    var savedTodoList = await mockTodoListRepository.ById(result);
+    Assert.NotNull(savedTodoList);
+}</code></pre>
+          </figure>
+          <p>The test uses mocks for ports to isolate the use case, proving that it correctly orchestrates domain and persistence operations without touching external systems.</p>
+
+          <div class="callout try" role="note">
+            <h4>Try it yourself</h4>
+            <p>Extend <code>CreateTodoList</code> to send a notification via a new port. Sketch the port in the Domain layer, mock it in tests, and add a thin adapter in Infrastructure.</p>
+          </div>
+        </section>
+
+        <section id="query-tutorial" data-title="Query Tutorial">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11.25" cy="11.25" r="5.25"></circle>
+                <path d="M16.5 16.5 20.25 20.25"></path>
+              </svg>
+            </span>
+            Tutorial: Add a Query Feature (Step-by-Step)
+          </h2>
+          <p>
+            Queries return read models. Follow the existing <code>SearchAllTodoListsByUserId</code> flow to see how Taskly projects data without mutating domain state.
+          </p>
+          <figure class="diagram" aria-label="Query flow">
+            <pre class="mermaid">
+              ---
+title: SearchAllTodoLists Query Flow
+---
+flowchart LR
+  Client["GET /api/todolists/{userId}
+  (Routes.cs)"]
+  Client --> Controller["Minimal API 
+  (SearchAllTodoListsByUserIdController)"]
+  Controller --> UseCase[SearchAllTodoListsByUserId]
+  UseCase --> QueryPort[(IAllTodoListsByUserIdQuery)]
+  QueryPort --> Projection[TodoListData DTOs]
+</pre>
+            <figcaption>The query use case depends on a projection port that materializes DTOs optimized for the API.</figcaption>
+          </figure>
+
+          <h3>Implementation Checklist</h3>
+          <ul class="checklist">
+            <li><input type="checkbox" disabled />Describe the read operation via a query port.</li>
+            <li><input type="checkbox" disabled />Implement the use case that delegates to the port.</li>
+            <li><input type="checkbox" disabled />Materialize DTOs inside an infrastructure query adapter.</li>
+            <li><input type="checkbox" disabled />Expose a minimal API endpoint.</li>
+            <li><input type="checkbox" disabled />Update the Routes.cs file in the infrastructure layer.</li>
+            <li><input type="checkbox" disabled />Verify projections through unit tests.</li>
+          </ul>
+
+          <h3>1. Define the Port &amp; Use Case</h3>
+          <p>This code snippet defines the query port interface and the use case class. The port is a simple interface with a single method for fetching data, promoting loose coupling. The use case implements the IUseCase interface, taking an input record, logging the operation, and delegating to the query port for data retrieval, ensuring separation of concerns between application logic and data access.</p>
+          <figure class="code-sample" data-path="src/Taskly.Application/Contracts/Queries.cs">
+            <figcaption>src/Taskly.Application/Contracts/Queries.cs</figcaption>
+            <pre><code class="language-csharp">public interface IAllTodoListsByUserIdQuery
+{
+    Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt; Fetch(Guid userId);
+}</code></pre>
+          </figure>
+          <p>This use case class structures the query execution by validating input implicitly through the record type, logging for observability, and returning a read-only collection of DTOs. It behaves as a thin orchestrator, relying on dependency injection for the query port, which allows for easy testing and swapping of implementations.</p>
+          <figure class="code-sample" data-path="src/Taskly.Application/TodoLists/SearchAllTodoListsByUserId.cs">
+            <figcaption>src/Taskly.Application/TodoLists/SearchAllTodoListsByUserId.cs</figcaption>
+            <pre><code class="language-csharp">public sealed record SearchAllTodoListsByUserIdInput(Guid UserId);
+
+public sealed class SearchAllTodoListsByUserId
+    : IUseCase&lt;SearchAllTodoListsByUserIdInput, Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt;&gt;
+{
+    public async Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt; Execute(SearchAllTodoListsByUserIdInput input)
+    {
+        _logger.LogInformation("Fetching all todo lists for user {UserId}", input.UserId);
+        return await _allTodoListsByUserIdQuery.Fetch(input.UserId);
+    }
+}</code></pre>
+          </figure>
+
+          <h3>2. Explore the Query Adapter</h3>
+          <p>This query adapter implements the port interface using ADO.NET for database interaction. Its structure includes connection management, parameterized queries for security, and data mapping from database rows to domain DTOs. It behaves by executing a SQL query asynchronously, handling potential null values, and aggregating results into a dictionary for efficient grouping before returning a read-only collection.</p>
+          <figure class="code-sample" data-path="src/Taskly.Infrastructure/Persistence/Queries/AllTodoListsByUserIdQuery.cs">
+            <figcaption>src/Taskly.Infrastructure/Persistence/Queries/AllTodoListsByUserIdQuery.cs</figcaption>
+            <pre><code class="language-csharp">public async Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt; Fetch(Guid userId)
+{
+    using var connection = _factory.CreateConnection()
+        ?? throw new InvalidOperationException("DbProviderFactory returned a null DbConnection.");
+
+    connection.ConnectionString = _connectionString;
+    await connection.OpenAsync();
+
+    using var command = connection.CreateCommand();
+
+    var userIdParam = command.CreateParameter();
+    userIdParam.ParameterName = "@UserId";
+    userIdParam.Value = userId.ToString();
+
+    command.CommandText = QRY;
+    command.Parameters.Add(userIdParam);
+
+    using var reader = await command.ExecuteReaderAsync();
+
+    var todoLists = new Dictionary&lt;Guid, TodoListData&gt;();
+
+    while (await reader.ReadAsync())
+    {
+        var todoListIdOrd = reader.GetOrdinal("id");
+        var titleOrd = reader.GetOrdinal("title");
+        var todoListId = reader.GetGuid(todoListIdOrd);
+
+        if (!todoLists.TryGetValue(todoListId, out TodoListData? value))
+        {
+            value = new TodoListData(
+                Id: todoListId,
+                Title: reader.GetString(titleOrd),
+                IsLocked: reader.GetBoolean(reader.GetOrdinal("islocked")),
+                User: new UserData(
+                    Id: reader.GetGuid(reader.GetOrdinal("userid")),
+                    Name: reader.GetString(reader.GetOrdinal("username")),
+                    Email: reader.GetString(reader.GetOrdinal("useremail"))
+                ),
+                InTrash: reader.GetBoolean(reader.GetOrdinal("intrash")),
+                Items: []
+            );
+            todoLists[todoListId] = value;
+        }
+
+        if (!await reader.IsDBNullAsync(reader.GetOrdinal("itemid")))
+        {
+            value.Items.Add(new TodoItemData(
+                Id: reader.GetGuid(reader.GetOrdinal("itemid")),
+                Description: reader.GetString(reader.GetOrdinal("description")),
+                DueDate: reader.GetDateTime(reader.GetOrdinal("duedate")),
+                IsDone: reader.GetBoolean(reader.GetOrdinal("isdone"))
+            ));
+        }
+    }
+
+    return todoLists.Values.ToList().AsReadOnly();
+}</code></pre>
+          </figure>
+
+          <h3>3. Surface the Endpoint &amp; Wiring</h3>
+          <p>This controller method structures the API endpoint as a static function for minimal API integration, taking a user ID from the route and injecting the use case via dependency injection. It behaves by executing the use case with the input, handling success with an OK response, and relying on global error handling for failures, keeping the endpoint thin and focused on HTTP concerns.</p>
+          <figure class="code-sample" data-path="src/Taskly.Infrastructure/WebApi/Controllers/SearchAllTodoListsByUserIdController.cs">
+            <figcaption>src/Taskly.Infrastructure/WebApi/Controllers/SearchAllTodoListsByUserIdController.cs</figcaption>
+            <pre><code class="language-csharp">public static async Task&lt;Results&lt;Ok&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt;&gt;, BadRequest&gt;&gt; Invoke(
+    Guid userId,
+    [FromServices] IUseCase&lt;SearchAllTodoListsByUserIdInput, Task&lt;IReadOnlyCollection&lt;TodoListData&gt;&gt;&gt; search)
+{
+    var result = await search.Execute(new SearchAllTodoListsByUserIdInput(userId));
+    return TypedResults.Ok(result);
+}</code></pre>
+          </figure>
+          <p>This module configures dependency injection by registering use case interfaces to their implementations as scoped services. Its structure uses a fluent API for adding services, ensuring each request gets fresh instances. It behaves by binding abstractions to concretes, allowing the composition root to resolve dependencies automatically without tight coupling.</p>
+          <figure class="code-sample" data-path="src/Taskly.Main/Modules/UseCases/Module.cs">
+            <figcaption>src/Taskly.Main/Modules/UseCases/Module.cs</figcaption>
+            <pre><code class="language-csharp">return services
+    .AddScoped&lt;IUseCase&lt;CreateUserInput, Task&lt;Guid&gt;&gt;, CreateUser&gt;()
+    .AddScoped&lt;IUseCase&lt;CreateTodoListInput, Task&lt;Guid&gt;&gt;, CreateTodoList&gt;()
+    .AddScoped&lt;IUseCase&lt;AddItemToTodoListInput, Task&lt;Guid&gt;&gt;, AddTodoItemToTodoList&gt;();</code></pre>
+          </figure>
+
+          <h3>4. Update the Routes.cs file in the infrastructure layer</h3>
+          <p>This file maps the Web API endpoints to their respective controllers, ensuring the query is accessible via HTTP. It registers routes for the SearchAllTodoListsByUserId query, handling HTTP methods and paths.</p>
+          <figure class="code-sample" data-path="src/Taskly.Infrastructure/WebApi/Routes.cs">
+            <figcaption>src/Taskly.Infrastructure/WebApi/Routes.cs</figcaption>
+            <pre><code class="language-csharp">public static class Routes
+{
+    public static void MapTodoListRoutes(this WebApplication app)
+    {
+        app.MapGet("/api/todolists/{userId}", SearchAllTodoListsByUserIdController.Invoke)
+            .WithName("SearchAllTodoListsByUserId")
+            .WithOpenApi();
+        // Additional routes for other queries...
+    }
+}</code></pre>
+          </figure>
+          <p>The Routes.cs file centralizes endpoint definitions, making it easy to manage and update API routes without scattering them across controllers.</p>
+
+          <h3>5. Validate with Tests</h3>
+          <p>This unit test structures the test method with the [Fact] attribute for xUnit, setting up mock dependencies and test data. It behaves by executing the use case with a valid input, asserting that the result contains the expected number of items, and verifying the query's behavior through mocked interactions, ensuring the use case logic works independently of infrastructure.</p>
+          <figure class="code-sample" data-path="tests/UnitTests/Taskly.Application/TodoLists/SearchAllTodoListsByUserIdTests.cs">
+            <figcaption>tests/UnitTests/Taskly.Application/TodoLists/SearchAllTodoListsByUserIdTests.cs</figcaption>
+            <pre><code class="language-csharp">[Fact]
+public async Task Execute_WithExistingUser_ReturnsUserTodoLists()
+{
+    var todoListData = new List&lt;TodoListData&gt;
+    {
+        new(Guid.NewGuid(), "Work Tasks", false, userData, false, new List&lt;TodoItemData&gt;())
+    };
+    var mockQuery = new MockAllTodoListsByUserIdQuery();
+    mockQuery.AddTodoListsForUser(userId, todoListData);
+
+    var useCase = new SearchAllTodoListsByUserId(mockQuery, new MockLogger&lt;SearchAllTodoListsByUserId&gt;());
+    var result = await useCase.Execute(new SearchAllTodoListsByUserIdInput(userId));
+
+    Assert.Single(result);
+}</code></pre>
+          </figure>
+
+          <div class="callout try" role="note">
+            <h4>Try it yourself</h4>
+            <p>Add pagination parameters to <code>IAllTodoListsByUserIdQuery</code> and update the adapter to keep the signature framework-agnostic.</p>
+          </div>
+        </section>
+
+        <section id="beyond-todo" data-title="From Todo to Your Own App">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.25c3.75 0 7.5 3.375 7.5 7.5 0 4.125-3 9.75-7.5 12.75-4.5-3-7.5-8.625-7.5-12.75 0-4.125 3.75-7.5 7.5-7.5z"></path>
+                <path d="M9.75 11.25a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0z"></path>
+                <path d="M9 19.5 7.5 21.75"></path>
+                <path d="M15 19.5 16.5 21.75"></path>
+              </svg>
+            </span>
+            From Todo to Your Own App
+          </h2>
+          <p>
+            Ready to leave Todo-land? Use this checklist to bootstrap a new product—inventory, bookings, or anything else—with the same patterns.
+          </p>
+
+          <h3>Build-Your-Own-App Checklist</h3>
+          <ul class="checklist">
+            <li><input type="checkbox" disabled />Name your domain entities and value objects.</li>
+            <li><input type="checkbox" disabled />Write ports that describe the integrations you need.</li>
+            <li><input type="checkbox" disabled />Sketch one command and one query use case.</li>
+            <li><input type="checkbox" disabled />Decide on adapters (SQL, HTTP, files) and keep them thin.</li>
+            <li><input type="checkbox" disabled />Set up dependency injection bindings in your composition root.</li>
+            <li><input type="checkbox" disabled />Cover core rules with unit tests and smoke-test the API.</li>
+          </ul>
+
+          <div class="callout try" role="note">
+            <h4>Try it yourself</h4>
+            <p>Clone this repo and rename layers to match a completely different domain (e.g., <em>Booking</em>). Could you keep the same boundaries?</p>
+          </div>
+
+        </section>
+
+        <section id="watch-outs" data-title="Watch Out for These Traps">
+          <h2 class="title-with-icon section-title">
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4.5 3.75 19.5h16.5L12 4.5z"></path>
+                <path d="M12 9.75v3.75"></path>
+                <path d="M12 17.25h.008"></path>
+              </svg>
+            </span>
+            Watch Out for These Traps
+          </h2>
+          <p>
+            As you extend Taskly or build a new product, keep an eye on these common mistakes. Each item below maps to a
+            layer-specific discipline.
+          </p>
+          <div class="two-column">
+            <div class="callout watchout" role="note">
+              <h4>Domain &amp; Application</h4>
+              <ul>
+                <li>Avoid leaking infrastructure types (like <code>DbContext</code>) into entities or use cases.</li>
+                <li>Keep controllers thin—business rules belong inside use cases, not HTTP endpoints.</li>
+                <li>Guard every command with validation before invoking the domain.</li>
+              </ul>
+            </div>
+            <div class="callout watchout" role="note">
+              <h4>Infrastructure &amp; Composition</h4>
+              <ul>
+                <li>Don’t couple adapters to each other; interact via ports to stay swappable.</li>
+                <li>Ensure configuration (connection strings, API keys) flows through DI, not hard-coded.</li>
+                <li>Write unit tests for adapters’ error handling—fail fast when external systems misbehave.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+    </main>
+  </div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

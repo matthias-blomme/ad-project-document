@@ -21,6 +21,9 @@ jobs:
       - name: Build mdBook
         run: ./mdbook-linux build book --dest-dir dist
 
+      - name: Copy server-tutorial to dist
+        run: cp -r server-tutorial dist/
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
