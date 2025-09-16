@@ -13,9 +13,9 @@
 - [AD Project - Business Case Template](https://github.com/matthias-blomme/ad-project-document/blob/main/book/src/files/AD%20Project%20-%20Business%20Case%20template.docx)
 - [AD Project - Usability Test Template](https://github.com/matthias-blomme/ad-project-document/blob/main/book/src/files/AD%20Project%20-%20Usability%20test%20template.docx)
 
-## VueJS learning resources
-- See Leho
-
 
 ## Adria Server learning resources
 - [Server tutorial](https://ad-project.technet.howest.be/server-tutorial/)
+
+## VueJS learning resources
+- See Leho
