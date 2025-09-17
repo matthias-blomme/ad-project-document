@@ -1,38 +1,82 @@
 # Conceptual requirements
 
-Your application needs to contain all conceptual requirements below. One requirement may
-take a larger focus than another, yet all are imperative. Failure to comply will result in a failed
-project!
+Your application needs to contain **all conceptual requirements below**. One requirement may
+take a larger focus than another, yet all are imperative. **Failure to comply will result in a failed
+project!**
 
-Carefully consult with your group mentor to assert compliance.
+Carefully consult with your group coaches to assert compliance.
 
-All requirements are specified as generic as possible to optimally serve your imagination. User
-stories (in gitlab, on group level) are ideal to organise the way you wish to meet these
+All requirements are specified as generic as possible to optimally serve your imagination. **User stories** (in gitlab, on group level) are ideal to organise the way you wish to meet these
 requirements
 
 
-#### Innovative aspect
+## Innovative aspect
 Key to this new world is that your solution makes the life of the people better in the broad sense
-of the word. Learn from the past! Your product must be innovative that improves the quality of
+of the word. **Learn from the past!** Your product must be innovative that improves the quality of
 life and well-being of people on earth, big or small.
 
 
-#### Visualisation component
-Medium to large amounts of data need to be presented in a visually attractive way. These can
+## Visualisation component
+Medium to large amounts of **data** need to be **presented in a visually attractive way**. These can
 be immersive gallery experiences, graphs, maps, …
 
 Be creative!
 
 
-#### User data collection
-Your application needs to collect data from the user. Exactly which data, how much and how
+## User data collection
+Your application needs to **collect data from the user**. Exactly which data, how much and how
 you’ll query for the necessary details, is up to you. The data needs to be stored server side, by
 means of one or more data stores.
 
-In the POC, you get an SQLite database for your application, but for your concept, you may use
+In the POC, you have to use a database for your application, but for your concept, you may use
 as many different data stores as appropriate.
 
 
-#### Usage incentive
-We need a compelling reason for our users to keep using the application. Intrinsic motivation is
+## Usage incentive
+We need a **compelling reason for our users to keep using the application**. Intrinsic motivation is
 the best kind of incentive, try to find out how for your application.
+
+
+## Domain specific
+Each group is assigned a specific domain for which they must develop their POC. Collaboration with other groups for cross-domain work is encouraged. Changing or switching domains is not permitted.
+The different domains are:
+
+### Education & development
+After the catastrophes, large knowledge gaps remain and new generations must be educated quickly.
+
+**POC idea**: a holographic learning platform with AI mentors that revive forgotten Earth knowledge and train new skills needed for survival on Mars (e.g., ecosystem management, robotics).
+
+### Smart living & families
+Colony Adria must develop compact, energy-efficient, and stress-free housing.
+
+**POC idea**: An adaptive living module system that automatically adjusts to the number of residents, optimizes energy use, and creates a sense of “home” through personalized environments.
+
+### Active culture & fun
+On Adria but also on the other settlements, relaxation and recreation are vital to maintain mental health.
+
+**POC idea**: A virtual arena platform that combines sports, art, and music to keep colonists physically active while preserving Earth's cultural heritage.
+
+### Next-gen mobility
+Moving within and beyond Adria is dangerous due to radiation and rough terrain.
+
+**POC idea**:An autonomous transport pod system that safely navigates colonists through the colony or to research sites, including real-time guidance during "dust storms".
+
+### Healthy living
+Medical facilities are limited, and wellbeing is as important as treatment.
+
+**POC idea**: A nano-drone diagnostic network that continuously scans colonists for physical and mental health issues, connected to a digital wellbeing coach.
+
+### The green planet
+Rebuilding ecosystems on Earth is crucial for humanity's future.
+
+**POC idea**: An AI-driven bio-dome that simulates and regulates ecosystems (water, air, biodiversity) in real time to support sustainable agriculture and nature in Adria.
+
+### Safe communities
+Threats come from both outside (radiation, dust storms) and inside (conflicts).
+
+**POC idea**: A community trust system that uses AI to detect early tensions and deploys "mediation drones" to resolve conflicts, while smart sensors defend the colony from external dangers.
+
+### Food
+Food production must be local, circular, and sustainable.
+
+**POC idea**: A hybrid food printer that combines genetically enhanced seeds with 3D food-printing, enabling colonists to enjoy both classic Earth dishes and brand-new Martian recipes.
