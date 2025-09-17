@@ -4,7 +4,7 @@
 
 # CONTEXT
 - [Project](./project/project.md)
-  - [Introduction](./project/project_intro.md)
+  <!--- [Introduction](./project/project_intro.md)-->
   - [Project planning](./project/project_planning.md) 
   - [Detailed planning](./project/detailed_planning.md)
   - [Coaching](./project/project_coaching.md)
