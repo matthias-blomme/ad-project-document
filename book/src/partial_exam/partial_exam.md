@@ -1,14 +1,14 @@
 # Partial Exam
 
-- **Date**: 04/11
-- **Duration**: 3 hours
-- **Time**: 09:30 until 12:30
+- **Date**: 03/11/2025
+- **Duration**: 3,5 hours
+- **Time**: 09:00 until 12:30
 - Parts: 
-  - client exam (1 hour)
+  - client exam (1,5 hour)
   - server exam (2 hours)
 
 ## Client exam
-- Start: 09:30
+- Start: 09:00
 - Duration: 1 hour
 - Type: Leho Quiz
 - Parts:
