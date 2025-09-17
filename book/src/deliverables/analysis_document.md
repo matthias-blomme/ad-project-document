@@ -47,14 +47,12 @@ expect at the very least:
 **Clearly mark** on your documentation which elements will be included in the POC.
 
 
-## Interactive wireframes and visual designs
+## Wireframes and interactive visual designs
 
-The wireframes deliverable will hold interactive wireframes for the **full concept**, so your
-wireframes will be far more extensive than your POC. They are clickable, high-fidelity and
-created in Figma (mandatory).
+The wireframes deliverable will hold wireframes for the **full concept**, so your
+wireframes will be far more extensive than your POC. They are drawn on paper (mandatory).
 
-For the visual designs you will use the Material Design system (mandatory). You add the visual
-designs to the Figma file of your wireframes.
+For the visual designs you can use whatever you are comfortable with. This can be HTML & CSS, Figma, Sketch, Azure, Powerpoint, ... The designs must, however, be **clickable** (to be able to test them, cf. User testing reports) & **high-fidelity**.
 
 Depending on your concept, you will need to design several interfaces. You need to create **all
 necessary interfaces to elaborate your concept**.
