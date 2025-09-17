@@ -33,6 +33,6 @@
   - [Test environment](./poc/poc_test_environment.md)
 
 # EXTRA 
-[Resources](./appendices/resources.md)
-[Q&A](./appendices/q_and_a.md)
+- [Resources](./appendices/resources.md)
+- [Q&A](./appendices/q_and_a.md)
 
