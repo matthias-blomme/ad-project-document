@@ -30,13 +30,13 @@ expect at the very least:
        field), but generic actions/choices which span much further than just the interface
        interaction. Interaction is part of it, but not the whole. The level of detail is more global
        (remember Application Prototyping)
-
-   -   A **C4 diagramme** featuring at **least a context and deployables diagramme**. You may add
-       component diagrammes for the items you find necessary, or omit them all together.
-       Remember: the objective here is to get the message across, not to over-document
-
+       
    -   **One or several UCDs** based on user stories. Those user stories should be created as
-       epics in gitlab. Refer to those from your UCD's
+       epics in gitlab. Refer to those in your UCD's.
+
+   -   A **C4 diagram** featuring at **least a context and deployables diagram**. You may add
+       component diagrams for the items you find necessary, or omit them all together.
+       Remember: the objective here is to get the message across, not to over-document
 
    -   An **ERD** describing the information model of the software system
 
