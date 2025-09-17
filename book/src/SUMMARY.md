@@ -24,8 +24,8 @@
   - [D3 - Analysis document](./deliverables/analysis_document.md)
   - [D4 - Partial Exam](./deliverables/partial_exam.md)
   - [D5 - Proof of Concept](./deliverables/poc.md)
-  - [D7 - Retrospections and peer assessments](./deliverables/retrospections_and_peers.md)
-  - [D8 - Presentation](./deliverables/presentations.md)
+  - [D6 - Retrospections and peer assessments](./deliverables/retrospections_and_peers.md)
+  - [D7 - Presentation](./deliverables/presentations.md)
 
 # POC
 - [Proof of Concept](./poc/poc.md)

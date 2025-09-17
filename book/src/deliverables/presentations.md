@@ -1,11 +1,12 @@
-# D8: Presentation
-Read and apply the guidelines of the semester 2 presentation techniques course "Beter
-presenteren, is dat echt nodig?"
+# D7: Presentation
+
+**Read and apply the guidelines of the semester 2 presentation techniques course "Beter
+presenteren, is dat echt nodig?"**
 
    -   Allocated time for the presentation is 20 mins and an additional 10 minutes question time
    -   Your audience consists of potential investors (private and government). Keep this in
        mind!
-   -   Your presentation is in English. Questions can be answered in Dutch.
+   -   Your presentation is in Dutch or English. Questions can always be answered in Dutch.
    -   Your presentation has the same look and feel as your application.
    -   You are free to choose which tools used to build the presentation (i.e. you are not limited
        to powerpoint slides). Conveying the story is the primary objective.
@@ -30,6 +31,6 @@ A few more tips:
        overuse it ;).
    -   You use your non-verbal communication correctly and efficiently.
 
-The entire group must participate in the planned trial presentations before the Christmas
-leave. It goes without saying that your test presentation is structured according to the guidelines
+**The entire group must participate** in the final presentations before the Christmas
+leave. It goes without saying that your presentation is structured according to the guidelines
 of the semester 2 presentation techniques course.
