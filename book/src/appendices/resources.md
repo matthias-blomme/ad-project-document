@@ -18,4 +18,6 @@
 - [Server tutorial](https://ad-project.technet.howest.be/server-tutorial/)
 
 ## VueJS learning resources
-- See Leho
+- [Learning path "Vue.js 3 fundamentals with the Composition API"](https://vueschool.io/courses/vue-js-fundamentals-with-the-composition-api)
+- [Learning path "Vue component fundamentals with the Compositon API"](https://vueschool.io/courses/vue-component-fundamentals-with-the-composition-api)
+- [vuejs.org](https://vuejs.org/)

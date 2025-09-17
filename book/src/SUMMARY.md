@@ -1,7 +1,3 @@
-[Announcements](announcements.md)
-[Resources](./appendices/resources.md)
-[Q&A](./appendices/q_and_a.md)
-
 # CONTEXT
 - [Project](./project/project.md)
   <!--- [Introduction](./project/project_intro.md)-->
@@ -13,10 +9,10 @@
   - [Requirements](./concept/conceptual_requirements.md)
   - [Restrictions](./concept/concept_restrictions.md)
   - [Concept choice process](./concept/concept_choise.md)
+ <!-- 
 - [Partial Exam](./partial_exam/partial_exam.md)
   - [Client exam](./partial_exam/partial_exam_client.md)
-  - [Server exam](./partial_exam/partial_exam_server.md)
- 
+  - [Server exam](./partial_exam/partial_exam_server.md)--> 
 
 # DELIVERABLES
 - [Deliverables](./deliverables/deliverables.md)
@@ -24,6 +20,8 @@
   - [D2 - Project website](./deliverables/project_website.md)
   - [D3 - Analysis document](./deliverables/analysis_document.md)
   - [D4 - Partial Exam](./deliverables/partial_exam.md)
+      - [Client exam](./partial_exam/partial_exam_client.md)
+      - [Server exam](./partial_exam/partial_exam_server.md)
   - [D5 - Proof of Concept](./deliverables/poc.md)
   - [D6 - Project work, peer evaluations and retrospections](./deliverables/retrospections_and_peers.md)
   - [D7 - Presentation](./deliverables/presentations.md)
@@ -33,4 +31,8 @@
   - [Server](./poc/poc_server.md)
   - [Client](./poc/poc_client.md)
   - [Test environment](./poc/poc_test_environment.md)
+
+# EXTRA 
+[Resources](./appendices/resources.md)
+[Q&A](./appendices/q_and_a.md)
 
