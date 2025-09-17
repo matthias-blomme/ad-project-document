@@ -6,9 +6,7 @@ Only implement the POC, all the rest is fictional and for Adria documentation pu
 
 ## Starter Project
 The start repository is almost empty.
-You have the freedom to choose your own client-side framework (Vue, React, Angular, ...) and strcuture.
-- However, we recommend Vue.
-- Look up the best practices for the choosen front-end.
+You have the use work with **Vue.js** as client-side framework. The strcuture of this folder is your responsibility.
 
 
 ## Requirements
@@ -17,7 +15,10 @@ You have the freedom to choose your own client-side framework (Vue, React, Angul
   - Write small functions
   - Ensure functions do one thing
   - Refactor code regularly
-  - Pass Sonar quality checks
+  - Follow the naming conventions for files, variables, functions, ...
+- The web applications needs to use the **Vue.js framework**.
+- The application should have **least 3 reuasable components**. 
+- The project structure and code should be follow using the **Compositon API style** (`setup(), ref(), computed(), watch()`).
 - **Dockerize** the client application by building a working Dockerfile.
 - Build a **gitlab-ci** file that:
   - Publishes the source code to Sonar for quality checks

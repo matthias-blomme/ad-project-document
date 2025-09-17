@@ -6,42 +6,45 @@ In this project, you will implement a Proof of Concept (POC) of your chosen conc
 ## POC Scope Determination
 At the end of week 5, you'll need to submit a POC scope suggestion by means of a feature list proposal.
 
-The jury will help you align objectives and definitively set the scope for the POC.
-<br>During development, always consult with your group mentors to modify the POC scope, whether broader or more narrow.
+The jury will help you align objectives and definitively set the scope for the POC.  
+During development, always consult with your group coaches to modify the POC scope, whether broader or more narrow.
 
-No modifications to the scope are allowed without the explicit consent of the group mentors!
+**No modifications to the scope are allowed without the explicit consent of the group coaches!**
 
 ## What do we expect?
 You will be given four repositories on the http://gitlab.ti.howest.be space:
 
--  A **documentation** repository
-  - All documents, links, diagrams, etc. related to the project
--  A **client** repository
-  - The web client application connecting to the server
--  A **server** repository
-  - The server application containing the business logic and a web API
--  A **test environment** repository
-  - A Docker solution that is able to run your entire Adria solution
+-  A **documentation** repository  
+   All documents, links, diagrams, etc. related to the project should be here.  
+   There is a readme.md that contains all the general information and links. A template for this document can be found in the Resources section.
+-  A **client** repository  
+   The web client application connecting to the server.
+-  A **server** repository  
+   The server application containing the business logic and a web API
+-  A **test environment** repository  
+   A Docker solution that is able to run your entire Adria solution
 
-These repositories will hold all deliverable content, except for the peer assessments, retrospectives, and reflections.
+These repositories will hold all deliverable content, except for the daily standups, peer evaluations and retrospections (these are submitted on Leho).
 
 All implementations must implement the **mandatory requirements** and **customizable requirements** as described below.
 
-## Mandatory Requirements for All Projects
+## Mandatory requirements for all projects
 
-The following are mandatory requirements that **must** be implemented in your project. <br>See the page of each repository (client, server, test environment) for specific details.
+The following are mandatory requirements that **must** be implemented in your project.  
+See the subsections of each repository (client, server, test environment) for specific details.
 
-Not all mandatory topics are taught in class. You will need to do some self-study to implement them.
-<br>Don't worry, the POC scope is only a small part of your overall concept.
+Not all mandatory topics are taught in class. You will need to do some self-study to implement them.  
+Don't worry, the POC scope is only a small part of your overall concept.
 
-- **Coding guidelines**: Use all good practices from **previous and current** courses.
+- **Coding guidelines**: use all good practices from **previous and current** courses. Don't forget:
   - Create readable code
   - Write small functions
   - Ensure functions do one thing
   - Refactor code regularly
   - Pass Sonar quality checks
 
-- The **web client** is built with a **front-end framework** (we recommend Vue). <br>The use of libraries to extend functionality is permitted; however, only limited technical support will be offered when choosing a library not covered in the curriculum. 
+- The **web client** is a Vue.js application. The use of libraries to extend functionality is permitted; however, only limited technical support will be offered when choosing a library not covered in the curriculum. 
+  - The web applications needs to be build with Vue-components and the Composition API. 
   - **Docker**:
     - Dockerize the client application by building a working Dockerfile.
   - **CI**
@@ -72,13 +75,13 @@ Not all mandatory topics are taught in class. You will need to do some self-stud
 ## Customizable Requirements
 In addition to the mandatory requirements, you need to implement some other technologies/principles listed below. Customization should fit the needs of your application.
 
-**Caution**: Proper feature integration into the product is required! <br>Again, don't add these as an afterthought, but as a useful contribution to your product.
+**Caution**: proper feature integration into the product is required!  
+Again, don't add these as an afterthought, but as a useful contribution to your product.
 
-**You need to complete at least 4 points worth of topics.** <br>For example, you can choose 4 topics worth 1 point each or 2 topics worth 2 points each, etc.
+**You need to complete at least 5 points worth of topics with 1 topic of 2 points mandatory.**   
+For example, you can choose 3 topics worth 1 point each and 1 topic worth 2 points or 1 topic worth 1 point and 2 topics worth 2 points, etc.
 
-Some of the topics are class-taught, others require self-study.
-
-Take a look at the tutorials of the module [Web Technology](https://gitlab.ti.howest.be/ti/2025-2026/s3/web-technology/tutorials)
+Some of the topics are class-taught, others require self-study. Take a look at the tutorials of the module [Web Technology](https://gitlab.ti.howest.be/ti/2025-2026/s3/web-technology/tutorials)
 
 Any deviations need to be consolidated with the group mentors.
 
@@ -115,8 +118,8 @@ applied on top of the already existing score, ignoring any penalties that may be
 Bonus grades will not be quantified beforehand, as they strongly depend on the level of
 implementation (detail and quality). <br>The exact amount will be determined ad hoc.
 
-**We’ll be allocating bonus grades for**:
-  -   Teams who manage to get their POCs to work together (by using OpenAPI spec
+**We'll be allocating bonus grades for**:
+  -   Teams who manage to get their **POCs to work together** (by using OpenAPI spec
        integration or based on the asyncAPI spec)
   -   Usefully implemented client side testing
   -   Awesome factor
