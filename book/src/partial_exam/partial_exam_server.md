@@ -32,12 +32,9 @@ Below are some possible **examples**.
   - These will be overwritten with the correct tests.
 - The result must be **pushed** to your **own** repository on **Gitlab**.
 
-## Forbidden
-- No communication with other students in whatever form or way is allowed.
-
 ## Allowed
 - You are allowed to use the internet to search for information.
-- You are allowed to use AI to help you write code.
+- You are allowed to use AI to help you write code (code completion). Question-driven AI is forbidden.
 - You are allowed to use the code from the lessons and example repositories.
 
 ## Evaluation

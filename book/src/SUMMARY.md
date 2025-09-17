@@ -14,8 +14,9 @@
   - [Restrictions](./concept/concept_restrictions.md)
   - [Concept choice process](./concept/concept_choise.md)
 - [Partial Exam](./partial_exam/partial_exam.md)
+  - [Client exam](./partial_exam/partial_exam_client.md)
   - [Server exam](./partial_exam/partial_exam_server.md)
-  - [Client quiz](./partial_exam/partial_exam_client.md)
+ 
 
 # DELIVERABLES
 - [Deliverables](./deliverables/deliverables.md)

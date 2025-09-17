@@ -5,7 +5,7 @@
    out your ideas. However, you must keep all the AI prompts and add them as an appendix
    to your analysis document.**
 
-
+<!--
 ## Scope of product
 Determine the scope of the concept of your product using the following tools:
 
@@ -19,7 +19,7 @@ Determine the scope of the concept of your product using the following tools:
    -   Based on the user stories the **feature list** for your applications is determined. Make a
        MoSCoW list and Feature Priority Matrix to define. Clearly mark in the feature list which
        features will be included in the POC.
-
+-->
 
 ## Schematics
 Describe the **full concept** in a collection of schematics, which can be suited to your needs. We

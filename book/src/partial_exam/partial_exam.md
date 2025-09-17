@@ -7,28 +7,22 @@
   - client exam (1,5 hour)
   - server exam (2 hours)
 
-## Client exam
-- Start: 09:00
-- Duration: 1 hour
-- Type: Leho Quiz
-- Parts:
-  - Push notifications
-  - Vue.js
-- **Hints:**
-  - All information is published on Leho
-  - Vue.js: understand the cheatsheets
-  - Push notifications: try the first steps of the slides
-
-## Server exam
-- Start: 10:30
-- Duration: 2 hours
-- Type: practical exam
-- Parts: .NET
-- **Hints:**
-  - Watch the server videos
-  - Extend the example server repository
-
 ## Evaluation
-TODO: Lorum ipsum  
-  - Must pass: >= 10/20
-    - Retake is possible in januari
+Each component will stand for 50% of the score for the deliverable D4.   
+The results will be published on Leho no later than two weeks after the examination, using letter grades:
+  - A grade: 16/20 or more
+  - B grade: 14-15/20
+  - C grade: 12-13/20
+  - D grade: 11-12/20
+  - E grade: 7-8-9/20
+  - F grade: 6/20 or less
+
+If you scored an E or F, you must retake the exam(s) in January 2026, provided that you have passed all other deliverables.
+
+## Important
+- Any form of communication between students or other parties is strictly forbidden. 
+- This is an **individual exam**. Any discovery of irregularity (e.g., phone use, peeking, copying, hacking, use of social media clients, etc.) will, in accordance with the Education and Examination Regulations (EER), result in notifying both the involved student(s) and the chairman of the examination committee. 
+- After completing the exam, it is forbidden to publish the assignment or solution in any way other than the designated repository on gitlab.ti.howest.be. 
+- **Question-driven AI is forbidden**.
+- Make sure all applications that could potentially open/start or be interpreted as an attempt at fraud (Outlook, Messenger, Facebook, etc.) are closed before the start of the exam! 
+
