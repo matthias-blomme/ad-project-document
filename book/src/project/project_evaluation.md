@@ -1,6 +1,6 @@
 # Evaluation
 
-### Scoring calculation
+## Scoring calculation
  When executing a project, any aspect must meet minimal standards. This means that a very low
  score on any of the deliverables will impact the project vastly. The scoring principles of this
  course are designed so that your final score tends towards the weakest link, i.e. the one with
@@ -9,42 +9,36 @@
 
  Your final score is determined based on the different number of deliverables, using the
  following distribution:
+   - D1 Business Case including financial analysis: 15%
+   - D2 Project website: 5%
+   - D3 Analysis document: 20%
+   - D4 Client/server knowledge test: 20%
+   - D5 POC: 25%
+   - D6 Project work, peer evaluations and retrospections: 5%
+   - D7 Presentation for investors jury: 10%
 
-             ○   D1 – Business Case including financial analysis: 15%
-             ○   D2 – Project website: 5%
-             ○   D3 – Analysis document: 25%
-             ○   D4 – Client/server knowledge quiz/exam: 15%
-             ○   D5 – POC: 25%
-             ○   D6 – PM work on Gitlab & website: 5%
-             ○   D7 – Various peer assessments and reflections: 5%
-             ○   D8 – Presentation for investors jury: 5%
-
+<center><strong>
           !Omission or significantly incomplete implementation of a single deliverable
                        will result in a failing score for the entire module!
+</strong></center>
 
-### Factors influencing the final score
- There are many factors weighing on the final score for this module (see 10.1). Each part of the
+## Factors influencing the final score
+
+There are many factors weighing on the final score for this module. Each part of the
  assignment is scored according to specific criteria. This score can be influenced by intermediate
  as well as end results of a certain portion.
 
- A group score will be determined according to the principles listed above. From this group
- score, the individual score will deviate in positive or negative manner depending on the
+ A **group score** will be determined according to the principles listed above. From this group
+ score, the **individual score** will deviate in positive or negative manner depending on the
  following factors.
 
 
-#### Presentation
- The presentation is an individually graded component, with the presentation itself as a baseline.
- Each group member will be scored individually for his performance during the presentation,
+### Presentation
+The presentation is an individually graded component, with the presentation itself as a baseline.
+Each group member will be scored individually for his performance during the presentation,
  measured on a number of factors.
 
-
-
-
-
-
-
-
-#### Conduct and contribution
+### Conduct and contribution
 Your general conduct and contribution throughout the semester is monitored by the group
 mentors as well as assessed by your peers. Deviations, positive or negative, will impact your
 final individual score.
@@ -54,14 +48,13 @@ for this module). The group mentors may come to this conclusion at his/her discr
 supported by the majority of the other group mentors.
 
 
-#### Extreme sanctions
+### Extreme sanctions
 Group exclusion will be immediate in one of the following cases:
-
-   -   Unprofessional or inappropriate conduct (see 9.1.4)
-   -   Repeated signalling from group members to non- or malfunctioning in the group,
-       either on a technical or quantitative level of you failing to meet generativity (see 10.2.5
+   -   Unprofessional or **inappropriate conduct** (see previous paragraph)
+   -   Repeated signalling from group members to **non- or malfunctioning in the group**,
+       either on a technical or quantitative level of you failing to meet generativity (see further
        for detailed procedure).
-   -   After a second unexcused absence, on a rostered moment, a coaching moment, a
+   -   **After a second unexcused absence**, on a rostered moment, a coaching moment, a
        presentation moment or any other project related moment where presence was
        mandatory. You may ask for an excuse for absence to your group mentor, and you're
        only excused if you have permission to be absent.
@@ -69,9 +62,9 @@ Group exclusion will be immediate in one of the following cases:
 Exclusion from the group results in a zero score for the module, which has no retake!
 
 
-#### Conduct and contribution
+### Conduct and contribution
 Your general conduct and contribution throughout the semester is monitored by the group
-mentors, coaches as well as assessed by your peers. Deviations, positive or negative, will
+coaches, other coaches as well as assessed by your peers. Deviations, positive or negative, will
 impact your final individual score.
 
 Inappropriate conduct may be a reason for immediate group exclusion (resulting in zero score
@@ -79,50 +72,48 @@ for this module). The group mentors may come to this conclusion at his/her discr
 supported by the majority of the other group mentors.
 
 
-#### Aim for generativity
+### Aim for generativity
 Each student will be granted a generativity score. This score is used for your personal final
 score. The generativity score is based on your team work, helping others, communicating
-problems in time, and so forth. We expect everyone to behave as a team player: you need to
+problems in time, and so forth. We expect everyone to behave as **a team player**: you need to
 aim for generativity (certainly watch the talk to understand what we are talking about).
 Generativity is not your personal productivity. On the contrary, it's about how you influence the
 productivity of others around you.
 
 
-
-
-
-
-In the rare case of clear and obvious signs of highly negative generativity one may be
-excluded for the project, resulting in an individual zero score.
+**In the rare case of clear and obvious signs of highly negative generativity one may be
+excluded for the project, resulting in an individual zero score.**
 
 The procedure for exclusion is:
 
-1. The team members have informed you that they are not ok with your team work and
-   why. The group mentor is informed about what has been discussed and both parties
+1. The team members have informed you that **they are not ok with your team work and
+   why**. The group coaches are informed about what has been discussed and both parties
    confirm that this has happened. A plan of action to improve within a defined time frame is
-   set up in the team and this is shared between all team members and the group mentors.
+   set up in the team and this is shared between all team members and the group coaches.
 
 2. If there are no signs of substantial improvement within the defined time frame (confirmed by
-   all other team members and the group mentors): a first official warning is given and the time
-   frame is extended with one more week
+   all other team members and the group coaches): a first official warning is given and the time
+   frame is extended with one more week.
 
 3. If there still are no signs of substantial improvement within that week (confirmed by all other
-   team members and the group mentors): the student is excluded from the project (=zero
-   score)
+   team members and the group mentors): the student is **excluded from the project (=zero
+   score)**
 
 4. If there was improvement, but it lasts only for a certain period, and the generativity
-   decreases again (confirmed by all other team members and the group mentors): a second
+   decreases again (confirmed by all other team members and the group coaches): a second
    official warning is given and there is one more week to catch up
 
 5. If once again there are no signs of substantial improvement within a week or the
    improvement is again only temporary (confirmed by all other team members and the group
-   mentors): the student is excluded from the project
+   coaches): the student is **excluded from the project**
 
 6. The final score of the remaining group members will be adjusted accordingly, depending on
    the severity of the case and how negatively the incident has impacted the group work and
    project progress
 
 
+## Retake D4 Client/server knowledge test
 
-
-                           GOOD LUCK!
+This part can be retaken in January 2026 **on the following conditions**:
+- the student has passed for all the other deliverables outside the examination period (D1-2-3-5-6-7)
+- the student has participated on the client and server test in November 2025

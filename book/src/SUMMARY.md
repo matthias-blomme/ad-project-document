@@ -1,10 +1,12 @@
+[Announcements](announcements.md)
 [Resources](./appendices/resources.md)
 [Q&A](./appendices/q_and_a.md)
 
 # CONTEXT
 - [Project](./project/project.md)
-  - [Summary](./project/project_summary.md)
-  - [Planning](./project/project_planning.md)
+  - [Introduction](./project/project_intro.md)
+  - [Project planning](./project/project_planning.md) 
+  - [Detailed planning](./project/detailed_planning.md)
   - [Coaching](./project/project_coaching.md)
   - [Evaluation](./project/project_evaluation.md)
 - [Concept](./concept/concept.md)
@@ -22,7 +24,6 @@
   - [D3 - Analysis document](./deliverables/analysis_document.md)
   - [D4 - Partial Exam](./deliverables/partial_exam.md)
   - [D5 - Proof of Concept](./deliverables/poc.md)
-  - [D6 - Project work](./deliverables/project_work.md)
   - [D7 - Retrospections and peer assessments](./deliverables/retrospections_and_peers.md)
   - [D8 - Presentation](./deliverables/presentations.md)
 
