@@ -1,7 +1,7 @@
 # 2.3. Concept choice process
 
 
-### Which software system to develop?
+## Which software system to develop?
 The current people on the Adria colony have already put out a list of absolutely necessary
 software systems (= Adria's Critical Apps) to be developed. You have to think of a non-existing solution within the domain you are assigned to.
 
@@ -12,7 +12,7 @@ You have to meet the conceptual requirements and convince the jury of your idea.
 After the pitches have finished, you will get a GO or NO GO. If you get a NO GO, you should go back to the drawing board and come up with a better concept.
 
 
-### List of pre-determined Adria's Critical Solutions (can not be choosen)
+## List of pre-determined Adria's Critical Solutions (can not be choosen)
    -   **AdriaBook**:
        Adria connector application (cfr facebook/other social media ) to connect the different
        people of Adria and other colonies. Connections to intergalactic citizens are not possible
@@ -49,7 +49,7 @@ After the pitches have finished, you will get a GO or NO GO. If you get a NO GO,
        Terran stock markets though creative deviations are allowed.
 
 
-### Inspiration
+## Inspiration
 
 There are plenty more today's Earth based applications you can modify to Adria's needs that
 haven't been listed above (Fitbit, find that person instead of that device, …) but nicer would be to
