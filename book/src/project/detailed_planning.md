@@ -4,6 +4,8 @@ A summary of the project planning is listed below. **Any modifications to the sc
 
 ## First five project Tuesday
 
+**Focus: learning preparing client technology (Vue.js) and server code for partial exam and analysis phase.**
+
 | Tuesday | Activity | 
 | --- | --- | 
 | 23/09/2025 | **Kick-off project (10:30-12:00)** <br> Meeting group members and coaches <br> Input session and project work: Idea generation (13:30 - 16:00) | 
@@ -14,19 +16,24 @@ A summary of the project planning is listed below. **Any modifications to the sc
 
 ## First project week
 
+**Focus: partial exam, feedback on alpha version analysis documents and start development phase (client/server).**
+
 | Day | Time | Activity |
 | --- | --- | --- |
-|Mon 3/11/2025 | 9:00-12:30| Client/server knowledge test (indivual) |  
+|Mon 3/11/2025 | 9:00-12:30| Client/server exam (individual) |  
 |Mon 3/11/2025 | 13:30-16:00| User testing with 3rd years SE |
 |Tue 4/11/2025 | 9:00-16:00| Project work: start development part |
 |Tue 4/11/2025 | 9:00-16:00| **Feedback Business Case with 1 key user** <br> (appointment with mr. Vlummens and mr. Martens) |
 |Wed 5/11/2025 | 9:00-12:30| Project work: start development part |
 |Thur 6/11/2025 | 9:00-16:00| Project work: start development part |
+|Thur 6/11/2025 | 13:30-15:00| Input session: Push notifications |
 |Thur 6/11/2025 | 9:00-16:00| **Feedback Analysis Document with 2 key users** <br> (appointment with mrs. Audenaert and mrs. De Groef) |
 |Fri 7/11/2025 | 9:00-12:30| Project work: start development part |
 
 
 ## Next four project Tuesdays
+
+**Focus: continuing development phase.**
 
 | Tuesday | Activity | 
 | --- | --- | 
@@ -37,6 +44,8 @@ A summary of the project planning is listed below. **Any modifications to the sc
   
 
 ## Second project week
+
+**Focus: finalizing.** 
 
 | Day | Time | Activity |
 | --- | --- | --- |
