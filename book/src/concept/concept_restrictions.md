@@ -14,7 +14,7 @@ The Entry Station is the **single point of entry** for all lifeforms seeking res
 ### Adria: the First colony
 Adria, the First colony is where the magic’s at. This **fully-operational colony** is a small indicator of what life will be again on Earth. <br> Complete with extensive medical facilities, schools for the youngest, lush greenhouses, robuust research lab and extensive R&R amenities, this is the heart of Earth. There is **need for expansion and diversification**. The colony is looking for new souls and ideas to shape the Adria’s identity. 
 <center>
-<img src="../images/adria-firstcolony.png" width="300"> <img src="../images/adria1.jpg" width="200">
+<img src="../images/adria-firstcolony.png" width="300"> <img src="../images/adria1.jpg" width="350">
 </center>
 
 ### The Other colonies
@@ -22,7 +22,7 @@ Where Adria is fully operational, other colonies around the world are built to o
 People stay there for extended periods, lacking all the comfort from Adria, only the basic needs provide, sometimes for months. **Work is the main focus** of the populace, with medium breaks for much needed R&R (Rest & Relaxation), after **travelling by the Earth Voyager** to the Adria Colony.
 
 <center>
-<img src="../images/other-colonies.jpg" width="300"> <img src="../images/adria3.jpg" width="200">
+<img src="../images/other-colonies.jpg" width="300"> <img src="../images/adria3.jpg" width="300">
 
 </center>
 
