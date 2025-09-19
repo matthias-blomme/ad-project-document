@@ -40,12 +40,12 @@ Each group member will be scored individually for his performance during the pre
 
 ### Conduct and contribution
 Your general conduct and contribution throughout the semester is monitored by the group
-mentors as well as assessed by your peers. Deviations, positive or negative, will impact your
+coaches as well as assessed by your peers. Deviations, positive or negative, will impact your
 final individual score.
 
 Inappropriate conduct may be a reason for immediate group exclusion (resulting in zero score
-for this module). The group mentors may come to this conclusion at his/her discretion,
-supported by the majority of the other group mentors.
+for this module). The group coaches may come to this conclusion at his/her discretion,
+supported by the majority of the other group coaches.
 
 
 ### Extreme sanctions
@@ -56,21 +56,10 @@ Group exclusion will be immediate in one of the following cases:
        for detailed procedure).
    -   **After a second unexcused absence**, on a rostered moment, a coaching moment, a
        presentation moment or any other project related moment where presence was
-       mandatory. You may ask for an excuse for absence to your group mentor, and you're
+       mandatory. You may ask for an excuse for absence to your group coaches, and you're
        only excused if you have permission to be absent.
 
 Exclusion from the group results in a zero score for the module, which has no retake!
-
-
-### Conduct and contribution
-Your general conduct and contribution throughout the semester is monitored by the group
-coaches, other coaches as well as assessed by your peers. Deviations, positive or negative, will
-impact your final individual score.
-
-Inappropriate conduct may be a reason for immediate group exclusion (resulting in zero score
-for this module). The group mentors may come to this conclusion at his/her discretion,
-supported by the majority of the other group mentors.
-
 
 ### Aim for generativity
 Each student will be granted a generativity score. This score is used for your personal final
@@ -96,7 +85,7 @@ The procedure for exclusion is:
    frame is extended with one more week.
 
 3. If there still are no signs of substantial improvement within that week (confirmed by all other
-   team members and the group mentors): the student is **excluded from the project (=zero
+   team members and the group coaches): the student is **excluded from the project (=zero
    score)**
 
 4. If there was improvement, but it lasts only for a certain period, and the generativity

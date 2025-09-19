@@ -42,7 +42,7 @@ Each group is assigned a specific domain for which they must develop their POC. 
 The different domains are:
 
 1. **Education & development**  
-    After the catastrophes, large knowledge gaps remain and new generations must be educated quickly.
+    After the catastrophes, large knowledge gaps remain and new generations must be educated quickly.  
     _POC idea_: a holographic learning platform with AI mentors that revive forgotten Earth knowledge and train new skills needed for survival on Mars (e.g., ecosystem management, robotics).
 
 1. **Smart living & families**  
