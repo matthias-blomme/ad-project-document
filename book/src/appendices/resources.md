@@ -1,5 +1,8 @@
 # Resources
 
+## Presentations
+- [Kick-off AD Project]("../files/2526-AD Project-briefing.pdf")
+
 ## Helpful repositories
 - [Server example repository](https://gitlab.ti.howest.be/ti/2025-2026/s3/project/server-example)
   - Learn to practice the server structure and way of working.
