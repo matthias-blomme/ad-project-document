@@ -1,4 +1,4 @@
-# Project Planning
+# 1.1. Project Planning
 
 ## Semester planning
 The project starts on **Tuesday, September 23rd 2025** and ends on **Friday, December 19th 2025** and is divided into different sprints.

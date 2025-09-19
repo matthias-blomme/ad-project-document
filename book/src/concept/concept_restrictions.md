@@ -1,8 +1,8 @@
-# Context - restrictions
+# 2.2. Context - restrictions
 
 Following restrictions apply to the project.
 
-## Earth: current settlements in 2084
+## 2.2.1. Earth: current settlements in 2084
 
 ### The Entry Station
 
@@ -26,7 +26,7 @@ Do not find yourself constrained by current technological limitations and assume
 If you can think of it, it's possible with **the exception of time travel, inter-dimensional travel and zombies** - we are not yet in the year 3000. 
 
 
-## Conventions and terminology
+## 2.2.2. Conventions and terminology
 You may assume the following about current Adria’s life.
 
 

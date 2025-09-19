@@ -1,4 +1,4 @@
-# Detailed Planning
+# 1.2. Detailed Planning
 
 A summary of the project planning is listed below. **Any modifications to the schedule will be communicated through this document.**
 

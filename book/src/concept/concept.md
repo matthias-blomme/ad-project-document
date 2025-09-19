@@ -1,11 +1,4 @@
-# Introduction
-
-<center>
-<figure>
-    <img src="../images/Adria2084.jpg" alt="Adria2084">
-    <figcaption>Adria 2084</figcaption>
-</figure>
-</center>
+# 2. Concept - Adria 2084
 
 The year is **2084**.
 
@@ -67,6 +60,12 @@ Take a moment to think about the following challenges/restrictions
        conscious choices to minimize waste and resource consumption.
 
 <br><br>
+<center>
+<figure>
+    <img src="../images/Adria2084.jpg" alt="Adria2084">
+</figure>
+</center>
+<br>
 <center>
 <em>"Embrace the challenges of today to forge the possibilities of tomorrow.<br>     
 In the face of adversity, we find the strength to shape a world <br>

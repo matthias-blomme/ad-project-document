@@ -1,4 +1,4 @@
-# Concept choice process
+# 2.3. Concept choice process
 
 
 ### Which software system to develop?
@@ -66,7 +66,7 @@ What value would they have? How do we connect with the people on Mars?
 When you start working on your concept for Adria 2084, it can be really useful to look at speculative stories that show both the power and the dangers of new technology.  
 The series [Black Mirror](https://en.wikipedia.org/wiki/Black_Mirror) is a great example: in the episode "Hated in the Nation" you see how automated systems can spiral out of control and create chaos, while in the "Arkangel" epsiode an overprotective AI makes a child blind to what danger really means. These stories remind you that technology isn't just exciting—it can also backfire if you don't think about risks.
 
-besides **Black Mirror**, you could also check out:
+Besides **Black Mirror**, you could also check out:
 - **Philip K. Dick's short stories** (many of them inspired films like Minority Report and Blade Runner)
 - **The Matrix** (how virtual worlds can distort reality)
 - **The Handmaid's Tale** (how systems of control shape society)
