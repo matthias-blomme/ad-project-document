@@ -43,36 +43,36 @@ The different domains are:
 
 1. **Education & development**  
     After the catastrophes, large knowledge gaps remain and new generations must be educated quickly.
-    **POC idea**: a holographic learning platform with AI mentors that revive forgotten Earth knowledge and train new skills needed for survival on Mars (e.g., ecosystem management, robotics).
+    _POC idea_: a holographic learning platform with AI mentors that revive forgotten Earth knowledge and train new skills needed for survival on Mars (e.g., ecosystem management, robotics).
 
 1. **Smart living & families**  
    Colony Adria must develop compact, energy-efficient, and stress-free housing.  
-    **POC idea**: An adaptive living module system that automatically adjusts to the number of residents, optimizes energy use, and creates a sense of “home” through personalized environments.
+   _POC idea_: An adaptive living module system that automatically adjusts to the number of residents, optimizes energy use, and creates a sense of “home” through personalized environments.
 
 1. **Active culture & fun**  
    On Adria but also on the other settlements, relaxation and recreation are vital to maintain mental health.  
-   **POC idea**: A virtual arena platform that combines sports, art, and music to keep colonists physically active while preserving Earth's cultural heritage.
+    _POC idea_: A virtual arena platform that combines sports, art, and music to keep colonists physically active while preserving Earth's cultural heritage.
 
 1. **Next-gen mobility**  
    Moving within and beyond Adria is dangerous due to radiation and rough terrain.  
-   **POC idea**:An autonomous transport pod system that safely navigates colonists through the colony or to research sites, including real-time guidance during "dust storms".
+    _POC idea_:An autonomous transport pod system that safely navigates colonists through the colony or to research sites, including real-time guidance during "dust storms".
 
 1. **Healthy living**  
    Medical facilities are limited, and wellbeing is as important as treatment.  
-   **POC idea**: A nano-drone diagnostic network that continuously scans colonists for physical and mental health issues, connected to a digital wellbeing coach.
+    _POC idea_: A nano-drone diagnostic network that continuously scans colonists for physical and mental health issues, connected to a digital wellbeing coach.
 
 1. **The green planet**  
     Rebuilding ecosystems on Earth is crucial for humanity's future.  
-    **POC idea**: An AI-driven bio-dome that simulates and regulates ecosystems (water, air, biodiversity) in real time to support sustainable agriculture and nature in Adria.
+     _POC idea_: An AI-driven bio-dome that simulates and regulates ecosystems (water, air, biodiversity) in real time to support sustainable agriculture and nature in Adria.
 
 1. **Safe communities**  
    Threats come from both outside (radiation, dust storms) and inside (conflicts).  
-   **POC idea**: A community trust system that uses AI to detect early tensions and deploys "mediation drones" to resolve conflicts, while smart sensors defend the colony from external dangers.
+    _POC idea_: A community trust system that uses AI to detect early tensions and deploys "mediation drones" to resolve conflicts, while smart sensors defend the colony from external dangers.
 
 1. **Food**  
    Food production must be local, circular, and sustainable.  
-   **POC idea**: A hybrid food printer that combines genetically enhanced seeds with 3D food-printing, enabling colonists to enjoy both classic Earth dishes and brand-new Martian recipes.
+    _POC idea_: A hybrid food printer that combines genetically enhanced seeds with 3D food-printing, enabling colonists to enjoy both classic Earth dishes and brand-new Martian recipes.
 
 1. **Resilient Economy**  
    Survival in Adria also depends on how people organize work, share resources, and build a fair economy that motivates innovation.  
-   **POC idea**: A resource exchange platform where colonists can trade skills, energy, or materials in a transparent way, supported by blockchain-like trust systems, ensuring collaboration and fairness.
+    _POC idea_: A resource exchange platform where colonists can trade skills, energy, or materials in a transparent way, supported by blockchain-like trust systems, ensuring collaboration and fairness.
