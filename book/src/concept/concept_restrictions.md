@@ -7,19 +7,24 @@ Following restrictions apply to the project.
 ### The Entry Station
 
 The Entry Station is the **single point of entry** for all lifeforms seeking residency on Adria, the first colony on Earth since the Global Disaster. There is a crew manning the station around the clock, but otherwise it is largely populated by "passer-by"s. <br>Quarantine procedure will require people to stay for a short period of time, both traveling on and off-planet. This means you'll get a **short engagement** from many users, but never for more than a couple of weeks. The **range of people reached** with any type of advertising is **highest** here. 
-
-<img src="../images/entrystation.png" width="" align="center">
+<center>
+<img src="../images/entrystation.png" width="400">
+</center>
 
 ### Adria: the First colony
 Adria, the First colony is where the magic’s at. This **fully-operational colony** is a small indicator of what life will be again on Earth. <br> Complete with extensive medical facilities, schools for the youngest, lush greenhouses, robuust research lab and extensive R&R amenities, this is the heart of Earth. There is **need for expansion and diversification**. The colony is looking for new souls and ideas to shape the Adria’s identity. 
-
-<img src="../images/adria-firstcolony.png">
+<center>
+<img src="../images/adria-firstcolony.png" width="200"> <img src="../images/adria1.jpg" width="200">
+</center>
 
 ### The Other colonies
 Where Adria is fully operational, other colonies around the world are built to obtain the same objective. For now, those places are under construction.  
 People stay there for extended periods, lacking all the comfort from Adria, only the basic needs provide, sometimes for months. **Work is the main focus** of the populace, with medium breaks for much needed R&R (Rest & Relaxation), after **travelling by the Earth Voyager** to the Adria Colony.
 
-<img src="../images/other-colonies.jpg">
+<center>
+<img src="../images/other-colonies.jpg" width="200"> <img src="../images/adria3.jpg" width="200">
+
+</center>
 
 ### Travel restrictions
 Travel is only possible in the directions of the diagramme between the current settlements.  
