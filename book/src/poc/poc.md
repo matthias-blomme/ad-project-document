@@ -1,4 +1,4 @@
-# Proof of Concept
+# 4. Proof of Concept
 In this project, you will implement a Proof of Concept (POC) of your chosen concept. <br>The POC should demonstrate the core functionalities of your application, showcasing its potential and feasibility. 
 
 **Remember, the POC is only a small part of your overall concept.**
@@ -12,7 +12,7 @@ During development, always consult with your group coaches to modify the POC sco
 **No modifications to the scope are allowed without the explicit consent of the group coaches!**
 
 ## What do we expect?
-You will be given four repositories on the http://gitlab.ti.howest.be space:
+You will be given four repositories on the [http://gitlab.ti.howest.be](http://gitlab.ti.howest.be) space:
 
 -  A **documentation** repository  
    All documents, links, diagrams, etc. related to the project should be here.  
