@@ -1,7 +1,7 @@
 # Resources
 
 ## Presentations
-- [AD Project](./../files/2526-AD%20Project-briefing.pdf)
+- [AD Project Briefing](./../files/2526-AD%20Project-briefing.pdf)
 
 ## Helpful repositories
 - [Server example repository](https://gitlab.ti.howest.be/ti/2025-2026/s3/project/server-example)
