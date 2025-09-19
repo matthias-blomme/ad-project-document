@@ -1,4 +1,4 @@
-# Proof of Concept - Server
+# 4.2. Proof of Concept - Server
 
 The server is the implementation of the agreed upon POC. 
 

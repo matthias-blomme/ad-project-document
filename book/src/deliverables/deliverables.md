@@ -1,4 +1,4 @@
-# Deliverables
+# 3. Deliverables
 
 This section describes all the deliverables you need to provide during the course of the project.
 

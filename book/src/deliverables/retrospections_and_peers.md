@@ -1,4 +1,4 @@
-#  D6 Project work, peer evaluations and retrospections
+#  D6: Project work, peer evaluations and retrospections
 
 ## Daily standups
 At the start of each project day, the groups should have a "daily standup". You will discuss the

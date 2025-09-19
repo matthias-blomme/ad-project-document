@@ -1,4 +1,4 @@
-# Proof of Concept - Client
+# 4.1. Proof of Concept - Client
 
 The client is the implementation of the agreed upon POC. 
 

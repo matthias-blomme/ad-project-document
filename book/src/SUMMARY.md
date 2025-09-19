@@ -31,8 +31,9 @@
 
 # POC
 - [Proof of Concept](./poc/poc.md)
-  - [Server](./poc/poc_server.md)
+
   - [Client](./poc/poc_client.md)
+  - [Server](./poc/poc_server.md)
   - [Test environment](./poc/poc_test_environment.md)
 
 
