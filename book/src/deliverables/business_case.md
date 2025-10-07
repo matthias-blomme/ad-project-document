@@ -15,9 +15,9 @@ Make sure to keep all prompts and add them as an appendix to your business case 
 ### D1.1. Your concept/product/service
 
 Here you will detail what your concept is: what are you going to do and build (or provide as a
-service)? Make sure to include all the items specified in [chapter 2](./concept/concept.md) (yes, you need to cover
+service)? Make sure to include all the items specified in [2.1. Conceptual requirements](../concept/conceptual_requirements.md) (yes, you need to cover
 everything we’ve listed there). Don’t be restricted to text for this. Illustrate with charts, figures,
-whatever you need to get the message across.
+whatever you need to get the message across. Also take into account the [2.2. Context restrictions](../concept/concept_restrictions.md).
 
 Make sure your concept stands out!
 
